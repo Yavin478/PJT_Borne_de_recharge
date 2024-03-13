@@ -1,0 +1,12 @@
+def write_m(mode):
+        file = Path(mode + ".txt")
+        if file.exists():
+                file = open(mode + ".txt","r")
+                content = file.read()
+                file.close()
+                lines = content.split("\n")
+                file = open(mode + ".txt","w")
+                file.write(str(int(lines[0])+1))
+                file.close()
+        else:
+
