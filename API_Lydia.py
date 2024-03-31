@@ -1,6 +1,7 @@
 import requests
 import json
 import config.py
+import prepa_bdd
 
 
 def Lydia_check(token_public,montant,phone,order_id,paymentData):

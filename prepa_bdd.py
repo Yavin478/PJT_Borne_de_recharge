@@ -39,18 +39,3 @@ def SQL_EXECUTE(querry):
     _cnx.commit()
     _cnx.close()
     ##DATA_add(setting.projet_path+'PICONFLEX2000-LOGS/LOG_SQL.txt',querry+"\n")
-
-## Procédure rechargement
-
-# 1) Récupération de l'UID de la carte à recharger et du temps courant de la BDD
-UID=35028059
-current_date=SQL_SELECT(QUERRY_getTime())[0][0]
-
-print(current_date)
-
-# 2) Insertion de l'id de la transaction a effectuée avec l'UID de la carte
-SQL_EXECUTE(QUERRY_setIdLydia(UID,current_date))
-
-# 3) Récupération de l'id de cette transaction
-id=SQL_SELECT(QUERRY_getIdLydia(UID,current_date))[0][0]
-print(id)

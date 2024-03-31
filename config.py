@@ -11,3 +11,6 @@
 # TOKENS DE TEST Lydia Rezal
 token_public = "" #pour les appels
 token_prive = "" #pour la signature
+
+# Numéro de téléphone du caissier
+phone=''
