@@ -33,7 +33,7 @@ mysql_query($sql_preparation);
 $sql_order_ref = "SELECT id FROM consos_lydia WHERE users_id=".$users_id." AND `date`=".$date.";";
 $query_order_ref = mysql_query($sql_order_ref);
 while($row = mysql_fetch_array($query_order_ref)){
-	$order_ref = $row['id'];
+	$order_ref = $row['id'];   #order_id
 }
 
 echo '<div class="ui center aligned orange segment">';
