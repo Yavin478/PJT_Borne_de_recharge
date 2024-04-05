@@ -1,55 +1,12 @@
-"""
 
-from datetime import datetime
-Instruction_lydia="Présentez le QRCode lydia devant le scanner"
-Echange_Max=5000 # valeur en centime
-#drapeau indique si on laisse les gens se débucquer.
-while drapeau :
-    Id_carte=lecture_RFID()
-    if Id_carte !='':
-        argent_disponible=recuperation_argent(Id_carte)
-        afficher("Argent disponible :"+argent_disponible)
-        date=datetime.now()
-        Qrcode=''
-        afficher(Instruction_lydia)
-
-        while Qrcode!='' and date<date+timedelta(seconds=57) :#voir si c'est supporté
-            Qrcode=lecture_Qrcode()
-        # on considère que l'on a le QRCode ou que l'on repart au début
-        if Qrcode!='':
-            #il faut récupérer les données nécessaires au paiement 
-            # et surtout pour pouvoir modifier la BDD
-            #on a donc :
-            Argent_echange=dechiffrage_QrCode()
-
-            if  Argent_echange <= Echange_Max:
-                if Argent_echange>0 :
-                    Validation_lydia=Transaction_Lydia(QrCode)# Ce programme doit effectuer la transaction et renvoyer une validation sous la forme d'un boolenn
-                    if Validation_lydia :
-                        RequêteSQL("incrémente la base de donnée avec la transaction (table rechargement)")
-            
-                        RequêteSQL("Add  argent_echange à la iD de carte associé")
-
-                        argent_disponible=recuperation_argent(Id_carte)
-                        afficher("Argent disponible :"+argent_disponible+"/n La carte a été rechargée")
-                    else:
-                        afficher("La Transaction n'a pas pu aboutir, vous êtes probablement pauvre.")
-                else:
-                    afficher("Ha Ha Ha , j'ai ton nom fdp tu ne peux pas te cacher. Je vais te trouver...")
-            else :
-                afficher("Somme échangée supérieure à"+Echange_Max/100+"€, tentez l'action avec un montant inférieur à"+Echange_Max/100)
-        else:
-            #On considèreque que le gars est parti et qu'il faut repartir du début
-        
-    else:
-        afficher("Présentez la carte")
-"""
 #Dans le cadre du code de la borne automatique on remplace la fonction hint("text",int) par une fonction afficher("text",int) qui affichera à l'écran les infos
 #cela permettra de profiter de l'écran de la borne et de tkinter.
 
 #Il faut aussi changer  le code pour interagir avec le clavier si on a pas le mêm nombre de touche ou si elles sont attribués différemment.
 
 #dans un 1er temps je retire le code qui n'est plus adapté à l'architecture matérielle de la borne.
+
+import qrcode.py
 
 print("Demarrage 'loop.py'")
 while True: #Seconde boucle infinie permettant d'utiliser la commande "break" pour arreter la transaction
@@ -233,28 +190,195 @@ while True: #Seconde boucle infinie permettant d'utiliser la commande "break" po
         produit="RechargeMontantAutomatique" #Le produit est nommé RechargeMontantAutomatique pour différencier les paiements 
         nombre=1 #Une seule recharge (permet de standardiser les transactions mais est inutile ici)
         reference=-1 #Pas de référence
-        Validation_lydia=Transaction_Lydia(QrCode, montant)# Ce programme doit effectuer la transaction et renvoyer une validation sous la forme d'un boolenn
+        Validation_lydia=Transaction_Lydia(montant)# Ce programme doit demander le QRcode , et effectuer la transaction et renvoyer une validation sous la forme d'un booléen
         if Validation_lydia :
-            RequêteSQL("incrémente la base de donnée avec la transaction (table rechargement)")
-
-            RequêteSQL("Add  argent_echange à la iD de carte associé")
-            argent_disponible=recuperation_argent(Id_carte)
+            #RequêteSQL("incrémente la base de donnée avec la transaction (table rechargement)")
+            #RequêteSQL("Add  argent_echange à la iD de carte associé")
             afficher("Argent disponible :"+argent_disponible+"/n La carte a été rechargée")
         else :
             afficher("La transaction à echoué")
+            break #Arret de la transaction
     #Il faut modifier la fonction de pour récupérer le montant.
     else:
         reference,nombre,produit,montant=MENU_getCommande(argent) #Paramètres de la commande
 
     if montant==0: #Si la carte a été retirée
         break #Arret de la transaction
+
     newMontant=argent+montant #Calcul du nouveau montant de la carte
     # Si le nouveau montant est négatif:
     if newMontant<0:
         afficher("CREDIT INSUFFISANT",2)
-        afficher("NE PAS SERVIR",3)
+        afficher("Sale pauvre",3)
         break #Arret de la transaction
     # Si le nouveau montant n'est pas négatif, on effectue le débuquage sur la bdd puis sur la carte
     DATA_add(setting.projet_path+'PICONFLEX2000-LOGS/LOG_QUERRY.txt',QUERRY_addArgent(STRING_uidStrToInt(UID),montant)+QUERRY_addTransaction(produit,nombre,setting.numeroBox,STRING_uidStrToInt(UID),montant,reference)) #Ajout des requetes pour la BDD
     afficher("NE PAS RETIRER CARTE",4) #Avertissement sur lequel il faut lourdement insister en mode hors ligne!
-    RFID_setArgent(newMontant,UID) #Ecriture du nouveau montant
+    #Je ne vois pas comment ca pourrait être une bonne idée de laisser le mec mettre de l'argent sur sa carte en mode offline avec la borne auto.
+    #RFID_setArgent(newMontant,UID) #Ecriture du nouveau montant
+
+
+
+
+
+
+"""
+
+from datetime import datetime
+Instruction_lydia="Présentez le QRCode lydia devant le scanner"
+Echange_Max=5000 # valeur en centime
+#drapeau indique si on laisse les gens se débucquer.
+while drapeau :
+    Id_carte=lecture_RFID()
+    if Id_carte !='':
+        argent_disponible=recuperation_argent(Id_carte)
+        afficher("Argent disponible :"+argent_disponible)
+        date=datetime.now()
+        Qrcode=''
+        afficher(Instruction_lydia)
+
+        while Qrcode!='' and date<date+timedelta(seconds=57) :#voir si c'est supporté
+            Qrcode=lecture_Qrcode()
+        # on considère que l'on a le QRCode ou que l'on repart au début
+        if Qrcode!='':
+            #il faut récupérer les données nécessaires au paiement 
+            # et surtout pour pouvoir modifier la BDD
+            #on a donc :
+            Argent_echange=dechiffrage_QrCode()
+
+            if  Argent_echange <= Echange_Max:
+                if Argent_echange>0 :
+                    Validation_lydia=Transaction_Lydia(QrCode)# Ce programme doit effectuer la transaction et renvoyer une validation sous la forme d'un boolenn
+                    if Validation_lydia :
+                        RequêteSQL("incrémente la base de donnée avec la transaction (table rechargement)")
+            
+                        RequêteSQL("Add  argent_echange à la iD de carte associé")
+
+                        argent_disponible=recuperation_argent(Id_carte)
+                        afficher("Argent disponible :"+argent_disponible+"/n La carte a été rechargée")
+                    else:
+                        afficher("La Transaction n'a pas pu aboutir, vous êtes probablement pauvre.")
+                else:
+                    afficher("Ha Ha Ha , j'ai ton nom fdp tu ne peux pas te cacher. Je vais te trouver...")
+            else :
+                afficher("Somme échangée supérieure à"+Echange_Max/100+"€, tentez l'action avec un montant inférieur à"+Echange_Max/100)
+        else:
+            #On considèreque que le gars est parti et qu'il faut repartir du début
+        
+    else:
+        afficher("Présentez la carte")
+"""
+
+"""def Transaction_Lydia(montant):
+
+	#key = sel_mode(["*","0","#"])
+
+	#insert_new_l(str(id_machine))
+	order_id_tmp = get_order_id()
+	order_id = int(order_id_tmp[-1][0])
+	#print order_id
+	#disp(lcd,3,l)
+	#write_line(lcd,"Machine "+machine+" select.",1)
+	flash = get_qrcode()
+	if flash == False:	#On a attend le timeout
+		return	#Retour à l'écran principal
+
+	#log("qr : "+flash)
+	
+    # permet d'afficher un truc sur l'écran
+	#disp(lcd,53,1)
+
+	if len(flash) == 38:
+			#log("Unique qrcode scanned. Checking access")
+			L=check_qrcode_unique(flash)
+			#valide le paiement
+			if L[0]:
+				##log("Machine "+machine+" started")
+				print(10)
+				#start_m(id_machine)
+				print(11)
+				#######start_machine(str(id_machine))
+                ## fonction ci dessus permet de valider e
+				print(12)
+				#disp(lcd,7,L[1])
+				#sleep(5)
+				print(13)
+				return(True)
+		    else:
+				print(14)
+				#disp(lcd,11,l)
+				sleep(5)
+				print(15)
+				return(False)
+
+		if internet_on():
+			#print flash
+			#flash = "test"
+			#print type(flash)
+			#log("Lydia qr scanned, request api")
+			post_request_status = post_value(str(flash), order_id)
+			#log("Request status: "+str(post_request_status))
+			if post_request_status == False:
+				#clear_lcd(lcd)
+				#write_line(lcd,"POST Error",2)
+				#write_line(lcd,"Aborting",3)
+				mark_m_cancel_all()
+				sleep(5)
+				return False
+			#disp(lcd,4,l)
+
+			#log("Checking for transaction")
+			transaction = find_transaction()
+			#print transaction
+			while transaction == ():
+				transaction = find_transaction()
+				#print transaction
+			if transaction[-1][5] == 0:
+				log("Transaction founded, starting machine "+machine)
+				#disp(lcd,5,l)
+				#key = sel_mode(["A","B"])
+				#if key == "A":
+		                #        start_m(1)
+				#	id_machine = 1
+		                #elif key == "B":
+		                #        start_m(2)
+				#	id_machine = 2
+				print("Démarrage machine")
+				#start_m(id_machine) 
+				#write_normal_m()
+				#set_m_id(id_machine)
+				code_gen = get_code()
+				id_transaction = str(transaction[0][0])
+				#print id_transaction
+				insert_code(str(code_gen),str(id_machine),str(id_transaction))
+                return (True)
+				#start_machine(str(id_machine))
+				#disp(lcd,6,l)
+				#write_line(lcd,code_gen,3)
+            else:
+			    #disp(lcd,9,l)	# message de problème paiement affiché
+                    code_erreur = int(str(transaction[-1][5]))
+				write_line(lcd,"Erreur : " + str(code_erreur),3)
+				#log("Error : " + str(code_erreur))
+				sleep(3)	# pendant 3 secondes
+				# affichage du détail de l'erreur :
+				if code_erreur == 201:
+					disp(lcd,101,l)
+				elif code_erreur == 206:
+					disp(lcd,102,l)
+				elif code_erreur == 207:
+					disp(lcd,103,l)
+				elif code_erreur == 208:
+					disp(lcd,104,l)
+				elif code_erreur == 213:
+					disp(lcd,105,l)
+				elif code_erreur == 214:
+					disp(lcd,106,l)
+				mark_m_cancel()
+				sleep(5)
+                return (False)
+        else:
+			disp(lcd,14,l)
+			sleep(5)
+            
+            """
