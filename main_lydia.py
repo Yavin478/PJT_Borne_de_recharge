@@ -1,11 +1,12 @@
-import requests
-import json
-import API_Lydia,prepa_bdd,config
+
+from prepa_bdd import *
+from API_Lydia import *
 
 # 1) Détection et récupération de l'UID de la carte à recharger et du temps courant de la BDD
 UID=35028059
 
-# 2) Récupération du montant actuelle de la carte
+# 2) Récupération du montant de l'argent actuel sur la carte
+argent_carte=SQL_SELECT(QUERRY_getArgent(UID))[0][0]
 
 # 3) Vérification et récupération du montant saisi par l'utilisateur
 montant=10
@@ -17,15 +18,15 @@ SQL_EXECUTE(QUERRY_setIdLydia(UID,current_date))
 # 5) Récupération de l'id de cette transaction
 order_id=SQL_SELECT(QUERRY_getIdLydia(UID,current_date))[0][0]
 
-# 6) Récupération du Qrcode
+# 6) Récupération des infos du Qrcode
 paymentData=''
 
 # 7) Vérification de la transaction avec l'API lydia
-Lydia_check(token_public,montant,phone,order_id,paymentData)
+# check=Lydia_check(token_public,montant,phone,order_id,paymentData)
 
+# 8) Si paiement refusé (check = None): restart le prg
 
-# 8) Si paiement refusé : restart le prg
+# 9) Si paiement validé (check != None): MAJ montant de la carte BDD
 
-# 9) Si paiement validé : MAJ montant de la carte BDD
+# 10) MAJ de la table recharge_lydia dans la BDD
 
-# 10) MAJ recharge_lydia BDD

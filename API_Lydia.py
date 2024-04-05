@@ -1,7 +1,7 @@
 import requests
 import json
-import config.py
-import prepa_bdd
+from config import *
+from prepa_bdd import *
 
 
 def Lydia_check(token_public,montant,phone,order_id,paymentData):
@@ -38,5 +38,7 @@ def Lydia_check(token_public,montant,phone,order_id,paymentData):
             return response_data['transaction_identifier']
         else:
             print("Erreur lors de la transaction :", response_data['error'])
+            return None
     else:
         print("Erreur de requête HTTP :", response.status_code)
+        return None
