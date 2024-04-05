@@ -1,6 +1,5 @@
 
 import mysql.connector
-import main_lydia
 
 # Définition du dictionnaire de connection à la BDD
 # Nom d'utilisateur
@@ -21,6 +20,12 @@ def QUERRY_getIdLydia(UID,date):
 def QUERRY_setIdLydia(UID,date):
     return (("INSERT INTO recharge_lydia (UID_carte,date) VALUES ('{}','{}');").format(UID,date))
 
+def QUERRY_getMoney(UID):
+    return (("SELECT ArgentCarte FROM cartes WHERE UID='{}';").format(UID))
+
+def QUERRY_setMoney(UID,Money):
+    return (("UPDATE cartes SET ArgentCarte='{}' WHERE UID='{}'").format(Money,UID))
+
 # Définition des fonctions d'exécution des requêtes
 def SQL_SELECT(querry):
     _cnx=mysql.connector.connect(**connection)
@@ -37,3 +42,12 @@ def SQL_EXECUTE(querry):
     _cnx.commit()
     _cnx.close()
     ##DATA_add(setting.projet_path+'PICONFLEX2000-LOGS/LOG_SQL.txt',querry+"\n")
+
+def Recharge_montant(UID,montant):
+    Money=SQL_SELECT(QUERRY_getMoney(UID))[0][0]
+    SQL_EXECUTE(QUERRY_setMoney(UID,Money+montant))
+
+
+
+
+Recharge_montant("306873947",20)
