@@ -1,14 +1,14 @@
 import requests
 import json
-from config import *
-from prepa_bdd import *
 
 
-def Lydia_check(token_public,montant,phone,order_id,paymentData):
+def Lydia_check(token_public,montant,phone,order_id,Qrcode):
     # L'URL de l'API pour initier une transaction (remplacer par l'URL de test ou de production selon le cas)
     #url = "https://lydia-app.com/api/payment/payment.json" # Production
-    url = "https://homologation.lydia-app.com/payment/payment.json" # Test
+    url = "https://homologation.lydia-app.com/api/payment/payment.json" # Test
 
+    #Convertit les données scannées du qrcode en un format comprehensible pour la requête Json
+    paymentData = json.dumps(Qrcode)
 
     # Les données à envoyer à l'API
     data = {
@@ -37,8 +37,20 @@ def Lydia_check(token_public,montant,phone,order_id,paymentData):
             print("Identifiant de la transaction :", response_data['transaction_identifier'])
             return response_data['transaction_identifier']
         else:
-            print("Erreur lors de la transaction :", response_data['error'])
+            print("Erreur lors de la transaction :", response_data['error'], response_data['message'])
             return None
+
     else:
         print("Erreur de requête HTTP :", response.status_code)
         return None
+
+
+### Test transaction lydia
+# token_public = "660e5b8b4c353994613407"
+# phone='33782977418'
+# montant=4
+# order_id=1
+# Qrcode=["Fr49UxSXNQ/yYT2IFFfITATS5dV6g4M/MdkHeNEp4A7Y0bl9uxLa8YC7PZRl2gHUPGu1gKT2UWKuNPbFKM44IHBiBtEtriEg+/vj8aVwMrWaNsk+S2PIGU0Olsz6+WPP5tYgEQsfacdmU9WTSKxEwGjK1HpqbfzedOyYkECa0I0=","3"]
+#
+# transaction_identifier=Lydia_check(token_public,montant,phone,order_id,Qrcode)
+

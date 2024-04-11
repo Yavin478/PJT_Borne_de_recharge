@@ -14,14 +14,11 @@ connection = {"user": 'pi',
 serveurNet = "8.8.8.8"
 
 # Définition des requêtes SQL
+def QUERRY_getIdLydia(date):
+    return (("SELECT id FROM recharge_lydia WHERE date= '{}';").format(date))
 
-def QUERRY_getArgent(UID):
-    return (("SELECT ArgentCarte FROM cartes WHERE UID= '{}' ;").format(UID))
-def QUERRY_getIdLydia(UID,date):
-    return (("SELECT id FROM recharge_lydia WHERE UID_carte= '{}' AND date= '{}';").format(UID,date))
-
-def QUERRY_setIdLydia(UID,date):
-    return (("INSERT INTO recharge_lydia (UID_carte,date) VALUES ('{}','{}');").format(UID,date))
+def QUERRY_setIdLydia(date):
+    return (("INSERT INTO recharge_lydia (date) VALUES ('{}');").format(date))
 
 def QUERRY_getTime():
     return (("SELECT NOW();"))

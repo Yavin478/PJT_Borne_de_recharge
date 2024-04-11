@@ -14,17 +14,21 @@ connection = {"user": 'pi',
 serveurNet = "8.8.8.8"
 
 # Définition des requêtes SQL
-def QUERRY_getIdLydia(UID,date):
-    return (("SELECT id FROM recharge_lydia WHERE UID_carte= '{}' AND date= '{}';").format(UID,date))
-
-def QUERRY_setIdLydia(UID,date):
-    return (("INSERT INTO recharge_lydia (UID_carte,date) VALUES ('{}','{}');").format(UID,date))
 
 def QUERRY_getMoney(UID):
     return (("SELECT ArgentCarte FROM cartes WHERE UID='{}';").format(UID))
 
 def QUERRY_setMoney(UID,Money):
     return (("UPDATE cartes SET ArgentCarte='{}' WHERE UID='{}'").format(Money,UID))
+
+def QUERRY_setRecharge(UID, montant, box, date):
+    return (("INSERT INTO recharge (UID, montant, box, date) VALUES ('{}','{}','{}','{}');").format(UID, montant, box, date))
+
+def QUERRY_getIdRecharge(date):
+    return (("SELECT id FROM recharge WHERE date='{}';").format(date))
+
+def QUERRY_setTransactionLydia(order_id,id_recharge,transaction_identifier):
+    return (("UPDATE recharge_lydia SET id_recharge='{}', transaction_identifier='{}'WHERE id='{}'").format(id_recharge,transaction_identifier,order_id))
 
 # Définition des fonctions d'exécution des requêtes
 def SQL_SELECT(querry):
@@ -47,7 +51,3 @@ def Recharge_montant(UID,montant):
     Money=SQL_SELECT(QUERRY_getMoney(UID))[0][0]
     SQL_EXECUTE(QUERRY_setMoney(UID,Money+montant))
 
-
-
-
-Recharge_montant("306873947",20)
