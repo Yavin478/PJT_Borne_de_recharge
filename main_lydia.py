@@ -38,5 +38,3 @@ if transaction_identifier:
 else :
     print("Problème survenu lors de la transaction ")
 
-
-
