@@ -25,7 +25,7 @@ class Page(Toplevel):
         self.canv.pack()
         self.create_img(self.taille_ecran, path_img_bg)
         self.create_img([i / ratio_square for i in self.taille_ecran], path_img_fg, [i / 2 for i in self.taille_ecran], "center")
-        self.create_label("salut!", 10,[i / 2 for i in self.taille_ecran], "center" )
+        self.create_label("salut!",pos=[self.taille_ecran[0]/2,self.taille_ecran[1]/2*(1-decalage_label/ratio_square)], ancre="n")
 
         # FONCTION DE CREATION
 
@@ -34,8 +34,8 @@ class Page(Toplevel):
         self.images.append(photo_image)
         self.canv.create_image(pos[0], pos[1], anchor=ancre, image=photo_image)
 
-    def create_label(self, text, police, pos=(0, 0), ancre="Center"):
-        self.canv.create_text(pos[0], pos[1], anchor=ancre, text=text)
+    def create_label(self, text, police=type_police, pos=(0, 0), ancre="Center", taille=taille_police):
+        self.canv.create_text(pos[0], pos[1], anchor=ancre, text=text, font=(police, int(taille/ratio_square)))
 
         # FONCTION UTILITAIRE
 
