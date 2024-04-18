@@ -22,8 +22,10 @@ fleche_tk = ImageTk.PhotoImage(fleche_redimensionnee)
 
 #création du canva de fond associé
 canvas1 = Canvas(root, width=taille[0], height=taille[1])
+canvas_background = Canvas(root, width=taille[0], height=taille[1])
 canvas1.pack(fill="both", expand=True)
-canvas1.create_image(0, 0, image=back_tk, anchor="nw")
+
+canvas_background.create_image(0, 0, image=back_tk, anchor="nw")
 def toggle_visibility(): #fonction permmettant le cligonetement de la flèche
     if canvas1.itemcget(fleche_img, "state") == "hidden":
         canvas1.itemconfigure(fleche_img, state="normal")
@@ -36,8 +38,8 @@ fleche_img=canvas1.create_image(int((taille[0]-taille_fleche[0])), int((taille[1
 toggle_visibility()  # Démarre le clignotement au lancement
 
 #Création du texte
-canvas1.create_text(taille[0] / 2, taille[1] / 2.5, text="Vous venez de recharger votre carte de X €", fill="black", font=("Impact", 60))
-canvas1.create_text(taille[0] / 2, taille[1] / 1.5, text="Veulliez récupérer votre carte", fill="black", font=("Impact", 60))
+canvas1.create_text(taille[0] / 2, taille[1] / 2.5, text="Vous avez rechargé X €", fill="black", font=("Impact", 60))
+canvas1.create_text(taille[0] / 2, taille[1] / 1.5, text="Récupérez votre carte", fill="black", font=("Impact", 60))
 
 #canvas1.create_text(taille[0] / 2, taille[1] /1.03, text="Appuyer sur la touche échappe pour annuler", fill="black", font=("Impact", 40))
 root.mainloop()
