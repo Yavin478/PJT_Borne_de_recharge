@@ -212,17 +212,18 @@ while True: #Seconde boucle infinie permettant d'utiliser la commande "break" po
             afficher("montant invalide")
     #Il faut modifier la fonction de pour récupérer le montant.
     else:
-        reference,nombre,produit,montant=MENU_getCommande(argent) #Paramètres de la commande
+        print("erreur de nomBox dans settingm o")
+        #reference,nombre,produit,montant=MENU_getCommande(argent) #Paramètres de la commande
 
-    if montant==0: #Si la carte a été retirée
-        break #Arret de la transaction
-
-    newMontant=argent+montant #Calcul du nouveau montant de la carte
+    #if montant==0: #Si la carte a été retirée
+    #    break #Arret de la transaction
+    #
+    #newMontant=argent+montant #Calcul du nouveau montant de la carte
     # Si le nouveau montant est négatif:
-    if newMontant<0:
-        afficher("CREDIT INSUFFISANT",2)
-        afficher("Sale pauvre",3)
-        break #Arret de la transaction
+    #if newMontant<0:
+    #    afficher("CREDIT INSUFFISANT",2)
+    #    afficher("Sale pauvre",3)
+    #    break #Arret de la transaction
     # Si le nouveau montant n'est pas négatif, on effectue le débuquage sur la bdd puis sur la carte
     #DATA_add(setting.projet_path+'PICONFLEX2000-LOGS/LOG_QUERRY.txt',QUERRY_addArgent(STRING_uidStrToInt(UID),montant)+QUERRY_addTransaction(produit,nombre,setting.numeroBox,STRING_uidStrToInt(UID),montant,reference)) #Ajout des requetes pour la BDD
     #afficher("NE PAS RETIRER CARTE",4) #Avertissement sur lequel il faut lourdement insister en mode hors ligne!
