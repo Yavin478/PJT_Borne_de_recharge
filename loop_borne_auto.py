@@ -1,12 +1,20 @@
-
+#Code V2 allégé spécialement pour la borne automatique.
 #Dans le cadre du code de la borne automatique on remplace la fonction hint("text",int) par une fonction afficher("text",int) qui affichera à l'écran les infos
 #cela permettra de profiter de l'écran de la borne et de tkinter.
 
 #Il faut aussi changer  le code pour interagir avec le clavier si on a pas le mêm nombre de touche ou si elles sont attribués différemment.
 
 #dans un 1er temps je retire le code qui n'est plus adapté à l'architecture matérielle de la borne.
+#dans un 2e temps on crée un code fonctionnel
+#ensuite on réimplémentera le code fonctionnel de la borne auto dans le code normal en lui faissant reconnaitre que c'est une borne plus ou moins loin dans le code.
+#Le seul problème est que les architecture matériel ne seront pas les même bloquant ainsi la compatibilité
 
-import qrcode.py
+import qrcode
+import setting
+import importation
+
+def afficher (text, int):
+    print(text)
 
 print("Demarrage 'loop.py'")
 while True: #Seconde boucle infinie permettant d'utiliser la commande "break" pour arreter la transaction
@@ -35,55 +43,55 @@ while True: #Seconde boucle infinie permettant d'utiliser la commande "break" po
         # rezalMode est à True, donc on fait la synchronisation des données de la carte avec celles de la BDD
         else:
             # on test si la carte est une carte d'appro
-            if hashCodeType == CRYPT_hashage(config.codeAppro):
-                afficher("Carte d'Appro",2)
-                try:
-                    requests=SQL_SELECT(QUERRY_getCommandeEnCours(STRING_uidStrToInt(UID)))
-                    if len(requests)==0:
-                        afficher("Pas de CMD en cours", 3)
-                    else:
-                        listeAutresPianss=[]
-                        cmdOK=False
-                        for request in requests:
-                            #test du pianss
-                            if request[0]==setting.nomBox:
-                                afficher("SYNCH BDD", 3)
-                                SQL_EXECUTE(QUERRY_ajoutStock(request[2],request[3]))
-                                SQL_EXECUTE(QUERRY_validationCommande(request[1]))
-                                afficher("Status valide!", 3)
-                                cmdOK = True
-                            else:
-                                if request[0] not in listeAutresPianss:
-                                    listeAutresPianss.append(request[0])
-                        sleep(0.5)
-                        if len(listeAutresPianss)!=0:
-                            if cmdOK:
-                                _ligne1="AUTRES PIANSS:"
-                            else:
-                                _ligne1="MAUVAIS PIANSS:"
-                            _ligne2="Dest: "+",".join(listeAutresPianss)
-                            _ligne3=""
-                            if len(_ligne2)>20:
-                                _ligne3=_ligne2[20:]
-                                _ligne2=_ligne2[:20]
-                            afficher(_ligne1,1)
-                            afficher(_ligne2,2)
-                            afficher(_ligne3,3)
-                            while RFID_carteCheck():
-                                afficher(_ligne1, 1)
-                                afficher("RETIRER CARTE", 4)
-                                sleep(0.3)
-                                afficher("", 1)
-                                afficher("", 4)
-                                sleep(0.3)
-                except: #Echec dans la querry
-                    afficher("ERR QUERRY",3) #Affichage utilisateur de l'initialisation de la carte dans la BDD
-                while RFID_carteCheck():
-                    afficher("RETIRER CARTE", 4)
-                    sleep(0.3)
-                    afficher("", 4)
-                    sleep(0.3)
-                break
+            #if hashCodeType == CRYPT_hashage(config.codeAppro):
+            #    afficher("Carte d'Appro",2)
+            #    try:
+            #        requests=SQL_SELECT(QUERRY_getCommandeEnCours(STRING_uidStrToInt(UID)))
+            #        if len(requests)==0:
+            #            afficher("Pas de CMD en cours", 3)
+            #        else:
+            #            listeAutresPianss=[]
+            #            cmdOK=False
+            #            for request in requests:
+            #                #test du pianss
+            #                if request[0]==setting.nomBox:
+            #                    afficher("SYNCH BDD", 3)
+            #                    SQL_EXECUTE(QUERRY_ajoutStock(request[2],request[3]))
+            #                    SQL_EXECUTE(QUERRY_validationCommande(request[1]))
+            #                    afficher("Status valide!", 3)
+            #                    cmdOK = True
+            #                else:
+            #                    if request[0] not in listeAutresPianss:
+            #                        listeAutresPianss.append(request[0])
+            #            sleep(0.5)
+            #            if len(listeAutresPianss)!=0:
+            #                if cmdOK:
+            #                    _ligne1="AUTRES PIANSS:"
+            #                else:
+            #                    _ligne1="MAUVAIS PIANSS:"
+            #                _ligne2="Dest: "+",".join(listeAutresPianss)
+            #                _ligne3=""
+            #                if len(_ligne2)>20:
+            #                    _ligne3=_ligne2[20:]
+            #                    _ligne2=_ligne2[:20]
+            #                afficher(_ligne1,1)
+            #                afficher(_ligne2,2)
+            #                afficher(_ligne3,3)
+            #                while RFID_carteCheck():
+            #                    afficher(_ligne1, 1)
+            #                    afficher("RETIRER CARTE", 4)
+            #                    sleep(0.3)
+            #                    afficher("", 1)
+            #                    afficher("", 4)
+            #                    sleep(0.3)
+            #    except: #Echec dans la querry
+            #        afficher("ERR QUERRY",3) #Affichage utilisateur de l'initialisation de la carte dans la BDD
+            #    while RFID_carteCheck():
+            #        afficher("RETIRER CARTE", 4)
+            #        sleep(0.3)
+            #        afficher("", 4)
+            #        sleep(0.3)
+            #    break
 
             afficher("UID: "+str(UID),2) #Affichage UID de la carte
             # Essais de récupération de l'argent de la carte de la BDD:
@@ -114,7 +122,7 @@ while True: #Seconde boucle infinie permettant d'utiliser la commande "break" po
                 afficher("SYNCH RFID ARGENT",4) #Affichage synchronisation
                 RFID_setArgent(argent,UID) #Ecriture de l'argent sur la carte (Réecrit le hash de l'argent)
 
-            # Si le montant de la carte dans la BDD est inérieur à 0 (Une triche pendant un mode hors ligne a été réalisé ou une désynchronisation a été faite)
+            # Si le montant de la carte dans la BDD est inférieur à 0 (Une triche pendant un mode hors ligne a été réalisé ou une désynchronisation a été faite)
             if argent<0:
                 afficher("APPELLER REZAL",3) #Le rezal doit regarder l'historique de la carte et vérifier que toute les caisses sont synchro
                 afficher("DESYNCH BDD",4) #Affichage problème (Si ce message s'affiche pendant un gala c'est pas bon: soit la personne est un tricheur, soit une box fonctionne en mode hors ligne)
@@ -173,31 +181,35 @@ while True: #Seconde boucle infinie permettant d'utiliser la commande "break" po
 
     afficher("Credit: "+STRING_montant(argent),3)
     # Si la box est une caisse, on entre dans un contexte d'ajout d'argent
-    if setting.nomBox[0]=="C":
-        montant=MENU_getMontant(argent) #Demande du montant à ajouter sur la carte
-        produit="RechargeMontant" #Le produit est nommé RechargeMontant(utiliser pour différentier les requêtes SQL)
-        nombre=1 #Une seule recharge (permet de standardiser les transactions mais est inutile ici)
-        reference=-1 #Pas de référence
-    # Si la box est une Kve, on entre dans un contexte de soustraction d'un montant libre
-    elif setting.nomBox[0]=="K":
-        montant=-MENU_getMontant(argent)#Demande du montant à retirer sur la carte
-        produit="VenteMontant"#Le produit est nommé RechargeMontant(utiliser pour différentier les requêtes SQL)
-        nombre=1 #Une seule recharge (permet de standardiser les transactions mais est inutile ici)
-        reference=-1 #Pas de référence
+    #if setting.nomBox[0]=="C":
+    #    montant=MENU_getMontant(argent) #Demande du montant à ajouter sur la carte
+    #    produit="RechargeMontant" #Le produit est nommé RechargeMontant(utiliser pour différentier les requêtes SQL)
+    #    nombre=1 #Une seule recharge (permet de standardiser les transactions mais est inutile ici)
+    #    reference=-1 #Pas de référence
+    ## Si la box est une Kve, on entre dans un contexte de soustraction d'un montant libre
+    #elif setting.nomBox[0]=="K":
+    #    montant=-MENU_getMontant(argent)#Demande du montant à retirer sur la carte
+    #    produit="VenteMontant"#Le produit est nommé RechargeMontant(utiliser pour différentier les requêtes SQL)
+    #    nombre=1 #Une seule recharge (permet de standardiser les transactions mais est inutile ici)
+    #    reference=-1 #Pas de référence
     #Les autres cas correspondent à des babass à un pianss
     if setting.nomBox[0]=="A":
-        montant=MENU_getMontant(argent) #Lance la récupération du QR code et donc du montant à ajouter sur la carte
-        produit="RechargeMontantAutomatique" #Le produit est nommé RechargeMontantAutomatique pour différencier les paiements 
-        nombre=1 #Une seule recharge (permet de standardiser les transactions mais est inutile ici)
-        reference=-1 #Pas de référence
-        Validation_lydia=Transaction_Lydia(montant)# Ce programme doit demander le QRcode , et effectuer la transaction et renvoyer une validation sous la forme d'un booléen
-        if Validation_lydia :
-            #RequêteSQL("incrémente la base de donnée avec la transaction (table rechargement)")
-            #RequêteSQL("Add  argent_echange à la iD de carte associé")
-            afficher("Argent disponible :"+argent_disponible+"/n La carte a été rechargée")
+        montant=MENU_getMontant(argent) #Lance la récupération du QR code et donc du montant à ajouter sur la carte ( à faire sous forme d'une formualaire avec tkinter)
+        if montant > 0:
+            produit="RechargeMontantAutomatique" #Le produit est nommé RechargeMontantAutomatique pour différencier les paiements 
+            nombre=1 #Une seule recharge (permet de standardiser les transactions mais est inutile ici)
+            reference=-1 #Pas de référence
+            Validation_lydia=Transaction_Lydia(montant)# Ce programme doit demander le QRcode , et effectuer la transaction et renvoyer une validation sous la forme d'un booléen
+            #le code main_lydia prend même en compte l'incrémentation de la bdd.
+            if Validation_lydia :
+                #RequêteSQL("incrémente la base de donnée avec la transaction (table rechargement)")
+                #RequêteSQL("Add  argent_echange à la iD de carte associé")
+                afficher("Argent disponible :"+argent_disponible+"/n La carte va être rechargée")
+            else :
+                afficher("La transaction à echoué")
+                break #Arret de la transaction
         else :
-            afficher("La transaction à echoué")
-            break #Arret de la transaction
+            afficher("montant invalide")
     #Il faut modifier la fonction de pour récupérer le montant.
     else:
         reference,nombre,produit,montant=MENU_getCommande(argent) #Paramètres de la commande
@@ -212,8 +224,8 @@ while True: #Seconde boucle infinie permettant d'utiliser la commande "break" po
         afficher("Sale pauvre",3)
         break #Arret de la transaction
     # Si le nouveau montant n'est pas négatif, on effectue le débuquage sur la bdd puis sur la carte
-    DATA_add(setting.projet_path+'PICONFLEX2000-LOGS/LOG_QUERRY.txt',QUERRY_addArgent(STRING_uidStrToInt(UID),montant)+QUERRY_addTransaction(produit,nombre,setting.numeroBox,STRING_uidStrToInt(UID),montant,reference)) #Ajout des requetes pour la BDD
-    afficher("NE PAS RETIRER CARTE",4) #Avertissement sur lequel il faut lourdement insister en mode hors ligne!
+    #DATA_add(setting.projet_path+'PICONFLEX2000-LOGS/LOG_QUERRY.txt',QUERRY_addArgent(STRING_uidStrToInt(UID),montant)+QUERRY_addTransaction(produit,nombre,setting.numeroBox,STRING_uidStrToInt(UID),montant,reference)) #Ajout des requetes pour la BDD
+    #afficher("NE PAS RETIRER CARTE",4) #Avertissement sur lequel il faut lourdement insister en mode hors ligne!
     #Je ne vois pas comment ca pourrait être une bonne idée de laisser le mec mettre de l'argent sur sa carte en mode offline avec la borne auto.
     #RFID_setArgent(newMontant,UID) #Ecriture du nouveau montant
 
