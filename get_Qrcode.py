@@ -14,8 +14,7 @@ def get_qrcode():
 	return tmp
 
 #print get_qrcode()
-
-qrcode=get_qrcode()
+#qrcode=get_qrcode()
 
 import serial
 import time  # Optional (if using time.sleep() below)
