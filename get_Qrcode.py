@@ -1,3 +1,4 @@
+#Ylan a réglé le problème dans un de ses codes en utilisant la fonction get_qrcode de Tag 166tt.
 from inputimeout import inputimeout, TimeoutOccurred
 
 def get_qrcode():
