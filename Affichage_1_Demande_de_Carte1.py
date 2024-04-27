@@ -41,6 +41,6 @@ fleche_img = canvas1.create_image(int((taille[0]-taille_fleche[0])), int((taille
 toggle_visibility()  # Démarre le clignotement au lancement
 
 #Création du texte
-canvas1.create_text(taille[0] / 2, taille[1] / 2, text="Veulliez placer votre carte sur la droite", fill="black", font=("Impact", 60))
+canvas1.create_text(taille[0] / 2, taille[1] / 2, text="Placez la carte", fill="black", font=("Impact", 60))
 
 root.mainloop()
