@@ -21,7 +21,7 @@ print("Importation 'signal'")
 import signal
 print("Importation 'logging'")
 import logging
-print("Importation 'RPi.GPIO'")
+print("Importation 'OPi.GPIO'")
 import OPi.GPIO as GPIO
 print("Importation 'mysql.connector'")
 import mysql.connector

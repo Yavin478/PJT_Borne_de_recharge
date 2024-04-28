@@ -168,6 +168,7 @@ def RFID_getUID():
             hint("PROBLEME LECTURE UID",4)
             sleep(0.4)
             hint("",4)
+
 def RFID_resetCarte(uidstring):
     if config.debugging:
         print("## RFID_resetCarte ##")

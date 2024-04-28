@@ -45,7 +45,7 @@ def Lydia_check(token_public,montant,phone,order_id,Qrcode):
         return None
 
 
-### Test transaction lydia
+# ## Test transaction lydia
 # token_public = "660e5b8b4c353994613407"
 # phone='33782977418'
 # montant=4

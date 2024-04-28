@@ -459,7 +459,8 @@ class MFRC522:
             if DEBUG:     print("anticol1() {}".format(uid))
             if self.MFRC522_PcdSelect1(uid) == 0:
                     return (self.MI_ERR,[])
-            if DEBUG:     print("pcdSelect1() {}".format(uid))
+            if DEBUG:
+                print("pcdSelect1() {}".format(uid))
 
             #check if first byte is 0x88
             if uid[0] == 0x88 :
