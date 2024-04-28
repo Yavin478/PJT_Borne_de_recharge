@@ -165,9 +165,7 @@ def RFID_getUID():
                     uidstring=STRING_Tag(uid,len(uid))
                     return uidstring
         except:
-            hint("PROBLEME LECTURE UID",4)
-            sleep(0.4)
-            hint("",4)
+            print("PROBLEME LECTURE UID")
 
 def RFID_resetCarte(uidstring):
     if config.debugging:
