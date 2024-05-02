@@ -31,7 +31,7 @@ class config:  # Définition des variables reliée à l'objet config définissan
     codeBar         = 5716
     codeNourriture  = 5673
     codeSecss       = 1542
-    codeOffline     = 0478
+    codeOffline     = 4078
 
     # Configuration des blocks où sont sauvegardées les données sur les cartes
     # blockArgent : case RFID où sera mis le montant en clair

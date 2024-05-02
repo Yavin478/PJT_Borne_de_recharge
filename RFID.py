@@ -1,4 +1,6 @@
 print("Demarrage 'RFID.py'")
+from MFRC522 import *
+
 def RFID_presence():
     #if config.debugging:
     #    print("## RFID_presence ##")
@@ -166,6 +168,7 @@ def RFID_getUID():
                     return uidstring
         except:
             print("PROBLEME LECTURE UID")
+            sleep(0.4)
 
 def RFID_resetCarte(uidstring):
     if config.debugging:
