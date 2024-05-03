@@ -1,3 +1,8 @@
+print("Demarrage 'config_lydia.py'")
+
+#### Fichier de définitions des TOKENS et numéro de téléphone utilisé pour les transactions ####
+
+
 # TOKENS DE TEST pour le site Kfet
 #token_public = "58ada276ab575970477137" #pour les appels
 #token_prive = "58ada276ad930951358751" #pour la signature

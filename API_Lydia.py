@@ -1,3 +1,6 @@
+print("Demarrage 'API_lydia.py'")
+
+#### Fonction de vérification d'une transaction lydia ####
 
 def Lydia_check(token_public,montant,phone,order_id,Qrcode):
     # L'URL de l'API pour initier une transaction (remplacer par l'URL de test ou de production selon le cas)
