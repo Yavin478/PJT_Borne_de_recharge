@@ -1,6 +1,3 @@
-import requests
-import json
-
 
 def Lydia_check(token_public,montant,phone,order_id,Qrcode):
     # L'URL de l'API pour initier une transaction (remplacer par l'URL de test ou de production selon le cas)
@@ -46,7 +43,7 @@ def Lydia_check(token_public,montant,phone,order_id,Qrcode):
 
 
 '''
-## Test transaction lydia
+## Test lydia check
 token_public = "660e5b8b4c353994613407"
 phone='33782977418'
 montant=4
