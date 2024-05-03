@@ -1,4 +1,5 @@
 print("Demarrage 'STRING.py'")
+
 def STRING_montant(montant):
     STRING=str(abs(int(montant)))
     if (len(STRING)==0):
