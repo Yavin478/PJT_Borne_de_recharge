@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f190c17c-4b7f-4060-9bf9-13840359e693" name="Changes" comment="RFID work : 02/05/2024" />
+    <list default="true" id="f190c17c-4b7f-4060-9bf9-13840359e693" name="Changes" comment="Lydia update : 03/05/2024&#10;Trie et suppression du code">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_04_2024_18_28__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_04_2024_18_28__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Requetes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Requetes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQL.py" beforeDir="false" afterPath="$PROJECT_DIR$/SQL.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -319,7 +324,8 @@
     <MESSAGE value="RFID test : 28/04/2024" />
     <MESSAGE value="Lydia update : 28/04/2024" />
     <MESSAGE value="RFID work : 02/05/2024" />
-    <option name="LAST_COMMIT_MESSAGE" value="RFID work : 02/05/2024" />
+    <MESSAGE value="Lydia update : 03/05/2024&#10;Trie et suppression du code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lydia update : 03/05/2024&#10;Trie et suppression du code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Code$MFRC522.coverage" NAME="MFRC522 Coverage Results" MODIFIED="1713445869167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/drive-download-20240313T124830Z-001/orangepi/PICONFLEX2000-CLIENT" />
