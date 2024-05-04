@@ -33,9 +33,9 @@ import hashlib
 print("Importation pdb")
 import pdb
 
-print("requests")
+print("Importation requests")
 import requests
-print("json")
+print("Importation json")
 import json
 
 # import tkinter
