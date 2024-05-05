@@ -1,29 +1,20 @@
-print("Demarrage 'SQL.py'")
+print("Demarrage 'Requetes.py'")
 
-#### Définition des requêtes SQL ####
+#### Définition des fonctions d'exécution des requêtes ####
 
-# Préparation BDD
-def QUERRY_getIdLydia(date):
-    return (("SELECT id FROM recharge_lydia WHERE date= '{}';").format(date))
+def SQL_SELECT(querry):
+    _cnx=mysql.connector.connect(**connection)
+    _cursor=_cnx.cursor()
+    _cursor.execute(querry)
+    _select=_cursor.fetchall()
+    _cnx.close()
+    return _select
 
-def QUERRY_setIdLydia(date):
-    return (("INSERT INTO recharge_lydia (date) VALUES ('{}');").format(date))
+def SQL_EXECUTE(querry):
+    _cnx=mysql.connector.connect(**connection)
+    _cursor=_cnx.cursor()
+    _cursor.execute(querry)
+    _cnx.commit()
+    _cnx.close()
+    ##DATA_add(setting.projet_path+'PICONFLEX2000-LOGS/LOG_SQL.txt',querry+"\n")
 
-def QUERRY_getTime():
-    return (("SELECT NOW();"))
-
-# Finalisation BDD
-def QUERRY_getMoney(UID):
-    return (("SELECT ArgentCarte FROM cartes WHERE UID='{}';").format(UID))
-
-def QUERRY_setMoney(UID,Money):
-    return (("UPDATE cartes SET ArgentCarte='{}' WHERE UID='{}'").format(Money,UID))
-
-def QUERRY_setRecharge(UID, montant, box, date):
-    return (("INSERT INTO recharge (UID, montant, box, date) VALUES ('{}','{}','{}','{}');").format(UID, montant, box, date))
-
-def QUERRY_getIdRecharge(date):
-    return (("SELECT id FROM recharge WHERE date='{}';").format(date))
-
-def QUERRY_setTransactionLydia(order_id,id_recharge,transaction_identifier):
-    return (("UPDATE recharge_lydia SET id_recharge='{}', transaction_identifier='{}'WHERE id='{}'").format(id_recharge,transaction_identifier,order_id))
