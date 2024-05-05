@@ -1,4 +1,4 @@
-print("Demarrage 'Requetes.py'")
+print("Demarrage 'SQL.py'")
 
 #### Définition des fonctions d'exécution des requêtes ####
 

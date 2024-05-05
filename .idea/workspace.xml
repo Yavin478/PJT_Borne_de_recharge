@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f190c17c-4b7f-4060-9bf9-13840359e693" name="Changes" comment="Loop update : 05/05/2024">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_04_2024_18_28__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_04_2024_18_28__Changes_.xml" afterDir="false" />
+    <list default="true" id="f190c17c-4b7f-4060-9bf9-13840359e693" name="Changes" comment="BDD update : 05/05/2024">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SQL.py" beforeDir="false" afterPath="$PROJECT_DIR$/SQL.py" afterDir="false" />
     </list>
@@ -291,7 +290,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714757064378</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="BDD update : 05/05/2024">
+      <option name="closed" value="true" />
+      <created>1714924508842</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1714924508842</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +341,8 @@
     <MESSAGE value="Lydia update : 03/05/2024&#10;Trie et suppression du code" />
     <MESSAGE value="BDD update : 02/05/2024" />
     <MESSAGE value="Loop update : 05/05/2024" />
-    <option name="LAST_COMMIT_MESSAGE" value="Loop update : 05/05/2024" />
+    <MESSAGE value="BDD update : 05/05/2024" />
+    <option name="LAST_COMMIT_MESSAGE" value="BDD update : 05/05/2024" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Code$MFRC522.coverage" NAME="MFRC522 Coverage Results" MODIFIED="1713445869167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/drive-download-20240313T124830Z-001/orangepi/PICONFLEX2000-CLIENT" />
