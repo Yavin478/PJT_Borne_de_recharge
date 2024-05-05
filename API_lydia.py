@@ -46,7 +46,7 @@ def Lydia_check(token_public,montant,phone,order_id,Qrcode):
 
 
 '''
-## Test lydia check
+## Test de la fonction lydia check
 token_public = "660e5b8b4c353994613407"
 phone='33782977418'
 montant=4
