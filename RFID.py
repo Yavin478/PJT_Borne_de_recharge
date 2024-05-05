@@ -8,6 +8,7 @@ def RFID_presence():
     #if config.debugging:
     #    print(str(status)+"  /  "+str(backBits))
     return (status==MIFAREReader.MI_OK)
+
 def RFID_carteCheck():
     if config.debugging:
         print("## RFID_carteCheck ##")
@@ -27,12 +28,13 @@ def RFID_waitRetireCarte():
         MENU_clear() #Nettoie l'écran
         _counter=_counter%4+1
         hint("RETIRER LA CARTE",_counter)
+
 def RFID_waitPresenterCarte():
     if config.debugging:
         print("## RFID_waitPresenterCarte ##")
     _counter=2
     _time0=time()
-    hint("PRESENTER LA CARTE",4)
+    print("PRESENTER LA CARTE")
     while (time()-_time0<5):
         _time=time()
         while (time()-_time<0.5):
@@ -57,7 +59,7 @@ def RFID_readblock(block,uidstring):
         uid=STRING_List(uidstring)[0:4]
         status=MIFAREReader.MFRC522_Auth(MIFAREReader.PICC_AUTHENT1A,block,key,uid)
         if status !=0:
-            hint("! PROBLEME AUTH !",4)
+            print("! PROBLEME AUTH !")
             sleep(1)
             hint("",4)
     """permet de lire un block, et gère l'authentification si nécessaire (pour les cartes classic)"""
@@ -71,9 +73,8 @@ def RFID_readCarteOLD():
                 if status==MIFAREReader.MI_OK:
                     return (int(STRING_Tag(uid)),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockArgent)[0:8])),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockHashCodeGuinche)[0:8])),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockHashUID)[0:8])),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockHashArgent)[0:8])))
         except:
-            hint("! PROBLEME LECTURE !",4)
+            print("! PROBLEME LECTURE !")
             sleep(1)
-            hint("",4)
         sleep(0.01)
 
 
@@ -97,9 +98,9 @@ def RFID_readCarte():
             elif config.debugging:
                 print("absence de carte")
         except:
-            hint("! PROBLEME LECTURE !",4)
+            print("! PROBLEME LECTURE !")
             sleep(1)
-            hint("",4)
+
         if config.debugging:
             #permet d'essayer une seule fois par seconde de lire une carte en mode debug, pour ne pas remplir la console
             sleep(1)
@@ -128,17 +129,17 @@ def RFID_write(block,TAG,uidstring):
                     else:
                         if config.debugging:
                             print(str(TAG_read)+" / "+str(TAG))
-                        hint("! ERREUR ECRITURE  !",4)
+                        print("! ERREUR ECRITURE  !")
                         sleep(0.4)
-                        hint("",4)
+
                 else:
-                    hint("PB ECRITURE-STATUS",4)
+                    print("PB ECRITURE-STATUS")
                     sleep(0.4)
-                    hint("",4)
+
         except:
-            hint("!PROBLEME ECRITURE!",4)
+            print("!PROBLEME ECRITURE!")
             sleep(0.4)
-            hint("",4)
+
         if config.debugging:
             sleep(1)
 
@@ -150,8 +151,10 @@ def RFID_setArgent(montant,uidstring):
     montantHexa=( "0"*8+hex(max(0,montant))[2:] )[-8:]
     RFID_write(config.blockArgent,montantHexa,uidstring)
     RFID_write(config.blockHashArgent,CRYPT_hashage(int(montant)),uidstring)
+
 def RFID_setHashCodeType(codeType,uidstring):
     RFID_write(config.blockHashCodeGuinche,CRYPT_hashage(codeType),uidstring)
+
 def RFID_setHashUID(uidstring):
     RFID_write(config.blockHashUID,CRYPT_hashage(RFID_getUID()),uidstring)
 
