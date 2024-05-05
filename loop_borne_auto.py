@@ -4,7 +4,7 @@ print("Démarrage 'loop_borne_auto.py'")
 # Dans le cadre du code de la borne automatique on remplace la fonction hint("text",int) par une fonction afficher("text",int) qui affichera à l'écran les infos
 # cela permettra de profiter de l'écran de la borne et de tkinter.
 
-# Il faut aussi changer  le code pour interagir avec le clavier si on a pas le mêm nombre de touche ou si elles sont attribués différemment.
+# Il faut aussi changer  le code pour interagir avec le clavier si on a pas le même nombre de touche ou si elles sont attribués différemment.
 
 # dans un 1er temps je retire le code qui n'est plus adapté à l'architecture matérielle de la borne.
 # dans un 2e temps on crée un code fonctionnel
@@ -15,7 +15,6 @@ def afficher(text, int):
     print(text)
 
 
-print("Demarrage 'loop.py'")
 while True:  # Seconde boucle infinie permettant d'utiliser la commande "break" pour arreter la transaction
     if setting.rezalOn and setting.rezalMode:
         REZAL_synchQUERRYToSQL()  # Synchronisation des requêtes SQL de la box avec le serveur BDD
@@ -395,4 +394,4 @@ while drapeau :
 			disp(lcd,14,l)
 			sleep(5)
 
-            """
+"""
