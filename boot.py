@@ -23,7 +23,9 @@ exec(open(projet_path+'PJT_Borne_de_recharge/API_lydia.py').read())
 exec(open(projet_path+'PJT_Borne_de_recharge/main_lydia.py').read())
 
 ## Affichage ##
-
+exec(open(projet_path+'PJT_Borne_de_recharge/Config_Affichage.py').read())
+exec(open(projet_path+'PJT_Borne_de_recharge/Template_pageV2.py').read())
+exec(open(projet_path+'PJT_Borne_de_recharge/Main_affichage.py').read())
 
 
 if config.debugging :
