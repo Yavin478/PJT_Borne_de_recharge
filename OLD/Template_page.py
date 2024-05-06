@@ -1,6 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
-from Constante import *
+from Config_Affichage import *
 
 
 class Page(Toplevel):
