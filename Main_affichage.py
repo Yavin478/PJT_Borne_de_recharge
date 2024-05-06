@@ -54,21 +54,7 @@ class MainApp(Tk):
     def QR_transact(self):
         print(self.QRcode)
         print(type(self.QRcode))
-
-        current_date = SQL_SELECT(QUERRY_getTime())[0][0]
-        SQL_EXECUTE(QUERRY_setIdLydia(current_date))
-
-        order_id = SQL_SELECT(QUERRY_getIdLydia(current_date))[0][0]
-
-        transaction_identifier = Lydia_check(token_public, self.montant, phone, order_id, self.QRcode)
-
-        if transaction_identifier:
-            montant = self.montant * 100  # en centime pour la bdd
-            Recharge_montant(self.UID, montant)
-            date_recharge = SQL_SELECT(QUERRY_getTime())[0][0]
-            SQL_EXECUTE(QUERRY_setRecharge(self.UID, montant, box, date_recharge))
-            id_recharge = SQL_SELECT(QUERRY_getIdRecharge(date_recharge))[0][0]
-            SQL_EXECUTE(QUERRY_setTransactionLydia(order_id, id_recharge, transaction_identifier))
+        if Transaction_Lydia(box, self.UID, self.montant, self.Qrcode, token_public, phone):
             self.Finish()
         else:
             self.Error_QR()
