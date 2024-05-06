@@ -1,0 +1,19 @@
+Index: API_Lydia.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>print(\"Demarrage 'API_lydia.py'\")\r\n\r\n#### Fonction de vérification d'une transaction lydia ####\r\n\r\ndef Lydia_check(token_public,montant,phone,order_id,Qrcode):\r\n    # L'URL de l'API pour initier une transaction (remplacer par l'URL de test ou de production selon le cas)\r\n    #url = \"https://lydia-app.com/api/payment/payment.json\" # Production\r\n    url = \"https://homologation.lydia-app.com/api/payment/payment.json\" # Test\r\n\r\n    #Convertit les données scannées du qrcode en un format comprehensible pour la requête Json\r\n    paymentData = json.dumps(Qrcode)\r\n\r\n    # Les données à envoyer à l'API\r\n    data = {\r\n        'vendor_token': token_public,\r\n        'amount': montant,\r\n        'phone': phone,\r\n        'order_id': order_id,\r\n        'paymentData': paymentData,\r\n        'currency': 'EUR'\r\n    }\r\n\r\n    # Configuration optionnelle : désactiver la vérification SSL pour cet exemple.\r\n    # En production, assurez-vous que SSL est activé et correctement configuré.\r\n    requests.packages.urllib3.disable_warnings()\r\n\r\n    # Effectuer la requête POST\r\n    response = requests.post(url, data=data, verify=False)\r\n\r\n    # Vérifier la réponse\r\n    if response.status_code == 200:\r\n        # Convertir la réponse en JSON\r\n        response_data = response.json()\r\n\r\n        if response_data['error'] == \"0\":\r\n            print(\"Transaction réussie.\")\r\n            print(\"Identifiant de la transaction :\", response_data['transaction_identifier'])\r\n            return response_data['transaction_identifier']\r\n        else:\r\n            print(\"Erreur lors de la transaction :\", response_data['error'], response_data['message'])\r\n            return None\r\n\r\n    else:\r\n        print(\"Erreur de requête HTTP :\", response.status_code)\r\n        return None\r\n\r\n\r\n'''\r\n## Test lydia check\r\ntoken_public = \"660e5b8b4c353994613407\"\r\nphone='33782977418'\r\nmontant=4\r\norder_id=1\r\nQrcode=[\"SLebMnW8pk9MlSRO2RYvv04BOw/Eq2mdi21fhEQeEkeC7mYjUzhvAer6XWnuCrTRU6pKsLc7Dxe8hdSo07YhZQ8g5zGHwhB8xo4tKKD0hQvC6EQHCUXJo3SRlmRKn913Ar40gWe2v31OIdbipJcAzTtZW7V3KxPbu5OLRh4epWU=\",\"3\"]\r\ntransaction_identifier=Lydia_check(token_public,montant,phone,order_id,Qrcode)\r\n'''\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/API_Lydia.py b/API_Lydia.py
+--- a/API_Lydia.py	(revision ed622dab05d25d9b667315ab525e7ffcfdf89c0c)
++++ b/API_Lydia.py	(date 1714851030524)
+@@ -46,7 +46,7 @@
+ 
+ 
+ '''
+-## Test lydia check
++## Test de la fonction lydia check
+ token_public = "660e5b8b4c353994613407"
+ phone='33782977418'
+ montant=4
