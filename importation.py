@@ -32,10 +32,9 @@ print("Importation 'hashlib'")
 import hashlib
 print("Importation pdb")
 import pdb
-
 print("Importation requests")
 import requests
 print("Importation json")
 import json
-
-# import tkinter
+print("Importation tkinter")
+from tkinter import *
