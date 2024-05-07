@@ -1,7 +1,3 @@
-from tkinter import *
-from PIL import Image, ImageTk
-from Config_Affichage import *
-
 class Page(Toplevel):
 
     def __init__(self, master,*args, **kwargs):  # fonction initialisation => création de la page et attributs
@@ -206,27 +202,4 @@ class Size:
         height = self.root.winfo_screenheight()
         self.root.destroy()
         return width, height
-
-
-if __name__ == '__main__':  # lancement du programme
-
-    def callback(text):
-        print(text)
-
-    def binding(top):
-        top.bind('<Key-a>', lambda e: top.Page_carte())
-        top.bind('<Key-z>', lambda e: top.Page_montant(callback))
-        top.bind('<Key-e>', lambda e: top.Page_QR(callback))
-        top.bind('<Key-r>', lambda e: top.Page_confirmation())
-        top.bind('<Key-t>', lambda e: top.Page_error_QR())
-        top.bind('<Key-y>', lambda e: top.Page_error_carte())
-        top.bind('<Key-u>', lambda e: top.Page_error_montant())
-        top.bind('<Key-i>', lambda e: top.Page_error_rezal())
-
-
-    root = Tk()
-    app = Page(root)
-    binding(app)
-    root.withdraw()
-    root.mainloop()
 

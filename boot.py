@@ -35,9 +35,11 @@ if config.debugging :
     sleep(3)
 
 
-while True:  # Boucle infinie du script
+
+"""    while True:  # Boucle infinie du script
     try:
         exec(open(projet_path+'PJT_Borne_de_recharge/loop_borne_auto.py').read())  # Execution du script se répétant jusqu'à l'arrêt du système
     except:
         print("Erreur de boot")
-        #exec(open(projet_path+'PICONFLEX2000-CLIENT/error.py').read())  # Script de gestion et affichage des erreurs
+        exec(open(projet_path+'PICONFLEX2000-CLIENT/error.py').read())  # Script de gestion et affichage des erreurs
+"""

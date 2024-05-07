@@ -1,23 +1,3 @@
-#AFFICHAGE
-from Template_pageV2 import Page
-from tkinter import *
-from time import *
-
-
-from config_lydia import *
-
-#LYDIA/BDD
-from config import *
-
-from main_lydia import *
-from STRING import*
-
-from Config_Affichage import *
-
-from RFID import *
-
-
-
 class MainApp(Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -82,9 +62,3 @@ class MainApp(Tk):
     def Finish(self):
         self.top.Page_confirmation()
         self.after(5000, self.Carte)
-
-
-
-if __name__ == "__main__":
-    root=MainApp()
-    root.mainloop()
