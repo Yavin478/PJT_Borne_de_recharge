@@ -41,14 +41,9 @@ elif gala=='508':
     path_img_bg = "Static/Bg_508.jpg"
     path_img_fg = "Static/Cadre_508.png"
     ratio_square = 1.25
-    taille_police = 53
+    taille_police = 47
     decalage_label = 0.5
     decalage_label_esc=0.63
 
 
-box=100
-
-
-
-
-max_transaction=90
+temps_retour=20

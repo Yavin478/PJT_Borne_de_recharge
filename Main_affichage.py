@@ -1,13 +1,15 @@
 #AFFICHAGE
 from Template_pageV2 import Page
 from tkinter import *
-from time import sleep
+from time import *
+
+
+from config_lydia import *
 
 #LYDIA/BDD
 from config import *
-from prepa_bdd import *
-from API_Lydia import *
-from finalisation_bdd import *
+
+from main_lydia import *
 
 from Config_Affichage import *
 
@@ -28,17 +30,17 @@ class MainApp(Tk):
         self.Montants()
 
     def Montants(self):
-        self.top.Page_montant(self.Check_montants)
+        self.top.Page_montant()
 
     def Check_montants(self, montant):
         self.montant=int(montant)
-        if self.montant>max_transaction:
+        if self.montant>config.maxTransaction/100:
             self.Error_montant()
         else:
             self.QR()
 
     def QR(self):
-        self.top.Page_QR(self.QR_transact)
+        self.top.Page_QR()
 
     def QR_check(self,QR):
         flag=True
@@ -61,13 +63,11 @@ class MainApp(Tk):
 
     def Error_QR(self):
         self.top.Page_error_QR()
-        sleep(5)
-        self.top.Page_carte()
+        self.after(5000, self.Carte)
 
     def Error_carte(self):
         self.top.Page_error_carte()
-        sleep(5)
-        self.top.Page_carte()
+        self.after(5000, self.Carte)
 
     def Error_montant(self):
         self.top.Page_error_montant()

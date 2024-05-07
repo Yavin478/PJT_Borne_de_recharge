@@ -4,8 +4,9 @@ from Config_Affichage import *
 
 class Page(Toplevel):
 
-    def __init__(self, *args, **kwargs):  # fonction initialisation => création de la page et attributs
-        super().__init__(*args, **kwargs)
+    def __init__(self, master,*args, **kwargs):  # fonction initialisation => création de la page et attributs
+        super().__init__(master, *args, **kwargs)
+        self.master = master
         self.Setup()
         self.taille_ecran = Size().renvoi()
         self.canvas = Canvas(self, width=self.taille_ecran[0], height=self.taille_ecran[1])
@@ -43,6 +44,8 @@ class Page(Toplevel):
         self.QR = ""
         self.montant=""
         self.fleche_active = False
+        self.flag=False
+        self.compteur=0
 
 
     def Page_carte(self):
@@ -52,23 +55,41 @@ class Page(Toplevel):
                                              int(self.taille_ecran[1] * h_fleche["carte"] - self.taille_fleche[1] / 2)])
         self.fleche_active = True
 
-    def Page_montant(self,callback):
+    def Page_montant(self):
         self.cancel_canvas()
 
+
         def keypress(event):
-            if event.keysym=="BackSpace":
+            if event==False:
+                self.after(temps_retour*1000, keypress, True)
+            elif event==True and not(self.flag):                    #effet boomrang de ylan
+                if self.compteur<=0:
+                    self.master.Carte()
+                    print("reset")
+                else:
+                    self.compteur-=1
+                    print(self.compteur)
+
+            elif event.keysym=="BackSpace":
                 self.montant=""
                 update_text()
             elif event.keysym=="Return":
-                callback(self.montant)
+                self.flag=True
+                self.master.Check_montants(self.montant)
             else:
                 self.montant += event.char
                 update_text()
+
+
+
 
         # actualisation du texte taper au fur et à mesure ainsi que du canva qui l'affiche
         def update_text():
             montant_texte = self.montant + " \u20AC"  # Ajoute le symbole de l'euro au texte
             self.canvas.itemconfig(self.indic, text=montant_texte)
+            self.after(temps_retour * 1000, keypress, True)
+            self.compteur+=1
+            print(self.compteur)
 
         self.canvas.itemconfig(self.titre, text=txt_titre["montant"])
         self.canvas.itemconfig(self.esc, state="normal")
@@ -77,13 +98,21 @@ class Page(Toplevel):
                                              int(self.taille_ecran[1] * h_fleche["montant"] - self.taille_fleche[1] / 2)])
         self.bind("<KeyPress>", keypress)
         self.fleche_active = True
+        self.flag=False
+        keypress(False)
 
-    def Page_QR(self,callback):
+    def Page_QR(self):
         self.cancel_canvas()
 
+
         def keypress(event):
-            if event.keysym == "Return":
-                callback(self.QR)
+            if event==False:
+                self.after(temps_retour*1000, keypress, True)
+            elif event==True and not(self.flag):
+                self.master.Carte()
+            elif event.keysym == "Return":
+                self.flag=True
+                self.master.QR_check(self.QR)
             else:
                 self.QR += str(event.char)
 
@@ -94,6 +123,7 @@ class Page(Toplevel):
                                              int(self.taille_ecran[1] * h_fleche["QR"] - self.taille_fleche[1] / 2)])
         self.fleche_active = True
         self.bind('<KeyPress>', keypress)
+        keypress(False)
 
     def Page_confirmation(self):
         self.cancel_canvas()
@@ -103,13 +133,12 @@ class Page(Toplevel):
     def Page_error_QR(self):
         self.cancel_canvas()
         self.canvas.itemconfig(self.titre, text=txt_titre["error_QR"])
-        self.canvas.itemconfig(self.indic, text=txt_indic["error_QR"])
+        self.canvas.itemconfig(self.indic, state='normal', text=txt_indic["error_QR"])
 
     def Page_error_montant(self):
         self.cancel_canvas()
         self.canvas.itemconfig(self.titre, text=txt_titre["error_montant"])
-        self.canvas.itemconfig(self.indic, text=txt_indic["error_montant"])
-        self.canvas.itemconfig(self.indic, state="normal")
+        self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["error_montant"])
 
     def Page_error_carte(self):
         self.cancel_canvas()
@@ -200,3 +229,4 @@ if __name__ == '__main__':  # lancement du programme
     binding(app)
     root.withdraw()
     root.mainloop()
+
