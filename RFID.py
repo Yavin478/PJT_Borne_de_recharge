@@ -1,5 +1,7 @@
 print("Demarrage 'RFID.py'")
 
+from MFRC522 import*
+
 def RFID_presence():
     #if config.debugging:
     #    print("## RFID_presence ##")

@@ -10,8 +10,11 @@ from config_lydia import *
 from config import *
 
 from main_lydia import *
+from STRING import*
 
 from Config_Affichage import *
+
+from RFID import *
 
 
 
@@ -25,7 +28,7 @@ class MainApp(Tk):
     def Carte(self):
         self.top.Page_carte()
 
-        self.UID=35028059
+        self.UID=STRING_uidStrToInt(RFID_getUID())
 
         self.Montants()
 
