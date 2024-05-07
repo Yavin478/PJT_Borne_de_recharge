@@ -38,3 +38,5 @@ print("Importation json")
 import json
 print("Importation tkinter")
 from tkinter import *
+print("Importation subprocess")
+import subprocess
