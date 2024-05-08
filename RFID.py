@@ -162,7 +162,9 @@ def RFID_getUID(master):
     if config.debugging:
         print("## RFID_getUID ##")
     try:
-        if RFID_presence():
+        stat=RFID_presence()
+        print(stat)
+        if stat:
             (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
             if status == MIFAREReader.MI_OK:
                 uidstring = STRING_Tag(uid, len(uid))
