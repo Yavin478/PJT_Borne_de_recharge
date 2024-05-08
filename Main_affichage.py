@@ -14,6 +14,7 @@ class MainApp(Tk):
 
     def Check_Carte(self,uid):
         print("carte reçu")
+        print(uid)
         self.UID=uid
         self.Montants()
 
@@ -51,7 +52,7 @@ class MainApp(Tk):
             self.Error_QR()
 
     def QR_transact(self):
-        if Transaction_Lydia(box, self.UID, self.montant, self.Qrcode, token_public, phone):
+        if Transaction_Lydia(box, self.UID, self.montant, self.QRcode, token_public, phone):
             self.Finish()
         else:
             print("erreur QR code2")
