@@ -8,8 +8,12 @@ class MainApp(Tk):
     def Carte(self):
         self.top.Page_carte()
 
-        self.UID=STRING_uidStrToInt(RFID_getUID(self))
+        STRING_uidStrToInt(RFID_getUID(self))
 
+
+
+    def Check_Carte(self,uid):
+        self.UID=uid
         self.Montants()
 
     def Montants(self):
