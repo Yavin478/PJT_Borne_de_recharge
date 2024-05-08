@@ -1,20 +1,5 @@
 print("Démarrage 'config.py'")
 
-#### Définition du dictionnaire de connection à la BDD ####
-# Nom d'utilisateur
-# Mot de passe du nom d'utilisateur
-# Nom de la BDD
-# IP du serveur BDD
-connection = {"user": 'pi',
-              "password": 'pi',
-              "database": 'Guinche',
-              "host": '192.168.1.110'}   # IP de la BDD de test
-
-serveurNet = "8.8.8.8"
-
-#### Définition du numéro de la box ####
-box=100
-
 class config:  # Définition des variables reliée à l'objet config définissant les paramètres du gala (guinche)
     # Les hash sont salés avec codeHash (précédemment avec codeGuinche).
     # codeGuinche (permet de différentier une carte provenant d'un guinche antérieur, à changer absolument à chaque guinche)
