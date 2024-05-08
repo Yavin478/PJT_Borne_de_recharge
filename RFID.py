@@ -166,6 +166,7 @@ def RFID_getUID(master):
             (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
             if status == MIFAREReader.MI_OK:
                 uidstring = STRING_Tag(uid, len(uid))
+                print(uidstring)
                 return master.Check_Carte(uidstring)
         master.after(400, RFID_getUID, master)
     except:
