@@ -1,5 +1,4 @@
 print("Demarrage 'MFRC522.py'")
-DEBUG = True
 
 try:
     DEBUG = config.debugging
