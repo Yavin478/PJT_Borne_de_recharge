@@ -30,6 +30,9 @@ exec(open(projet_path+'PJT_Borne_de_recharge/Template_pageV2.py').read())
 exec(open(projet_path+'PJT_Borne_de_recharge/Main_affichage.py').read())
 
 
+root=MainApp()
+root.mainloop()
+
 if config.debugging :
     print("Attente de 3s")
     sleep(3)

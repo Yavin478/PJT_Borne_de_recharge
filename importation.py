@@ -40,3 +40,6 @@ print("Importation tkinter")
 from tkinter import *
 print("Importation subprocess")
 import subprocess
+
+import PIL.Image as Image
+import PIL.ImageTk as ImageTk
