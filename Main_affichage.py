@@ -15,7 +15,7 @@ class MainApp(Tk):
     def Check_Carte(self,uid):
         print("carte reçu")
         print(uid)
-        self.UID=uid
+        self.UID=STRING_uidStrToInt(uid)
         self.Montants()
 
     def Montants(self):
