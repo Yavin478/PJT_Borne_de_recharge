@@ -30,8 +30,9 @@ exec(open(projet_path+'PJT_Borne_de_recharge/Template_pageV2.py').read())
 exec(open(projet_path+'PJT_Borne_de_recharge/Main_affichage.py').read())
 
 
-root=MainApp()
-root.mainloop()
+"""root=MainApp()
+root.mainloop()"""
+print(RFID_getUID_OLD())
 
 if config.debugging :
     print("Attente de 3s")

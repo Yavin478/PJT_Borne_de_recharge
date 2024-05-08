@@ -175,6 +175,21 @@ def RFID_getUID(master):
         print("PROBLEME LECTURE UID")
         master.after(400, RFID_getUID, master)
 
+
+def RFID_getUID_OLD():
+    if config.debugging:
+        print("## RFID_getUID ##")
+    while True:
+        try:
+            if RFID_presence():
+                (status,uid)=MIFAREReader.MFRC522_SelectTagSN()
+                if status==MIFAREReader.MI_OK:
+                    uidstring=STRING_Tag(uid,len(uid))
+                    return uidstring
+        except:
+            print("PROBLEME LECTURE UID")
+            sleep(0.4)
+
 def RFID_resetCarte(uidstring):
     if config.debugging:
         print("## RFID_resetCarte ##")
