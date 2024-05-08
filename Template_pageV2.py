@@ -56,11 +56,13 @@ class Page(Toplevel):
 
 
         def keypress(event):
+            print(self.compteur)
             if event==False:
                 self.after(temps_retour*1000, keypress, True)
             elif event==True and not(self.flag):                    #effet boomrang de ylan
                 if self.compteur<=0:
                     self.master.Carte()
+                    self.compteur = 0
                     print("reset")
                 else:
                     self.compteur-=1

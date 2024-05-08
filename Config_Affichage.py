@@ -46,4 +46,4 @@ elif gala=='508':
     decalage_label_esc=0.63
 
 
-temps_retour=20
+temps_retour=60

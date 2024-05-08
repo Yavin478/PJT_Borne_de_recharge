@@ -6,19 +6,24 @@ class MainApp(Tk):
         self.Carte()
 
     def Carte(self):
+        print("recherche carte")
         self.top.Page_carte()
         STRING_uidStrToInt(RFID_getUID(self))
 
 
 
     def Check_Carte(self,uid):
+        print("carte reçu")
         self.UID=uid
         self.Montants()
 
     def Montants(self):
+        print("demande montant")
         self.top.Page_montant()
 
     def Check_montants(self, montant):
+        print("vérif motant")
+        print(montant)
         self.montant=int(montant)
         if self.montant>config.maxTransaction/100:
             self.Error_montant()
@@ -26,25 +31,29 @@ class MainApp(Tk):
             self.QR()
 
     def QR(self):
+        print("demande QR_code")
         self.top.Page_QR()
 
     def QR_check(self,QR):
+        print("vérif QR_code")
         flag=True
         try:
             self.QRcode = eval(QR)
         except:
             flag=False
         if flag:
+            print("QR:")
+            print(self.QRcode)
             self.QR_transact()
         else:
+            print("erreur QR code1")
             self.Error_QR()
 
     def QR_transact(self):
-        print(self.QRcode)
-        print(type(self.QRcode))
         if Transaction_Lydia(box, self.UID, self.montant, self.Qrcode, token_public, phone):
             self.Finish()
         else:
+            print("erreur QR code2")
             self.Error_QR()
 
     def Error_QR(self):
