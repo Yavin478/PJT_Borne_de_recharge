@@ -1,5 +1,5 @@
 print("Demarrage 'MFRC522.py'")
-
+DEBUG = True
 try:
     DEBUG = config.debugging
 except:
@@ -153,11 +153,11 @@ class MFRC522:
 
     def ClearBitMask(self, reg, mask):
         tmp = self.Read_MFRC522(reg)
-        self.Write_MFRC522(reg, tmp & (not(mask)))
+        self.Write_MFRC522(reg, tmp & (~mask))
 
     def AntennaOn(self):
         temp = self.Read_MFRC522(self.TxControlReg)
-        if (not(temp & 0x03)):
+        if (~(temp & 0x03)):
             self.SetBitMask(self.TxControlReg, 0x03)
 
     def AntennaOff(self):
@@ -199,7 +199,7 @@ class MFRC522:
         while True:
             n = self.Read_MFRC522(self.CommIrqReg)
             i = i - 1
-            if not((i != 0) and not(n & 0x01) and not(n & waitIRq)):
+            if ~((i != 0) and ~(n & 0x01) and ~(n & waitIRq)):
                 break
 
         self.ClearBitMask(self.BitFramingReg, 0x80)
