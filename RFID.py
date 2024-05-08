@@ -182,6 +182,7 @@ def RFID_getUID_OLD():
     while True:
         try:
             if RFID_presence():
+                print("presence")
                 (status,uid)=MIFAREReader.MFRC522_SelectTagSN()
                 if status==MIFAREReader.MI_OK:
                     uidstring=STRING_Tag(uid,len(uid))
