@@ -6,7 +6,7 @@ print("Chemin :",projet_path)
 
 ## Loop ##
 exec(open(projet_path+'PJT_Borne_de_recharge/config.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/Rezal.py').read())
+exec(open(projet_path+'PJT_Borne_de_recharge/REZAL.py').read())
 exec(open(projet_path+'PJT_Borne_de_recharge/DATA.py').read())
 exec(open(projet_path+'PJT_Borne_de_recharge/importation.py').read())
 
