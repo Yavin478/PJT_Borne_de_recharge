@@ -36,6 +36,7 @@ class MainApp(Tk):
 
     def QR_check(self,QR):
         print("vérif QR_code")
+        print(QR)
         flag=True
         try:
             self.QRcode = eval(QR)
