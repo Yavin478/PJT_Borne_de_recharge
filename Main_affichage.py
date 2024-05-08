@@ -2,6 +2,7 @@
 from Template_pageV2 import Page
 from tkinter import *
 from time import *
+from config import*
 
 
 from config_lydia import *
@@ -11,10 +12,6 @@ from config import *
 
 from main_lydia import *
 from STRING import*
-
-from Config_Affichage import *
-
-from RFID import *
 
 
 
@@ -28,7 +25,9 @@ class MainApp(Tk):
     def Carte(self):
         self.top.Page_carte()
 
-        self.UID=STRING_uidStrToInt(RFID_getUID())
+        self.UID=0
+
+        self.argent=30
 
         self.Montants()
 
