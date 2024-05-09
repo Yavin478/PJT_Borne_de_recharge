@@ -30,6 +30,6 @@ class setting:
     connection = {"user": 'pi',
                   "password": 'pi',
                   "database": 'Guinche',
-                  "host": '192.168.1.100'}
+                  "host": '192.168.1.110'}
     serveurNet = "8.8.8.8"
 # Adresse IP DNS google qui répond au ping
