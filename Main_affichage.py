@@ -52,15 +52,15 @@ class MainApp(Tk):
     def Carte(self):
         print("Demande carte")
         self.top.Page_carte()
-        RFID_getUID(self)
+        self.Check_Carte(RFID_getUID())
 
 
 
     def Check_Carte(self,uid):
         print("carte trouvee")
         print(uid)
+
         self.UID=STRING_uidStrToInt(uid)
-        self.Montants()
 
         self.mode="Montant"
         self.sleeping_mode = True
