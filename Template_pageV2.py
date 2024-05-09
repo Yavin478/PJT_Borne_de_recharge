@@ -65,6 +65,8 @@ class Page(Toplevel):
         self.canvas.itemconfig(self.montant_out, state="hidden")
 
         self.unbind("<KeyPress>")
+
+        self.bind("<KeyPress>", self.master.inactivity_refresh)
         self.QR = ""
         self.montant = ""
         self.fleche_active = False
@@ -82,21 +84,10 @@ class Page(Toplevel):
         self.cancel_canvas()
 
         def keypress(event):
-            if event == False:
-                self.after(temps_retour * 1000, keypress, True)
-            elif event == True and not (self.flag):  # effet boomrang de ylan
-                if self.compteur <= 0:
-                    self.master.Carte()
-                    print("reset")
-                else:
-                    self.compteur -= 1
-                    print(self.compteur)
-
-            elif event.keysym == "BackSpace":
+            if event.keysym == "BackSpace":
                 self.montant = ""
                 update_text()
             elif event.keysym == "Return":
-                self.flag = True
                 self.master.Check_montants(self.montant)
             elif event.char.isdigit():
                 self.montant += event.char
@@ -108,31 +99,23 @@ class Page(Toplevel):
         def update_text():
             montant_texte = txt_montant_out + self.montant + " \u20AC"  # Ajoute le symbole de l'euro au texte
             self.canvas.itemconfig(self.montant_out, text=montant_texte)
-            self.after(temps_retour * 1000, keypress, True)
-            self.compteur += 1
 
         self.canvas.itemconfig(self.titre, text=txt_titre["montant"])
         self.canvas.itemconfig(self.esc, state="normal")
         self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["montant"], font=(type_police, int(taille_police_info / ratio_square)))
         self.canvas.itemconfig(self.montant_in, state="normal", text=txt_montant_in+str(inmo)+" \u20AC")
-        self.canvas.itemconfig(self.montant_out, state="normal")
+        self.canvas.itemconfig(self.montant_out, state="normal", text=txt_montant_out)
         self.canvas.coords(self.fleche_img, [int((self.taille_ecran[0] - self.taille_fleche[0] - décalage_flèche)),
                                              int(self.taille_ecran[1] * h_fleche["montant"] - self.taille_fleche[1] / 2)])
 
-        self.bind("<KeyPress>", keypress)
+        self.bind("<KeyPress>", keypress, add='+')
         self.fleche_active = True
-        self.flag = False
-        keypress(False)
 
     def Page_QR(self):
         self.cancel_canvas()
 
         def keypress(event):
-            if event == False:
-                self.after(temps_retour * 1000, keypress, True)
-            elif event == True and not (self.flag):
-                self.master.Carte()
-            elif event.keysym == "Return":
+            if event.keysym == "Return":
                 self.flag = True
                 self.master.QR_check(self.QR)
             else:
@@ -142,8 +125,7 @@ class Page(Toplevel):
         self.canvas.coords(self.fleche_img, [int((self.taille_ecran[0] - self.taille_fleche[0] - décalage_flèche)),
                                              int(self.taille_ecran[1] * h_fleche["QR"] - self.taille_fleche[1] / 2)])
         self.fleche_active = True
-        self.bind('<KeyPress>', keypress)
-        keypress(False)
+        self.bind('<KeyPress>', keypress, add='+')
 
     def Page_confirmation(self):
         self.cancel_canvas()

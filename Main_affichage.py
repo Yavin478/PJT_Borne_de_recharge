@@ -6,6 +6,7 @@ from config_lydia import *
 
 #LYDIA/BDD
 from config import *
+from time import time
 
 from main_lydia import *
 
@@ -18,7 +19,20 @@ class MainApp(Tk):
         self.withdraw()
         self.mode="Carte"
         self.sleeping_mode=True
+        self.inactivity_refresh(None)
         self.Boucle()
+
+    def inactivity_refresh(self,event):
+        self.before = time()
+        print("Inactivity Refresh")
+
+    def inactivity_test(self):
+        if time()-self.before>4:
+            print('reset')
+            self.mode="Carte"
+            self.sleeping_mode=True
+            self.inactivity_refresh(None)
+
 
     def Boucle(self):
         if self.sleeping_mode:
@@ -43,6 +57,8 @@ class MainApp(Tk):
                 self.Finish()
             else:
                 print("wrong mode ducon")
+            self.inactivity_refresh(None)
+        self.inactivity_test()
         self.after(100, self.Boucle)
 
     def Carte(self):
