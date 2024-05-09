@@ -61,6 +61,7 @@ class MainApp(Tk):
         print(uid)
 
         self.UID=STRING_uidStrToInt(uid)
+        self.argent=50
 
         self.mode="Montant"
         self.sleeping_mode = True
