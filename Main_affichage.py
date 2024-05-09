@@ -11,6 +11,7 @@ class MainApp(Tk):
         self.Boucle()
 
     def inactivity_refresh(self,event):
+        print(event)
         self.before = time()
         print("Inactivity Refresh")
 
