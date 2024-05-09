@@ -30,16 +30,15 @@ print("Importation 'mysql.connector'")
 import mysql.connector
 print("Importation 'hashlib'")
 import hashlib
-print("Importation pdb")
+print("Importation 'pdb'")
 import pdb
-print("Importation requests")
+print("Importation 'requests'")
 import requests
-print("Importation json")
+print("Importation 'json'")
 import json
-print("Importation tkinter")
+print("Importation 'tkinter'")
 from tkinter import *
-print("Importation subprocess")
-import subprocess
-
+print("Importation 'PIL.Image'")
 import PIL.Image as Image
+print("Importation 'PIL.ImageTk'")
 import PIL.ImageTk as ImageTk

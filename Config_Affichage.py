@@ -1,3 +1,5 @@
+print("Demarrage 'Config_Affichage.py'")
+
 gala='508'
 
 type_police="Georgia"

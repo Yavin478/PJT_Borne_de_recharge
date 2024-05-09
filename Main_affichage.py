@@ -1,3 +1,5 @@
+print("Demarrage 'main_affichage.py'")
+
 class MainApp(Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

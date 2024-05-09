@@ -1,3 +1,5 @@
+print("Demarrage 'Template_pageV2.py'")
+
 class Page(Toplevel):
 
     def __init__(self, master,*args, **kwargs):  # fonction initialisation => création de la page et attributs
