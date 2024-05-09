@@ -45,6 +45,7 @@ class MainApp(Tk):
                 self.Finish()
             else:
                 print("wrong mode ducon")
+            print(self.mode)
             self.inactivity_refresh(None)
         self.inactivity_test()
         self.after(100, self.Boucle)
