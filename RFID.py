@@ -175,15 +175,16 @@ def RFID_resetCarte(uidstring):
     RFID_setHashCodeType(config.codeGuinche,uidstring)
     RFID_setHashUID(uidstring)
 
-def RFID_getUID():
+def RFID_getUID(master):
     if config.debugging:
         print("## RFID_getUID ##")
-    while True:
-        try:
-            if RFID_presence():
-                (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
-                if status == MIFAREReader.MI_OK:
-                    uidstring = STRING_Tag(uid, len(uid))
-                    return uidstring
-        except:
-            print("PROBLEME LECTURE UID")
+    try:
+        if RFID_presence():
+            (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
+            if status == MIFAREReader.MI_OK:
+                uidstring = STRING_Tag(uid, len(uid))
+                return uidstring
+        master.after(4000,RFID_getUID,master)
+    except:
+        print("PROBLEME LECTURE UID")
+        master.after(4000, RFID_getUID, master)
