@@ -77,7 +77,7 @@ class MainApp(Tk):
     def Check_montants(self, montant):
         print("Montant trouvé")
         self.montant=int(montant)
-        if self.montant>config.maxTransaction/100:
+        if self.montant>config.maxTransaction/100 or (self.montant+self.argent)>config.maxMontant/100:   #Vérifie le montant de la recharge
             self.mode="Error_Montant"
         else:
             self.mode="QR"
