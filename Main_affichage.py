@@ -8,6 +8,7 @@ class MainApp(Tk):
         self.mode="Carte"
         self.sleeping_mode=True
         self.inactivity_refresh(None)
+        self.timer_card=time()
         self.Boucle()
 
     def inactivity_refresh(self,event):
@@ -24,7 +25,7 @@ class MainApp(Tk):
 
     def Carte_test(self):
         print(RFID_presence())
-        if not(RFID_presence()):
+        if not(RFID_presence()) and time()-self.timer_card<1:
             print("No RFID presence")
             self.mode="No_card"
             self.sleeping_mode=True
