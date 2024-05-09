@@ -3,7 +3,7 @@ print("Demarrage 'SQL.py'")
 #### Définition des fonctions d'exécution des requêtes ####
 
 def SQL_SELECT(querry):
-    _cnx=mysql.connector.connect(**connection)
+    _cnx=mysql.connector.connect(**setting.connection)
     _cursor=_cnx.cursor()
     _cursor.execute(querry)
     _select=_cursor.fetchall()
@@ -11,7 +11,7 @@ def SQL_SELECT(querry):
     return _select
 
 def SQL_EXECUTE(querry):
-    _cnx=mysql.connector.connect(**connection)
+    _cnx=mysql.connector.connect(**setting.connection)
     _cursor=_cnx.cursor()
     _cursor.execute(querry)
     _cnx.commit()
