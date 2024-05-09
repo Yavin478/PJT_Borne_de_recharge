@@ -152,6 +152,16 @@ class Page(Toplevel):
         self.canvas.itemconfig(self.titre, text=txt_titre["error_rezal"])
         self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["error_rezal"])
 
+    def Page_error_no_carte(self):
+        self.cancel_canvas()
+        self.canvas.itemconfig(self.titre, text=txt_titre["annulée"])
+        self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["no_card"])
+
+    def Page_annulée(self):
+        self.cancel_canvas()
+        self.canvas.itemconfig(self.titre, text=txt_titre["annulée"])
+        self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["annulée"])
+
     def Fleche(self):
         fleche = Image.open(path_img_flèche)
         self.taille_fleche = [int(self.taille_ecran[0] / ratio_flèche), int(self.taille_ecran[1] / ratio_flèche)]
@@ -224,6 +234,8 @@ if __name__ == '__main__':  # lancement du programme
         top.bind('<Key-y>', lambda e: top.Page_error_carte())
         top.bind('<Key-u>', lambda e: top.Page_error_montant())
         top.bind('<Key-i>', lambda e: top.Page_error_rezal())
+        top.bind('<Key-o>', lambda e: top.Page_error_no_carte())
+        top.bind('<Key-p>', lambda e: top.Page_annulée())
 
 
     root = Tk()
