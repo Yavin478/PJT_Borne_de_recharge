@@ -21,11 +21,11 @@ txt_titre= {"carte":"Placez Votre Carte",
             "error_montant":"Erreur montant",}
 
 txt_indic= {"terminée":"Très bon gala!",
-            "montant":"Transaction max de "+str(config.maxTransaction/100)+"€\nArgent sur carte max de "+str(config.maxMontant/100)+" €",
+            "montant":"Transaction max de "+str(config.maxTransaction/100)+"€ \n Argent sur carte max de "+str(config.maxMontant/100)+" €",
             "error_QR":"Recommencez avec un QRcode \n Lydia Valide",
             "error_rezal":"veuillez contacter un membre du Rezal",
             "error_carte":"Recommencez avec une carte valide",
-            "error_montant":"Recommencez avec un montant \n valide <90€ "}
+            "error_montant":"Recommencez avec un montant \n valide < "+str(config.maxTransaction/100)+"€ \n Le montant total de la carte ne doit pas être > à "+str(config.maxMontant/100)+" €" }
 
 txt_esc="Appuyez sur ESC pour annuler"
 txt_montant_in="Vous avez: \n"
