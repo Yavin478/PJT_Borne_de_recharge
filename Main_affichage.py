@@ -62,9 +62,10 @@ class MainApp(Tk):
         print(uid)
 
         self.UID=STRING_uidStrToInt(uid)
+
         print("Résultat requete : ",SQL_SELECT(QUERRY_getMoney(self.UID))[0][0])
-        if len(SQL_SELECT(QUERRY_getMoney(self.UID))[0][0])==0:   #test si la carte est déjà présente dans la bdd
-            SQL_EXECUTE(QUERRY_addCarte(self.UID))
+        #if len(SQL_SELECT(QUERRY_getMoney(self.UID))[0][0])==0:   #test si la carte est déjà présente dans la bdd
+        #   SQL_EXECUTE(QUERRY_addCarte(self.UID))
 
         self.argent=SQL_SELECT(QUERRY_getMoney(self.UID))[0][0]
 
