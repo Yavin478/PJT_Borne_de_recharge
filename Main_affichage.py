@@ -45,13 +45,12 @@ class MainApp(Tk):
                 self.Finish()
             else:
                 print("wrong mode ducon")
-            print(self.mode)
+            print("MODE : "+self.mode)
             self.inactivity_refresh(None)
         self.inactivity_test()
         self.after(100, self.Boucle)
 
     def Carte(self):
-        print("Demande carte")
         self.top.Page_carte()
         RFID_getUID(self)
 
@@ -68,7 +67,6 @@ class MainApp(Tk):
         self.sleeping_mode = True
 
     def Montants(self):
-        print("Demande Montant")
         self.top.Page_montant(self.argent)
 
     def Check_montants(self, montant):
@@ -81,7 +79,6 @@ class MainApp(Tk):
         self.sleeping_mode = True
 
     def QR(self):
-        print("Recherche QR")
         self.top.Page_QR()
 
     def QR_check(self,QR):
@@ -94,7 +91,6 @@ class MainApp(Tk):
         self.sleeping_mode = True
 
     def QR_transact(self):
-        print("Transaction")
         print(self.QRcode)
         print(type(self.QRcode))
         if Transaction_Lydia(box, self.UID, self.montant, self.Qrcode, token_public, phone):
