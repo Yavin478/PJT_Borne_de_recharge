@@ -94,7 +94,7 @@ class MainApp(Tk):
     def QR_transact(self):
         print(self.QRcode)
         print(type(self.QRcode))
-        if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.Qrcode, token_public, phone):
+        if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, token_public, phone):
             self.mode="Finish"
         else:
             self.mode="Error_QR"
