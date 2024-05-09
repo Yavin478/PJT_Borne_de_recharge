@@ -1,4 +1,4 @@
-print("Demarrage 'Config_Affichage.py'")
+from config import *
 
 gala='508'
 
@@ -21,14 +21,19 @@ txt_titre= {"carte":"Placez Votre Carte",
             "error_montant":"Erreur montant",}
 
 txt_indic= {"terminée":"Très bon gala!",
+            "montant":"Transaction max de "+str(config.maxTransaction/100)+"€\nArgent sur carte max de "+str(config.maxMontant/100)+" €",
             "error_QR":"Recommencez avec un QRcode \n Lydia Valide",
             "error_rezal":"veuillez contacter un membre du Rezal",
             "error_carte":"Recommencez avec une carte valide",
-            "error_montant":"Recommencez avec un montant \n valide <90€ ",}
+            "error_montant":"Recommencez avec un montant \n valide <90€ "}
 
-décalage_esc=30
-taille_police_esc=30
-taille_police_indic=35
+txt_esc="Appuyez sur ESC pour annuler"
+txt_montant_in="Vous avez: \n"
+txt_montant_out="Vous voulez: \n"
+
+
+
+
 
 
 if gala=='baptss':
@@ -42,10 +47,22 @@ if gala=='baptss':
 elif gala=='508':
     path_img_bg = "Static/Bg_508.jpg"
     path_img_fg = "Static/Cadre_508.png"
+    path_img_flèche = "Static/fleche_wb.png"
     ratio_square = 1.25
-    taille_police = 47
+
     decalage_label = 0.5
     decalage_label_esc=0.63
+    decalage_label_montant=0.35
+    decalage_info_montant=0.25
+    décalage_esc = 30
+
+
+
+    taille_police = 47
+    taille_police_esc = 30
+    taille_police_indic = 35
+    taille_police_montant = 35
+    taille_police_info = 25
 
 
 temps_retour=60
