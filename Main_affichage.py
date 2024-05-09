@@ -23,6 +23,7 @@ class MainApp(Tk):
             self.inactivity_refresh(None)
 
     def Carte_test(self):
+        print(RFID_presence())
         if not(RFID_presence()):
             print("No RFID presence")
             self.mode="No_card"
@@ -61,7 +62,7 @@ class MainApp(Tk):
             self.inactivity_test()
 
 
-        self.after(400, self.Boucle)
+        self.after(100, self.Boucle)
 
     def Carte(self):
         self.top.Page_carte()
