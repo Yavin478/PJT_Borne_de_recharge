@@ -45,7 +45,7 @@ class config:  # Définition des variables reliée à l'objet config définissan
     # Montant en centimes minimal à pouvoir mettre pendant une transaction
     minMontant = 100
     # Montant max à pouvoir être mis sur une carte
-    maxTransaction = 9900
+    maxTransaction = 5000
     # Montant en centime maximal à pouvoir être contenu sur une carte
     maxMontant = 15000
 
