@@ -63,10 +63,10 @@ class MainApp(Tk):
 
         self.UID=STRING_uidStrToInt(uid)
 
-        print("Résultat requete : ",SQL_SELECT(QUERRY_getMoney(self.UID))[0][0])
-        if 1==1:   #test si la carte est déjà présente dans la bdd
+        print("Résultat requete : ",SQL_SELECT(QUERRY_getCarte(self.UID)))
+        if len(SQL_SELECT(QUERRY_getCarte(self.UID)))==0:    #test si la carte est déjà présente dans la bdd
         #   SQL_EXECUTE(QUERRY_addCarte(self.UID))
-            print("test : if")
+            print("Test if")
 
         self.argent=SQL_SELECT(QUERRY_getMoney(self.UID))[0][0]/100  #Pour convertir le montant en euros
 
