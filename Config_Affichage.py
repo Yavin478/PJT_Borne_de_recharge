@@ -65,4 +65,4 @@ elif gala=='508':
     taille_police_info = 25
 
 
-temps_retour=60
+temps_retour=30
