@@ -66,7 +66,7 @@ class MainApp(Tk):
         if len(SQL_SELECT(QUERRY_getMoney(self.UID))[0][0])==0:   #test si la carte est déjà présente dans la bdd
             SQL_EXECUTE(QUERRY_addCarte(self.UID))
 
-        self.argent=SQL_SELECT(QUERRY_getMoney(self.UID))[0][0])
+        self.argent=SQL_SELECT(QUERRY_getMoney(self.UID))[0][0]
 
         self.mode="Montant"
         self.sleeping_mode = True
