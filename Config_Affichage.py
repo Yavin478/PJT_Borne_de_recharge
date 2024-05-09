@@ -25,7 +25,9 @@ txt_indic= {"terminée":"Très bon gala!",
             "error_QR":"Recommencez avec un QRcode \n Lydia Valide",
             "error_rezal":"veuillez contacter un membre du Rezal",
             "error_carte":"Recommencez avec une carte valide",
-            "error_montant":"Recommencez avec un montant\n valide < "+str(config.maxTransaction/100)+"€"}
+            "error_montant":"Recommencez avec un montant\n valide < "+str(config.maxTransaction/100)+"€",
+            "no_card":"Vous avez retirez la carte",
+            "annulée": "Vous avez annulez l'opération"}
 
 txt_esc="Appuyez sur ESC pour annuler"
 txt_montant_in="Vous avez: \n"

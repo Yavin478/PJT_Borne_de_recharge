@@ -22,6 +22,13 @@ class MainApp(Tk):
             self.sleeping_mode=True
             self.inactivity_refresh(None)
 
+    def Carte_test(self):
+        """if not(RFID_presence()):
+            print("No RFID presence")
+            self.mode="No_card"
+            self.sleeping_mode=True"""
+
+
 
     def Boucle(self):
         if self.sleeping_mode:
@@ -44,10 +51,16 @@ class MainApp(Tk):
                 self.Error_rezal()
             elif self.mode=="Finish":
                 self.Finish()
+            elif self.mode=="No_card":
+                self.Error_no_carte()
             else:
                 print("wrong mode ducon")
             print("MODE : "+self.mode)
             self.inactivity_refresh(None)
+
+        if self.mode in ["Montant","QR","Transaction"]:
+            self.Carte_test()
+
         self.inactivity_test()
         self.after(100, self.Boucle)
 
@@ -124,6 +137,14 @@ class MainApp(Tk):
 
     def Finish(self):
         self.top.Page_confirmation()
+        self.after(5000, self.rollback)
+
+    def Error_no_carte(self):
+        self.top.Page_error_no_carte()
+        self.after(5000, self.rollback)
+
+    def Annulée(self):
+        self.top.Page_annulée()
         self.after(5000, self.rollback)
 
     def rollback(self):
