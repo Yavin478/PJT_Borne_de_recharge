@@ -16,7 +16,7 @@ class MainApp(Tk):
         print("Inactivity Refresh")
 
     def inactivity_test(self):
-        if time()-self.before>4:
+        if time()-self.before>temps_retour:
             print('reset')
             self.mode="Carte"
             self.sleeping_mode=True
