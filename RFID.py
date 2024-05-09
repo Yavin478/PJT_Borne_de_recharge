@@ -183,7 +183,7 @@ def RFID_getUID(master):
             (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
             if status == MIFAREReader.MI_OK:
                 uidstring = STRING_Tag(uid, len(uid))
-                return uidstring
+                master.Check_Carte(uidstring)
         master.after(4000,RFID_getUID,master)
     except:
         print("PROBLEME LECTURE UID")
