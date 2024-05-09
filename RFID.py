@@ -175,7 +175,7 @@ def RFID_resetCarte(uidstring):
     RFID_setHashCodeType(config.codeGuinche,uidstring)
     RFID_setHashUID(uidstring)
 
-def RFID_getUID:
+def RFID_getUID():
     if config.debugging:
         print("## RFID_getUID ##")
     while True:
