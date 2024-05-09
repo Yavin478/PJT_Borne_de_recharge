@@ -158,19 +158,19 @@ def RFID_setHashCodeType(codeType,uidstring):
 def RFID_setHashUID(uidstring):
     RFID_write(config.blockHashUID,CRYPT_hashage(RFID_getUID()),uidstring)
 
-def RFID_getUID():
+def RFID_getUID(master):
     if config.debugging:
         print("## RFID_getUID ##")
-    while True:
-        try:
-            if RFID_presence():
-                (status,uid)=MIFAREReader.MFRC522_SelectTagSN()
-                if status==MIFAREReader.MI_OK:
-                    uidstring=STRING_Tag(uid,len(uid))
-                    return uidstring
-        except:
-            print("PROBLEME LECTURE UID")
-            sleep(0.4)
+    try:
+        if RFID_presence():
+            (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
+            if status == MIFAREReader.MI_OK:
+                uidstring = STRING_Tag(uid, len(uid))
+                return master.Check_Carte(uidstring)
+        master.after(400, RFID_getUID, master)
+    except:
+        print("PROBLEME LECTURE UID")
+        master.after(400, RFID_getUID, master)
 
 def RFID_resetCarte(uidstring):
     if config.debugging:

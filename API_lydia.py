@@ -44,3 +44,13 @@ def Lydia_check(token_public,montant,phone,order_id,Qrcode):
         print("Erreur de requête HTTP :", response.status_code)
         return None
 
+
+'''
+## Test de la fonction lydia check
+token_public = "660e5b8b4c353994613407"
+phone='33782977418'
+montant=4
+order_id=1
+Qrcode=["SLebMnW8pk9MlSRO2RYvv04BOw/Eq2mdi21fhEQeEkeC7mYjUzhvAer6XWnuCrTRU6pKsLc7Dxe8hdSo07YhZQ8g5zGHwhB8xo4tKKD0hQvC6EQHCUXJo3SRlmRKn913Ar40gWe2v31OIdbipJcAzTtZW7V3KxPbu5OLRh4epWU=","3"]
+transaction_identifier=Lydia_check(token_public,montant,phone,order_id,Qrcode)
+'''
