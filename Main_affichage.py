@@ -8,7 +8,7 @@ class MainApp(Tk):
     def Carte(self):
         print("recherche carte")
         self.top.Page_carte()
-        STRING_uidStrToInt(RFID_getUID(self))
+        RFID_getUID(self)
 
 
 
