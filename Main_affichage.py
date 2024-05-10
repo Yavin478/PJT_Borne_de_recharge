@@ -22,7 +22,6 @@ class MainApp(Tk):
             self.sleeping_mode=True
 
     def Boucle(self):
-        print(RFID_presence())
         if self.sleeping_mode:
             self.sleeping_mode = False
             if self.mode=="Carte":
@@ -63,7 +62,7 @@ class MainApp(Tk):
 
     def Check_Carte(self,uid):
         print("carte trouvee")
-        print(uid)
+
 
         self.UID=STRING_uidStrToInt(uid)
 
