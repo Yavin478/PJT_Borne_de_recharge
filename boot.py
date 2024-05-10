@@ -37,7 +37,7 @@ root.mainloop()"""
 L = []
 while True:
     L.append(RFID_presence())
-    if len(L)>5:
+    if len(L)>4:
         L=L[1:]
     print(L)
     if True in L:
