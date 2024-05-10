@@ -35,7 +35,13 @@ exec(open(projet_path+'PJT_Borne_de_recharge/Main_affichage.py').read())
 root.mainloop()"""
 
 while True:
-    print(RFID_presence())
+    L=[]
+    L.append(RFID_presence())
+    L=L[1:]
+    if True in L:
+        print(True)
+    else:
+        print(False)
     sleep(0.1)
 
 if config.debugging :
