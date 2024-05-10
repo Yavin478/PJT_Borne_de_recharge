@@ -48,7 +48,6 @@ class MainApp(Tk):
             else:
                 print("wrong mode ducon")
             print("MODE : "+self.mode)
-            self.inactivity_refresh(None)
 
         if self.mode in ["Montant","QR","Transaction"]:
             self.Carte_test()
