@@ -39,6 +39,7 @@ while True:
     L.append(RFID_presence())
     if len(L)>5:
         L=L[1:]
+    print(L)
     if True in L:
         print(True)
     else:
