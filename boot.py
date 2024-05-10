@@ -34,8 +34,8 @@ exec(open(projet_path+'PJT_Borne_de_recharge/Main_affichage.py').read())
 """root=MainApp()
 root.mainloop()"""
 
+L = []
 while True:
-    L=[]
     L.append(RFID_presence())
     if len(L)>5:
         L=L[1:]
