@@ -7,22 +7,9 @@ class MainApp(Tk):
         self.withdraw()
         self.mode="Carte"
         self.sleeping_mode=True
-        self.inactivity_refresh(None)
-        self.timer_card=time()
         self.L_presence_card=[]
         self.Boucle()
 
-    def inactivity_refresh(self,event):
-        print(event)
-        self.before = time()
-        print("Inactivity Refresh")
-
-    def inactivity_test(self):
-        if time()-self.before>temps_retour:
-            print('reset')
-            self.mode="Carte"
-            self.sleeping_mode=True
-            self.inactivity_refresh(None)
 
     def Carte_test(self):
         self.L_presence_card.append(RFID_presence())
@@ -65,7 +52,6 @@ class MainApp(Tk):
 
         if self.mode in ["Montant","QR","Transaction"]:
             self.Carte_test()
-            self.inactivity_test()
 
 
         self.after(100, self.Boucle)

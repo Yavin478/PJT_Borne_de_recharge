@@ -62,7 +62,6 @@ class Page(Toplevel):
 
         self.unbind("<KeyPress>")
 
-        self.bind("<KeyPress>", self.master.inactivity_refresh)
         self.QR = ""
         self.montant = ""
         self.fleche_active = False
