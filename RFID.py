@@ -7,6 +7,7 @@ def RFID_presence():
     #if config.debugging:
     #    print(str(status)+"  /  "+str(backBits))
     return (status==MIFAREReader.MI_OK)
+
 def RFID_carteCheck():
     if config.debugging:
         print("## RFID_carteCheck ##")
