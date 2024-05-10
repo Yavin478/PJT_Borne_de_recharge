@@ -186,7 +186,7 @@ def RFID_getUID(master):
                 uidstring = STRING_Tag(uid, len(uid))
                 master.Check_Carte(uidstring)
                 return None
-        master.after(400,RFID_getUID,master)
+        master.after(100,RFID_getUID,master)
     except:
         print("PROBLEME LECTURE UID")
-        master.after(400, RFID_getUID, master)
+        master.after(100, RFID_getUID, master)
