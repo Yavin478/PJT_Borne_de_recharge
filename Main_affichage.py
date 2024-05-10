@@ -58,8 +58,9 @@ class MainApp(Tk):
 
         if self.mode in ["Montant","QR","Transaction"]:
             self.Carte_test()
+            self.inactivity_test()
 
-        self.inactivity_test()
+
         self.after(100, self.Boucle)
 
     def Carte(self):
