@@ -4,7 +4,7 @@ projet_path="/".join(__file__.split("/")[:-2])+"/"
 
 print("Chemin :",projet_path)
 
-from Main_affichage import MainApp
+from Main_affichage import +
 
 root=MainApp()
 root.mainloop()

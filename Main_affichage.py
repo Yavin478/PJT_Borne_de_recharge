@@ -1,6 +1,6 @@
 print("Demarrage 'main_affichage.py'")
 
-from Template_pageV2 import Page
+from Template_pageV2 import *
 
 class MainApp(Tk):
     def __init__(self, *args, **kwargs):
