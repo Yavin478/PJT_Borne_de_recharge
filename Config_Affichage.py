@@ -1,4 +1,4 @@
-from config import *
+from main_lydia import *
 
 gala='508'
 

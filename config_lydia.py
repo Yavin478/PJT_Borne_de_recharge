@@ -1,4 +1,5 @@
 print("Demarrage 'config_lydia.py'")
+from RFID import *
 
 #### Fichier de définitions des TOKENS et numéro de téléphone utilisé pour les transactions ####
 

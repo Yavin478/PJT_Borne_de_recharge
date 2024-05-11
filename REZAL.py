@@ -1,4 +1,6 @@
 print("Demarrage 'REZAL.py'")
+from importation import *
+
 def REZAL_ping(IP):
     try:
         return int(os.system("ping -a -c 1 -W 1 "+str(IP))==0)

@@ -4,32 +4,7 @@ projet_path="/".join(__file__.split("/")[:-2])+"/"
 
 print("Chemin :",projet_path)
 
-## Fichier général de boot ##
-from importation import *
-from config import *
-from setting import *
-from REZAL import *
-from DATA import *
-
-## RFID ##
-from MFRC522 import *
-from STRING import *
-from RFID import *
-
-## BDD ##
-from SQL import *
-from Requetes import *
-
-## Lydia ##
-from config_lydia import *
-from API_lydia.py import *
-from main_lydia import *
-
-## Affichage ##
-from Config_Affichage import *
-from Template_pageV2 import *
-from Main_affichage import *
-
+from Main_affichage import MainApp
 
 root=MainApp()
 root.mainloop()

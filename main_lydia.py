@@ -1,4 +1,7 @@
 print("Demarrage 'main_lydia.py'")
+from API_lydia import *
+from SQL import *
+from Requetes import *
 
 #### Programme principale de la transaction lydia avec MAJ BDD ####
 def Recharge_montant(UID,montant):

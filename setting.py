@@ -1,5 +1,5 @@
 print("Demarrage 'setting.py'")
-
+from config import *
 
 # Définition des variables reliée à l'objet setting définissant les paramètres de la box. Ces paramètres sont sauvegardés et résistent au reboot
 class setting:

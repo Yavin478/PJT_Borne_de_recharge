@@ -1,4 +1,5 @@
 print("Demarrage 'API_lydia.py'")
+from config_lydia import *
 
 #### Fonction de vérification d'une transaction lydia ####
 

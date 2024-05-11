@@ -1,4 +1,5 @@
 print("Démarrage 'config.py'")
+from REZAL import *
 
 class config:  # Définition des variables reliée à l'objet config définissant les paramètres du gala (guinche)
     # Les hash sont salés avec codeHash (précédemment avec codeGuinche).

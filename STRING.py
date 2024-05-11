@@ -1,4 +1,5 @@
 print("Demarrage 'STRING.py'")
+from DATA import *
 
 def STRING_montant(montant):
     STRING=str(abs(int(montant)))

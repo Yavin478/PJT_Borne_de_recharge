@@ -1,5 +1,5 @@
 print("Demarrage 'Template_pageV2.py'")
-
+from Config_Affichage import *
 class Page(Toplevel):
 
     def __init__(self, master, *args, **kwargs):  # fonction initialisation => création de la page et attributs
