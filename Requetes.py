@@ -1,4 +1,5 @@
 print("Demarrage 'Requetes.py'")
+from SQL import *
 
 #### Définition des requêtes SQL ####
 

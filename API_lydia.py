@@ -1,5 +1,5 @@
 print("Demarrage 'API_lydia.py'")
-from config_lydia import *
+from Requetes import *
 
 #### Fonction de vérification d'une transaction lydia ####
 

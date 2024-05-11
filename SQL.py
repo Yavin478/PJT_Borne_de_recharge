@@ -1,4 +1,5 @@
 print("Demarrage 'SQL.py'")
+from config_lydia import *
 
 #### Définition des fonctions d'exécution des requêtes ####
 
