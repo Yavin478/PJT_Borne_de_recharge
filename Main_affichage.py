@@ -15,7 +15,7 @@ class MainApp(Tk):
 
     def Carte_test(self):
         self.L_presence_card.append(RFID_presence())
-        if len(self.L_presence_card)>3:
+        if len(self.L_presence_card)>5:
             self.L_presence_card=self.L_presence_card[1:]
             if not (True in self.L_presence_card):
                 print(self.L_presence_card)
