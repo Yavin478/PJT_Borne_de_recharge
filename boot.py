@@ -4,31 +4,31 @@ projet_path="/".join(__file__.split("/")[:-2])+"/"
 
 print("Chemin :",projet_path)
 
-## Loop ##
-exec(open(projet_path+'PJT_Borne_de_recharge/config.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/setting.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/REZAL.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/DATA.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/importation.py').read())
+## Fichier général de boot ##
+from importation import *
+from config import *
+from setting import *
+from REZAL import *
+from DATA import *
 
 ## RFID ##
-exec(open(projet_path+'PJT_Borne_de_recharge/MFRC522.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/STRING.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/RFID.py').read())
+from MFRC522 import *
+from STRING import *
+from RFID import *
 
 ## BDD ##
-exec(open(projet_path+'PJT_Borne_de_recharge/SQL.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/Requetes.py').read())
+from SQL import *
+from Requetes import *
 
 ## Lydia ##
-exec(open(projet_path+'PJT_Borne_de_recharge/config_lydia.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/API_lydia.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/main_lydia.py').read())
+from config_lydia import *
+from API_lydia.py import *
+from main_lydia import *
 
 ## Affichage ##
-exec(open(projet_path+'PJT_Borne_de_recharge/Config_Affichage.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/Template_pageV2.py').read())
-exec(open(projet_path+'PJT_Borne_de_recharge/Main_affichage.py').read())
+from Config_Affichage import *
+from Template_pageV2 import *
+from Main_affichage import *
 
 
 root=MainApp()

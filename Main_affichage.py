@@ -17,6 +17,7 @@ class MainApp(Tk):
             self.L_presence_card=self.L_presence_card[1:]
 
         if not(True in self.L_presence_card):
+            print(self.L_presence_card)
             print("No RFID presence")
             self.mode="No_card"
             self.sleeping_mode=True
