@@ -17,12 +17,13 @@ class MainApp(Tk):
         self.L_presence_card.append(RFID_presence())
         if len(self.L_presence_card)>3:
             self.L_presence_card=self.L_presence_card[1:]
+            if not (True in self.L_presence_card):
+                print(self.L_presence_card)
+                print("No RFID presence")
+                self.mode = "No_card"
+                self.sleeping_mode = True
 
-        if not(True in self.L_presence_card):
-            print(self.L_presence_card)
-            print("No RFID presence")
-            self.mode="No_card"
-            self.sleeping_mode=True
+
 
     def Boucle(self):
         if self.sleeping_mode:
