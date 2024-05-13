@@ -64,11 +64,9 @@ class MainApp(Tk):
 
 
 
-    def Check_Carte(self,uid):
-        print("uid check :", uid)
+    def Check_Carte(self,uidstring):
 
-        self.uidstring=uid
-        print("uidstring check :",uid)
+        print("uidstring check :",uidstring)
         self.UID=STRING_uidStrToInt(uidstring)
         print("UID :", UID)
 
