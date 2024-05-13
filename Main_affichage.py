@@ -66,7 +66,7 @@ class MainApp(Tk):
 
     def Check_Carte(self,uidstring):
         print("uidstring check :",uidstring)
-
+        self.uidstring=uidstring
         self.UID=STRING_uidStrToInt(uidstring)
 
         if len(SQL_SELECT(QUERRY_getCarte(self.UID)))==0:    #test si la carte est déjà présente dans la bdd
