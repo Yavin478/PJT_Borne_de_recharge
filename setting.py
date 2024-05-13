@@ -7,7 +7,7 @@ class setting:
     # Nom de la box (Données par la BDD au démarrage), il définie le rôle de la box selon la première lettre (ATTENTION: Première lettre toujours en majuscule)
     nomBox='Automatique'#A pour BorneAutomatique de toute manière le code ne prend que la 1er lettre du nom
     # Numéro de la box, permet d'identifié de façon unique les boxs (clé primaire) pour la BDD
-    numeroBox=100
+    numeroBox=91
     # Version du système, permet de savoir quand une MAJ est a faire
     version='610'
     # Paramètre indiquand au système si la box a ping le serveur (010)
@@ -30,6 +30,6 @@ class setting:
     connection = {"user": 'pi',
                   "password": 'pi',
                   "database": 'Guinche',
-                  "host": '192.168.1.110'}
+                  "host": '192.168.1.100'}
     serveurNet = "8.8.8.8"
 # Adresse IP DNS google qui répond au ping
