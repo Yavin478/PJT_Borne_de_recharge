@@ -16,7 +16,7 @@ class MainApp(Tk):
     def Carte_test(self):
         self.L_presence_card.append(RFID_presence())
         print("Liste :",self.L_presence_card)
-        if len(self.L_presence_card)>4:
+        if len(self.L_presence_card)>3:
             L_presence_card_temp=self.L_presence_card[1:] # Liste temporaire
             self.L_presence_card=[]  # Reset de la liste global
             if not (True in L_presence_card_temp):
