@@ -35,7 +35,8 @@ def Lydia_check(token_public,montant,phone,order_id,Qrcode):
 
         if response_data['error'] == "0":
             print("Transaction réussie.")
-            print("Identifiant de la transaction :", response_data['transaction_identifier'])
+            if config.debugging :
+                print("Identifiant de la transaction :", response_data['transaction_identifier'])
             return response_data['transaction_identifier']
         else:
             print("Erreur lors de la transaction :", response_data['error'], response_data['message'])
