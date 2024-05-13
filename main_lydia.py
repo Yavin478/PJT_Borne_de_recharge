@@ -4,7 +4,6 @@ from API_lydia import *
 #### Programme principale de la transaction lydia avec MAJ BDD ####
 def Recharge_montant(UID,montant):
     Money=SQL_SELECT(QUERRY_getMoney(UID))[0][0]
-    print("Argent :",Money)
     SQL_EXECUTE(QUERRY_setMoney(UID,Money+montant))
 
 
