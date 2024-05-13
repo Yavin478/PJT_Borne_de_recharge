@@ -105,7 +105,7 @@ class MainApp(Tk):
         print(self.QRcode)
         print(type(self.QRcode))
         if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, token_public, phone):
-            RFID_setArgent((self.montant+self.argent)*100,self.uidstring)               # Ecriture du nouveau montant sur la carte RFID
+            RFID_setArgent(int((self.montant+self.argent)*100),self.uidstring)               # Ecriture du nouveau montant sur la carte RFID
             self.mode="Finish"
         else:
             self.mode="Error_QR"
