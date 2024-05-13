@@ -17,10 +17,10 @@ class MainApp(Tk):
         self.L_presence_card.append(RFID_presence())
         print("Liste :",self.L_presence_card)
         if len(self.L_presence_card)>4:
-            self.L_presence_card_temp=self.L_presence_card[1:]
-            self.L_presence_card=[]  # Reset de la liste
-            if not (True in self.L_presence_card_temp):
-                print(self.L_presence_card)
+            L_presence_card_temp=self.L_presence_card[1:] # Liste temporaire
+            self.L_presence_card=[]  # Reset de la liste global
+            if not (True in L_presence_card_temp):
+                print("Liste temporaire :",L_presence_card_temp)
                 print("No RFID presence")
                 self.mode = "No_card"
                 self.sleeping_mode = True
