@@ -70,7 +70,7 @@ class MainApp(Tk):
         self.uidstring=uid
         print("uidstring check :",uid)
         self.UID=STRING_uidStrToInt(uidstring)
-        print("uid :", uid)
+        print("UID :", UID)
 
         if len(SQL_SELECT(QUERRY_getCarte(self.UID)))==0:    #test si la carte est déjà présente dans la bdd
             SQL_EXECUTE(QUERRY_addCarte(self.UID))
