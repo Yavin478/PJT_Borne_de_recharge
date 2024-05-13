@@ -67,8 +67,8 @@ class MainApp(Tk):
     def Check_Carte(self,uid):
         print("carte trouvee")
 
-
-        self.UID=STRING_uidStrToInt(uid)
+        self.uidstring=uid
+        self.UID=STRING_uidStrToInt(uidstring)
 
         if len(SQL_SELECT(QUERRY_getCarte(self.UID)))==0:    #test si la carte est déjà présente dans la bdd
             SQL_EXECUTE(QUERRY_addCarte(self.UID))
@@ -106,6 +106,7 @@ class MainApp(Tk):
         print(self.QRcode)
         print(type(self.QRcode))
         if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, token_public, phone):
+            RFID_setArgent((self.montant+self.argent)*100,self.uidstring)               # Ecriture du nouveau montant sur la carte RFID
             self.mode="Finish"
         else:
             self.mode="Error_QR"
