@@ -1,5 +1,5 @@
 print("Demarrage 'DATA.py'")
-from setting import *
+from CRYPT import *
 
 def DATA_setVariable(variableName,contenu):
     fichierName="/home/pi/PICONFLEX2000-CLIENT/setting.py"
