@@ -54,9 +54,9 @@ class MainApp(Tk):
                 else:
                     print("wrong mode ducon")
                 print("MODE : " + self.mode)
-            else :
-                self.mode="Error_Rezal"
-                self.sleeping_mode=True
+            # else :
+            #     self.mode="Error_Rezal"
+            #     self.sleeping_mode=True
 
 
         if self.mode in ["Montant", "QR", "Transaction"]:
