@@ -12,6 +12,6 @@ def Entrer_log (projet_path,nom_fichier_log,contenu):   # Toutes les variables e
     now=ctime()
     LOG_add(projet_path+'/'+nom_fichier_log,contenu+" at: "+str(now)+"\n")
 
-####Exemple d'entrée de log.txt
+#####Exemple d'entrée de log.txt
 #Entrer_log(os.path.abspath(os.path.dirname(__file__)),'LOG.txt','self.mode=='+'carte'+' heure: '+str(datetime.datetime.now())+"\n")
-####
+#####
