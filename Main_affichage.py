@@ -177,6 +177,7 @@ class MainApp(Tk):
 
     def Error_no_carte(self):
         self.top.Page_error_no_carte()
+        print("erreur carte")
         self.after(5000, self.rollback)
 
     def Annulée(self):
