@@ -16,18 +16,18 @@ class MainApp(Tk):
     def Carte_test(self):
         self.L_presence_card.append(RFID_presence())
         if len(self.L_presence_card)>3:
-            L_presence_card_temp=self.L_presence_card[1:] # Liste temporaire
-            self.L_presence_card=[]  # Reset de la liste global
-            if not (True in L_presence_card_temp):
+            if not (True in self.L_presence_card[1:]):
                 print("No RFID presence")
                 self.mode = "No_card"
                 self.sleeping_mode = True
-
+                self.L_presence_card = []
 
 
     def Boucle(self):
+
+        self.Test_Rezal()
+
         if self.sleeping_mode:
-            self.Test_Rezal()
             self.sleeping_mode = False
 
             if self.mode=="Carte":
@@ -62,11 +62,10 @@ class MainApp(Tk):
 
     def Test_Rezal(self):      # Mode de vérification du réseau
         try :
-            print("Rezal :",bool(REZAL_pingServeur()))
             if bool(REZAL_pingServeur()) :  # Ping du serveur guinche pour s'assurer que la connection locale est toujours présente
-                print("Co BDD OK")
+                print("Connection à la BDD OK")
                 if REZAL_pingInternet(): # Ping du serveur google pour s'assurer que la connection internet est toujours présente
-                    print("Co internet OK")
+                    print("Connection à internet OK")
                     self.mode = "Carte"
                     self.sleeping_mode = True
                 else :
