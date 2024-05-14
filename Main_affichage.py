@@ -25,42 +25,44 @@ class MainApp(Tk):
 
 
     def Boucle(self):
-        if self.Verif_Rezal>=20:
+        if self.Verif_Rezal>=60:   # Toutes les 60 secondes
             print("Vérif Rezal :",self.Verif_Rezal)
             self.Verif_Rezal=0
             self.Test_Rezal()
 
         if (setting.rezalOn and setting.rezalNet):
+            print("Rezal On :",setting.rezalOn)
+            print("Rezal Net :", setting.rezalNet)
 
-        if self.sleeping_mode:
-            self.sleeping_mode = False
+            if self.sleeping_mode:
+                self.sleeping_mode = False
 
-            if self.mode == "Carte":
-                self.Carte()
-            elif self.mode == "Montant":
-                self.Montants()
-            elif self.mode == "QR":
-                self.QR()
-            elif self.mode == "Transaction":
-                self.QR_transact()
-            elif self.mode == "Error_QR":
-                self.Error_QR()
-            elif self.mode == "Error_Carte":
-                self.Error_carte()
-            elif self.mode == "Error_Montant":
-                self.Error_montant()
-            elif self.mode == "Error_Rezal":
-                self.Error_rezal()
-            elif self.mode == "Finish":
-                self.Finish()
-            elif self.mode == "No_card":
-                self.Error_no_carte()
-            else:
-                print("wrong mode ducon")
-            print("MODE : "+self.mode)
+                if self.mode == "Carte":
+                    self.Carte()
+                elif self.mode == "Montant":
+                    self.Montants()
+                elif self.mode == "QR":
+                    self.QR()
+                elif self.mode == "Transaction":
+                    self.QR_transact()
+                elif self.mode == "Error_QR":
+                    self.Error_QR()
+                elif self.mode == "Error_Carte":
+                    self.Error_carte()
+                elif self.mode == "Error_Montant":
+                    self.Error_montant()
+                elif self.mode == "Error_Rezal":
+                    self.Error_rezal()
+                elif self.mode == "Finish":
+                    self.Finish()
+                elif self.mode == "No_card":
+                    self.Error_no_carte()
+                else:
+                    print("wrong mode ducon")
+                print("MODE : "+self.mode)
 
-        if self.mode in ["Montant", "QR", "Transaction"]:
-            self.Carte_test()
+            if self.mode in ["Montant", "QR", "Transaction"]:
+                self.Carte_test()
 
         self.Verif_Rezal+=1
         self.after(100, self.Boucle)
