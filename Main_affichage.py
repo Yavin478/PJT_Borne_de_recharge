@@ -26,7 +26,7 @@ class MainApp(Tk):
 
     def Boucle(self):
         if self.Verif_Rezal>=20:
-            print("Vérif Rezal :",Verif_Rezal)
+            print("Vérif Rezal :",self.Verif_Rezal)
             self.Verif_Rezal=0
             self.Test_Rezal()
 
