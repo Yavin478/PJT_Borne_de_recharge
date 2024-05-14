@@ -5,7 +5,7 @@ from Template_pageV2 import *
 class MainApp(Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.top=Page(self)
+        self.top = Page(self)
         self.withdraw()
         self.mode="Test_Rezal"
         self.sleeping_mode=True
@@ -33,31 +33,31 @@ class MainApp(Tk):
         if self.sleeping_mode:
             self.sleeping_mode = False
 
-            if self.mode=="Carte":
+            if self.mode == "Carte":
                 self.Carte()
-            elif self.mode=="Montant":
+            elif self.mode == "Montant":
                 self.Montants()
-            elif self.mode=="QR":
+            elif self.mode == "QR":
                 self.QR()
-            elif self.mode=="Transaction":
+            elif self.mode == "Transaction":
                 self.QR_transact()
-            elif self.mode=="Error_QR":
+            elif self.mode == "Error_QR":
                 self.Error_QR()
-            elif self.mode=="Error_Carte":
+            elif self.mode == "Error_Carte":
                 self.Error_carte()
-            elif self.mode=="Error_Montant":
+            elif self.mode == "Error_Montant":
                 self.Error_montant()
-            elif self.mode=="Error_Rezal":
+            elif self.mode == "Error_Rezal":
                 self.Error_rezal()
-            elif self.mode=="Finish":
+            elif self.mode == "Finish":
                 self.Finish()
-            elif self.mode=="No_card":
+            elif self.mode == "No_card":
                 self.Error_no_carte()
             else:
                 print("wrong mode ducon")
             print("MODE : "+self.mode)
 
-        if self.mode in ["Montant","QR","Transaction"]:
+        if self.mode in ["Montant", "QR", "Transaction"]:
             self.Carte_test()
 
         self.Verif_Rezal+=1
@@ -100,7 +100,7 @@ class MainApp(Tk):
 
         self.argent=SQL_SELECT(QUERRY_getMoney(self.UID))[0][0]/100  #Pour convertir le montant en euros
 
-        self.mode="Montant"
+        self.mode = "Montant"
         self.sleeping_mode = True
 
     def Montants(self):
@@ -112,19 +112,19 @@ class MainApp(Tk):
         if self.montant>config.maxTransaction/100 or (self.montant+self.argent)>config.maxMontant/100 or self.montant==0:   #Vérifie le montant de la recharge
             self.mode="Error_Montant"
         else:
-            self.mode="QR"
+            self.mode = "QR"
         self.sleeping_mode = True
 
     def QR(self):
         self.top.Page_QR()
 
-    def QR_check(self,QR):
+    def QR_check(self, QR):
         print("QR Trouvée")
         try:
             self.QRcode = eval(QR)
             self.mode = "Transaction"
         except:
-            self.mode="Error_QR"
+            self.mode = "Error_QR"
         self.sleeping_mode = True
 
     def QR_transact(self):
@@ -134,10 +134,8 @@ class MainApp(Tk):
             RFID_setArgent(int((self.montant+self.argent)*100),self.uidstring)               # Ecriture du nouveau montant sur la carte RFID
             self.mode="Finish"
         else:
-            self.mode="Error_QR"
+            self.mode = "Error_QR"
         self.sleeping_mode = True
-
-
 
     def Error_QR(self):
         self.top.Page_error_QR()
