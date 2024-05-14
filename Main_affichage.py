@@ -57,8 +57,8 @@ class MainApp(Tk):
                 print("MODE : " + self.mode)
             else :
                 print("Page erreur Rezal")
-                 self.mode="Error_Rezal"
-                 self.sleeping_mode=True
+                self.mode="Error_Rezal"
+                self.sleeping_mode=True
 
 
         if self.mode in ["Montant", "QR", "Transaction"]:
