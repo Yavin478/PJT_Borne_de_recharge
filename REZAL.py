@@ -1,5 +1,5 @@
 print("Demarrage 'REZAL.py'")
-from importation import *
+from config import *
 
 def REZAL_ping(IP):
     print("tets IP début")

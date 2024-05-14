@@ -1,5 +1,5 @@
 print("Demarrage 'CRYPT.py'")
-from setting import *
+from REZAL import *
 
 def CRYPT_hashage(data):
     seed(str(data) + str(config.codeGuinche))
