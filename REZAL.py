@@ -15,7 +15,7 @@ def REZAL_pingAndSetState(IP):
 def REZAL_pingServeur():
     print("tets IP serveur debut")
     try:
-        print("tets IP serveur try")
+        print("tets IP serveur try : ",setting.connection["host"])
         return REZAL_ping(setting.connection["host"])
     except:
         return False
