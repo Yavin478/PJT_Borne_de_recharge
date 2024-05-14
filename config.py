@@ -59,5 +59,8 @@ class config:  # Définition des variables reliée à l'objet config définissan
     menuUser = ["menuUser", "viewMAC", "viewIP", "viewIPServeur", "viewPing", "viewProduits"]
     menuPrincipal = ["menuPrincipal", "menuUser", "menuHelper", "menuVP", "menuModerateur", "menuAdmin"]
 
+    # Nom du repo utilisé
+    repo="PJT_Borne_de_recharge"
+
     # pour avoir des affichages dans la console pour savoir à où le code en est
     debugging = False

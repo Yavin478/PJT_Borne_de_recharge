@@ -2,7 +2,7 @@ print("Demarrage 'DATA.py'")
 from CRYPT import *
 
 def DATA_setVariable(variableName,contenu):
-    fichierName="/home/pi/PICONFLEX2000-CLIENT/setting.py"
+    fichierName=str(setting.projet_path)+config.repo+"/setting.py"
     if type(contenu)==str:
         exec("setting."+variableName+"="+"'"+str(contenu)+"'")
     else:
