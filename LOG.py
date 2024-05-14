@@ -1,6 +1,5 @@
-import os
-import datetime
 print('Importation de LOG.py')
+from config import *
 
 def LOG_add(fichierName,contenu):
     _tmp=open(fichierName,"a")

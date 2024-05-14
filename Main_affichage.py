@@ -7,7 +7,7 @@ class MainApp(Tk):
         super().__init__(*args, **kwargs)
         self.top = Page(self)
         self.withdraw()
-        self.mode="Test_Rezal"
+        self.mode="Carte"
         self.sleeping_mode=True
         self.L_presence_card=[]
         self.Verif_Rezal=0
@@ -64,8 +64,21 @@ class MainApp(Tk):
             if self.mode in ["Montant", "QR", "Transaction"]:
                 self.Carte_test()
 
-        self.Verif_Rezal+=1
         self.after(100, self.Boucle)
+
+    def Verif_Rezal(self):
+        self.Verif_Rezal += 1
+        if self.Verif_Rezal>=60:   # Toutes les 60 secondes
+            print("Vérif Rezal :",self.Verif_Rezal)
+            self.Verif_Rezal=0
+            self.Test_Rezal()
+
+        if (setting.rezalOn and setting.rezalNet):
+            print("Rezal On :",setting.rezalOn)
+            print("Rezal Net :", setting.rezalNet)
+            return True
+        else :
+            return False
 
     def Test_Rezal(self):      # Mode de vérification du réseau
         try :

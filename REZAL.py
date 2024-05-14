@@ -1,5 +1,5 @@
 print("Demarrage 'REZAL.py'")
-from config import *
+from LOG import *
 
 def REZAL_ping(IP):
     try:
