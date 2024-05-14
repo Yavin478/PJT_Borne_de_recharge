@@ -3,6 +3,7 @@ from importation import *
 
 def REZAL_ping(IP):
     try:
+        print("test: ",os.system("ping -a -c 1 -W 1 "+str(IP)))
         return int(os.system("ping -a -c 1 -W 1 "+str(IP))==0)
     except:
         return False

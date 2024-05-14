@@ -70,6 +70,15 @@ class MainApp(Tk):
                     print("Co internet OK")
                     self.mode = "Carte"
                     self.sleeping_mode = True
+                else :
+                    print("La connection au serveur google a échoué")
+                    self.mode = "Error_Rezal"
+                    self.sleeping_mode = True
+            else:
+                print("La connection au serveur Guinche a échoué")
+                self.mode = "Error_Rezal"
+                self.sleeping_mode = True
+
         except Exception as e :
             print("Erreur de réseau : ",e)
             self.mode = "Error_Rezal"
