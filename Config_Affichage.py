@@ -21,21 +21,20 @@ txt_titre= {"carte":"Placez Votre Carte",
             "error_montant":"Erreur montant",}
 
 txt_indic= {"terminée":"Très bon gala!",
-            "montant":"Transaction max de "+str(config.maxTransaction/100)+"€ \n Argent sur carte max de "+str(config.maxMontant/100)+" €",
+            "montant":"Transaction max de "+str(config.maxTransaction/100)+"€\nArgent sur carte max de "+str(config.maxMontant/100)+" €",
+            "QR":"Placez votre QR Code LYDIA proche du scanneur",
             "error_QR":"Recommencez avec un QRcode \n Lydia Valide",
             "error_rezal":"veuillez contacter un membre du Rezal",
             "error_carte":"Recommencez avec une carte valide",
-            "error_montant":"Recommencez avec un montant\n valide < "+str(config.maxTransaction/100)+"€",
+            "error_montant":"Recommencez avec un montant \n valide <90€ ",
             "no_card":"Vous avez retirez la carte",
-            "annulée": "Vous avez annulez l'opération"}
+            "annulée": "Vous avez annulez l'opération",
+            "montant_in":"Vous avez: \n",
+            "montant_out":"Vous Rajoutez: \n"}
 
-txt_esc="Appuyez sur ESC pour annuler"
-txt_montant_in="Vous avez: \n"
-txt_montant_out="Vous voulez: \n"
+txt_presentation="Cette borne a pour but de recharger \n votre carte de Gala par Lydia"
 
-
-
-
+txt_esc="Retirez la carte pour annuler"
 
 
 if gala=='baptss':
@@ -47,16 +46,26 @@ if gala=='baptss':
 
 
 elif gala=='508':
-    path_img_bg = "Static/Bg_508.jpg"
-    path_img_fg = "Static/Cadre_508.png"
-    path_img_flèche = "Static/fleche_wb.png"
+    path={"bg":"Static/Bg_508.jpg",
+          "fg":"Static/Cadre_508.png",
+          "fleche":"Static/fleche_wb.png",
+          "exclam":"Static/ho_shit.png",
+          "smiley":"Static/Smiley_corect.png",
+          "cross":"Static/Crossçcorect.png"}
+
     ratio_square = 1.25
+    ratio_img = 5
+
+    decalage= {"top":0.5,
+               "bot":0.63,
+               "side":0.25,
+               "top_montant":0}
 
     decalage_label = 0.5
     decalage_label_esc=0.63
     decalage_label_montant=0.35
     decalage_info_montant=0.25
-    décalage_esc = 30
+    decalage_img=0.1
 
 
 
@@ -67,4 +76,4 @@ elif gala=='508':
     taille_police_info = 25
 
 
-temps_retour=30
+temps_retour=20
