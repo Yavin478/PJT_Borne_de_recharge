@@ -69,13 +69,10 @@ class MainApp(Tk):
 
     def Verif_Rezal(self):
         print("Vérification du rezal")
-        # if self.compteur_Rezal >= 60:  # Toutes les 60 secondes
-        #     print("Vérif Rezal :", self.compteur_Rezal)
-        #     self.compteur_Rezal = 0
-        #     self.Test_Rezal()
 
         self.Test_Rezal()
-        if (setting.rezalOn == True and setting.rezalNet == True):
+        print("test :",(setting.rezalOn and setting.rezalNet)==True)
+        if (setting.rezalOn and setting.rezalNet):
             print("Rezal On :", setting.rezalOn)
             print("Rezal Net :", setting.rezalNet)
             return True
