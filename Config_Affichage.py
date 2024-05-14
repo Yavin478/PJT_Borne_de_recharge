@@ -5,9 +5,9 @@ gala='508'
 type_police="Georgia"
 ratio_flèche=7
 décalage_flèche=30
-h_fleche={"carte":1/4,
-          "montant":3/4,
-          "QR":1/2}
+h_fleche={"carte":20/38,
+          "montant":33/38,
+          "QR":12.5/38}
 
 
 txt_titre= {"carte":"Placez Votre Carte de Gala",
