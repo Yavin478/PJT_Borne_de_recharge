@@ -29,7 +29,6 @@ class MainApp(Tk):
 
     def Boucle(self):
         if self.sleeping_mode:
-            print("vérification")
             if self.Verif_Rezal():
                 self.sleeping_mode = False
 
@@ -55,9 +54,9 @@ class MainApp(Tk):
                     self.Error_no_carte()
                 else:
                     print("wrong mode ducon")
+                Entrer_log(setting.projet_path, "Logs", "MODE : "+ str(self.mode))
                 print("MODE : " + self.mode)
             else :
-                print("Page erreur Rezal")
                 self.Error_rezal()
 
 
@@ -67,41 +66,36 @@ class MainApp(Tk):
         self.after(100, self.Boucle)
 
     def Verif_Rezal(self):
-        Entrer_log(setting.projet_path,"Log_connection" , "Test des connections")
+        Entrer_log(setting.projet_path,"Logs" , "Test des connections")
 
         self.Test_Rezal()
         if (setting.rezalOn and setting.rezalNet):
-            print("Rezal On :", setting.rezalOn)
-            print("Rezal Net :", setting.rezalNet)
+            Entrer_log(setting.projet_path, "Logs", "Connections établies avec succès")
             return True
         else:
-            print("Pas de rezal")
+            Entrer_log(setting.projet_path, "Logs", "Connections non établies")
             return False
 
     def Test_Rezal(self):  # Mode de vérification du réseau
         try:
             if REZAL_pingServeur():  # Ping du serveur guinche pour s'assurer que la connection locale est toujours présente
-                Entrer_log(setting.projet_path, "Log_connection", "Connection à la BDD OK")
-                print("Connection à la BDD OK")
+                Entrer_log(setting.projet_path, "Logs", "Connection à la BDD OK")
                 DATA_setVariable("rezalOn", bool(REZAL_pingServeur()))
                 if REZAL_pingInternet():  # Ping du serveur google pour s'assurer que la connection internet est toujours présente
-                    Entrer_log(setting.projet_path, "Log_connection", "Connection à internet OK")
-                    print("Connection à internet OK")
+                    Entrer_log(setting.projet_path, "Logs", "Connection à internet OK")
                     DATA_setVariable("rezalNet", bool(REZAL_pingInternet()))
                     return None
                 else:
-                    Entrer_log(setting.projet_path, "Log_connection", "La connection au serveur google a échoué")
-                    print("La connection au serveur google a échoué")
+                    Entrer_log(setting.projet_path, "Logs", "La connection au serveur google a échoué")
                     DATA_setVariable("rezalNet", bool(False))
                     return None
             else:
-                Entrer_log(setting.projet_path, "Log_connection", "La connection au serveur Guinche a échoué")
-                print("La connection au serveur Guinche a échoué")
+                Entrer_log(setting.projet_path, "Logs", "La connection au serveur Guinche a échoué")
                 DATA_setVariable("rezalOn", bool(False))
                 return None
 
         except Exception as e:
-            print("Erreur de réseau : ", e)
+            Entrer_log(setting.projet_path, "Logs", str(e))
             DATA_setVariable("rezalOn", bool(False))
             DATA_setVariable("rezalNet", bool(False))
             return None
@@ -113,24 +107,23 @@ class MainApp(Tk):
     def Check_Carte(self, uidstring):
         self.uidstring = uidstring
         self.UID = STRING_uidStrToInt(uidstring)
-        print("UID check :", self.UID)
+        Entrer_log(setting.projet_path, "Logs", "UID d'une carte détectée : "+str(self.UID))
 
         if len(SQL_SELECT(QUERRY_getCarte(self.UID))) == 0:  # test si la carte est déjà présente dans la bdd
             SQL_EXECUTE(QUERRY_addCarte(self.UID))
 
         self.argent = SQL_SELECT(QUERRY_getMoney(self.UID))[0][0] / 100  # Pour convertir le montant en euros
+        Entrer_log(setting.projet_path, "Logs", "Argent sur la carte : " + str(self.argent))
 
         self.mode = "Montant"
         self.sleeping_mode = True
-        print("mdde montant setup")
 
     def Montants(self):
-        print("Montant ok")
         self.top.Page_montant(self.argent)
 
     def Check_montants(self, montant):
-        print("Montant trouvé")
         self.montant = int(montant)
+        Entrer_log(setting.projet_path, "Logs", "Montant de la recharge trouvé : " + str(self.montant))
         if self.montant > config.maxTransaction / 100 or (
                 self.montant + self.argent) > config.maxMontant / 100 or self.montant == 0:  # Vérifie le montant de la recharge
             self.mode = "Error_Montant"
@@ -142,7 +135,7 @@ class MainApp(Tk):
         self.top.Page_QR()
 
     def QR_check(self, QR):
-        print("QR Trouvée")
+        Entrer_log(setting.projet_path, "Logs", "QR code scanné")
         try:
             self.QRcode = eval(QR)
             self.mode = "Transaction"
@@ -151,9 +144,9 @@ class MainApp(Tk):
         self.sleeping_mode = True
 
     def QR_transact(self):
-        print(self.QRcode)
-        print(type(self.QRcode))
+        Entrer_log(setting.projet_path, "Logs", "Identifiant du QR code : "+str(self.QRcode))
         if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, token_public, phone):
+            Entrer_log(setting.projet_path, "Logs", "Transaction lydia éffectuée avec succès")
             RFID_setArgent(int((self.montant+self.argent)*100),self.uidstring)               # Ecriture du nouveau montant sur la carte RFID
             self.mode="Finish"
         else:
