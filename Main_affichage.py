@@ -184,10 +184,6 @@ class MainApp(Tk):
         print("erreur carte")
         self.after(5000, self.rollback)
 
-    def Annulée(self):
-        self.top.Page_annulée()
-        self.after(5000, self.rollback)
-
     def rollback(self):
         self.mode = "Carte"
         self.sleeping_mode = True
