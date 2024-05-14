@@ -9,8 +9,9 @@ def LOG_add(fichierName,contenu):
 
 def Entrer_log (projet_path,nom_fichier_log,contenu):   # Toutes les variables en str
     os.makedirs(nom_fichier_log, exist_ok=True)
-    LOG_add(projet_path+'/'+nom_fichier_log,contenu+"\n")
+    now=ctime()
+    LOG_add(projet_path+'/'+nom_fichier_log," at: "+str(now)+" "+contenu+"\n")
 
-####Exemple d'entrée de log.txt
+#####Exemple d'entrée de log.txt
 #Entrer_log(os.path.abspath(os.path.dirname(__file__)),'LOG.txt','self.mode=='+'carte'+' heure: '+str(datetime.datetime.now())+"\n")
-####
+#####
