@@ -2,31 +2,30 @@ print("Demarrage 'main_affichage.py'")
 
 from Template_pageV2 import *
 
+
 class MainApp(Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.top = Page(self)
         self.withdraw()
-        self.mode="Carte"
-        self.sleeping_mode=True
-        self.L_presence_card=[]
-        self.compteur_Rezal=60
+        self.mode = "Carte"
+        self.sleeping_mode = True
+        self.L_presence_card = []
+        self.compteur_Rezal = 60
         self.Boucle()
-
 
     def Carte_test(self):
         self.L_presence_card.append(RFID_presence())
-        if len(self.L_presence_card)>3:
+        if len(self.L_presence_card) > 3:
             if not (True in self.L_presence_card[1:]):
                 print("No RFID presence")
                 self.mode = "No_card"
                 self.sleeping_mode = True
                 self.L_presence_card = []
 
-
     def Boucle(self):
-        if self.Verif_Rezal():
-            if self.sleeping_mode:
+        if self.sleeping_mode:
+            if self.Verif_Rezal():
                 self.sleeping_mode = False
 
                 if self.mode == "Carte":
@@ -51,38 +50,42 @@ class MainApp(Tk):
                     self.Error_no_carte()
                 else:
                     print("wrong mode ducon")
-                print("MODE : "+self.mode)
+                print("MODE : " + self.mode)
+            else :
+                self.mode="Error_Rezal"
+                self.sleeping_mode=True
 
-            if self.mode in ["Montant", "QR", "Transaction"]:
-                self.Carte_test()
+
+        if self.mode in ["Montant", "QR", "Transaction"]:
+            self.Carte_test()
 
         self.after(100, self.Boucle)
 
     def Verif_Rezal(self):
-        if self.compteur_Rezal>=60:   # Toutes les 60 secondes
-            print("Vérif Rezal :",self.compteur_Rezal)
-            self.compteur_Rezal=0
-            self.Test_Rezal()
+        # if self.compteur_Rezal >= 60:  # Toutes les 60 secondes
+        #     print("Vérif Rezal :", self.compteur_Rezal)
+        #     self.compteur_Rezal = 0
+        #     self.Test_Rezal()
 
-        self.compteur_Rezal+= 1
-        print("Fonction ok,",self.Verif_Rezal)
+        # self.compteur_Rezal += 1
+        self.Test_Rezal()
         if (setting.rezalOn and setting.rezalNet):
-            print("Rezal On :",setting.rezalOn)
+            print("Rezal On :", setting.rezalOn)
             print("Rezal Net :", setting.rezalNet)
             return True
-        else :
+        else:
             return False
 
-    def Test_Rezal(self):      # Mode de vérification du réseau
-        try :
+    def Test_Rezal(self):  # Mode de vérification du réseau
+        try:
             if REZAL_pingServeur():  # Ping du serveur guinche pour s'assurer que la connection locale est toujours présente
                 print("Connection à la BDD OK")
                 DATA_setVariable("rezalOn", bool(REZAL_pingServeur()))
-                if REZAL_pingInternet(): # Ping du serveur google pour s'assurer que la connection internet est toujours présente
+                if REZAL_pingInternet():  # Ping du serveur google pour s'assurer que la connection internet est toujours présente
                     print("Connection à internet OK")
                     DATA_setVariable("rezalNet", bool(REZAL_pingInternet()))
                     return None
-                else :
+                else:
                     print("La connection au serveur google a échoué")
                     DATA_setVariable("rezalNet", bool(False))
                     return None
@@ -91,8 +94,8 @@ class MainApp(Tk):
                 DATA_setVariable("rezalOn", bool(False))
                 return None
 
-        except Exception as e :
-            print("Erreur de réseau : ",e)
+        except Exception as e:
+            print("Erreur de réseau : ", e)
             DATA_setVariable("rezalOn", bool(False))
             DATA_setVariable("rezalNet", bool(False))
             return None
@@ -101,16 +104,15 @@ class MainApp(Tk):
         self.top.Page_carte()
         RFID_getUID(self)
 
-
-    def Check_Carte(self,uidstring):
-        self.uidstring=uidstring
-        self.UID=STRING_uidStrToInt(uidstring)
+    def Check_Carte(self, uidstring):
+        self.uidstring = uidstring
+        self.UID = STRING_uidStrToInt(uidstring)
         print("UID check :", self.UID)
 
-        if len(SQL_SELECT(QUERRY_getCarte(self.UID)))==0:    #test si la carte est déjà présente dans la bdd
+        if len(SQL_SELECT(QUERRY_getCarte(self.UID))) == 0:  # test si la carte est déjà présente dans la bdd
             SQL_EXECUTE(QUERRY_addCarte(self.UID))
 
-        self.argent=SQL_SELECT(QUERRY_getMoney(self.UID))[0][0]/100  #Pour convertir le montant en euros
+        self.argent = SQL_SELECT(QUERRY_getMoney(self.UID))[0][0] / 100  # Pour convertir le montant en euros
 
         self.mode = "Montant"
         self.sleeping_mode = True
@@ -120,9 +122,10 @@ class MainApp(Tk):
 
     def Check_montants(self, montant):
         print("Montant trouvé")
-        self.montant=int(montant)
-        if self.montant>config.maxTransaction/100 or (self.montant+self.argent)>config.maxMontant/100 or self.montant==0:   #Vérifie le montant de la recharge
-            self.mode="Error_Montant"
+        self.montant = int(montant)
+        if self.montant > config.maxTransaction / 100 or (
+                self.montant + self.argent) > config.maxMontant / 100 or self.montant == 0:  # Vérifie le montant de la recharge
+            self.mode = "Error_Montant"
         else:
             self.mode = "QR"
         self.sleeping_mode = True
@@ -143,8 +146,9 @@ class MainApp(Tk):
         print(self.QRcode)
         print(type(self.QRcode))
         if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, token_public, phone):
-            RFID_setArgent(int((self.montant+self.argent)*100),self.uidstring)               # Ecriture du nouveau montant sur la carte RFID
-            self.mode="Finish"
+            RFID_setArgent(int((self.montant + self.argent) * 100),
+                           self.uidstring)  # Ecriture du nouveau montant sur la carte RFID
+            self.mode = "Finish"
         else:
             self.mode = "Error_QR"
         self.sleeping_mode = True
@@ -180,4 +184,3 @@ class MainApp(Tk):
     def rollback(self):
         self.mode = "Carte"
         self.sleeping_mode = True
-
