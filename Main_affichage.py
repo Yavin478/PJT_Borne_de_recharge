@@ -24,7 +24,7 @@ class MainApp(Tk):
                 else:
                     self.mode = "Carte"
                 self.sleeping_mode = True
-                self.L_presence_card = []
+            self.L_presence_card = []
 
 
     def Boucle(self):
