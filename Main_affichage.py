@@ -32,7 +32,6 @@ class MainApp(Tk):
             print("vérification")
             if self.Verif_Rezal():
                 self.sleeping_mode = False
-                print("Le mode est :",self.mode)
 
                 if self.mode == "Carte":
                     self.Carte()
@@ -68,10 +67,9 @@ class MainApp(Tk):
         self.after(100, self.Boucle)
 
     def Verif_Rezal(self):
-        print("Vérification du rezal")
+        Entrer_log(setting.projet_path,"Log_connection" , "Test des connections")
 
         self.Test_Rezal()
-        print("test :",(setting.rezalOn and setting.rezalNet)==True)
         if (setting.rezalOn and setting.rezalNet):
             print("Rezal On :", setting.rezalOn)
             print("Rezal Net :", setting.rezalNet)
@@ -83,17 +81,21 @@ class MainApp(Tk):
     def Test_Rezal(self):  # Mode de vérification du réseau
         try:
             if REZAL_pingServeur():  # Ping du serveur guinche pour s'assurer que la connection locale est toujours présente
+                Entrer_log(setting.projet_path, "Log_connection", "Connection à la BDD OK")
                 print("Connection à la BDD OK")
                 DATA_setVariable("rezalOn", bool(REZAL_pingServeur()))
                 if REZAL_pingInternet():  # Ping du serveur google pour s'assurer que la connection internet est toujours présente
+                    Entrer_log(setting.projet_path, "Log_connection", "Connection à internet OK")
                     print("Connection à internet OK")
                     DATA_setVariable("rezalNet", bool(REZAL_pingInternet()))
                     return None
                 else:
+                    Entrer_log(setting.projet_path, "Log_connection", "La connection au serveur google a échoué")
                     print("La connection au serveur google a échoué")
                     DATA_setVariable("rezalNet", bool(False))
                     return None
             else:
+                Entrer_log(setting.projet_path, "Log_connection", "La connection au serveur Guinche a échoué")
                 print("La connection au serveur Guinche a échoué")
                 DATA_setVariable("rezalOn", bool(False))
                 return None
