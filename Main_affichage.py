@@ -29,7 +29,7 @@ class MainApp(Tk):
 
     def Boucle(self):
         if self.sleeping_mode:
-            #if self.Verif_Rezal():
+            if self.Verif_Rezal():
                 self.sleeping_mode = False
 
                 if self.mode == "Carte":
@@ -55,9 +55,9 @@ class MainApp(Tk):
                 else:
                     print("wrong mode ducon")
                 print("MODE : " + self.mode)
-            # else :
-            #     self.mode="Error_Rezal"
-            #     self.sleeping_mode=True
+            else :
+                 self.mode="Error_Rezal"
+                 self.sleeping_mode=True
 
 
         if self.mode in ["Montant", "QR", "Transaction"]:
@@ -71,7 +71,6 @@ class MainApp(Tk):
         #     self.compteur_Rezal = 0
         #     self.Test_Rezal()
 
-        # self.compteur_Rezal += 1
         self.Test_Rezal()
         if (setting.rezalOn and setting.rezalNet):
             print("Rezal On :", setting.rezalOn)
