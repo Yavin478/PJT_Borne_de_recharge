@@ -62,6 +62,7 @@ class MainApp(Tk):
         self.after(100, self.Boucle)
 
     def Test_Rezal(self):      # Mode de vérification du réseau
+        print("Mode Rezal test")
         try :
             if REZAL_pingServeur() :  # Ping du serveur guinche pour s'assurer que la connection locale est toujours présente
                 print("Co BDD OK")
