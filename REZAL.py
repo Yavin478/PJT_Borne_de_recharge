@@ -13,7 +13,9 @@ def REZAL_pingAndSetState(IP):
     return SQL_EXECUTE(QUERRY_setOnline(IP,int(REZAL_ping(IP))))
 
 def REZAL_pingServeur():
+    print("tets IP serveur debut")
     try:
+        print("tets IP serveur try")
         return REZAL_ping(setting.connection["host"])
     except:
         return False
