@@ -11,7 +11,6 @@ class MainApp(Tk):
         self.mode = "Carte"
         self.sleeping_mode = True
         self.L_presence_card = []
-        self.compteur_Rezal = 60
         self.Boucle()
 
     def Carte_test(self):
@@ -29,7 +28,7 @@ class MainApp(Tk):
 
     def Boucle(self):
         if self.sleeping_mode:
-            if self.Verif_Rezal():
+            #if self.Verif_Rezal():
                 self.sleeping_mode = False
 
                 if self.mode == "Carte":
