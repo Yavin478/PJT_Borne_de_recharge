@@ -10,6 +10,7 @@ class MainApp(Tk):
         self.mode="Test_Rezal"
         self.sleeping_mode=True
         self.L_presence_card=[]
+        self.Verif_Rezal=0
         self.Boucle()
 
 
@@ -24,8 +25,10 @@ class MainApp(Tk):
 
 
     def Boucle(self):
-
-        self.Test_Rezal()
+        if self.Verif_Rezal>=20:
+            print("Vérif Rezal :",Verif_Rezal)
+            self.Verif_Rezal=0
+            self.Test_Rezal()
 
         if self.sleeping_mode:
             self.sleeping_mode = False
@@ -57,7 +60,7 @@ class MainApp(Tk):
         if self.mode in ["Montant","QR","Transaction"]:
             self.Carte_test()
 
-
+        self.Verif_Rezal+=1
         self.after(100, self.Boucle)
 
     def Test_Rezal(self):      # Mode de vérification du réseau
