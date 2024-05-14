@@ -7,7 +7,7 @@ class MainApp(Tk):
         super().__init__(*args, **kwargs)
         self.top=Page(self)
         self.withdraw()
-        self.mode="Carte"
+        self.mode="Test_Rezal"
         self.sleeping_mode=True
         self.L_presence_card=[]
         self.Boucle()
@@ -62,7 +62,6 @@ class MainApp(Tk):
         self.after(100, self.Boucle)
 
     def Test_Rezal(self):      # Mode de vérification du réseau
-        print("Mode Rezal test")
         try :
             if REZAL_pingServeur() :  # Ping du serveur guinche pour s'assurer que la connection locale est toujours présente
                 print("Co BDD OK")
@@ -78,7 +77,6 @@ class MainApp(Tk):
     def Carte(self):
         self.top.Page_carte()
         RFID_getUID(self)
-
 
 
     def Check_Carte(self,uidstring):
