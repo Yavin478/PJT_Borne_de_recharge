@@ -56,6 +56,7 @@ class MainApp(Tk):
                     print("wrong mode ducon")
                 print("MODE : " + self.mode)
             else :
+                print("Page erreur Rezal")
                  self.mode="Error_Rezal"
                  self.sleeping_mode=True
 
