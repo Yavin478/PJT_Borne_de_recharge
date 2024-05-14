@@ -187,9 +187,8 @@ def RFID_getUID(master):
             if status == MIFAREReader.MI_OK:
                 print("carte compilé")
                 uidstring = STRING_Tag(uid, len(uid))
-                master.Check_Carte(uidstring)
                 print("master ok")
-                return None
+                return master.Check_Carte(uidstring)
             else:
                 print("carte non compilé")
         else:
