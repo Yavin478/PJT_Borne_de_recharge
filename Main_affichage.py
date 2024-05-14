@@ -31,6 +31,7 @@ class MainApp(Tk):
         if self.sleeping_mode:
             if self.Verif_Rezal():
                 self.sleeping_mode = False
+                print("Le mode est :",self.mode)
 
                 if self.mode == "Carte":
                     self.Carte()
