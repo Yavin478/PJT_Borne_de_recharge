@@ -121,6 +121,7 @@ class MainApp(Tk):
 
         self.mode = "Montant"
         self.sleeping_mode = True
+        print("mdde montant setup")
 
     def Montants(self):
         print("Montant ok")
