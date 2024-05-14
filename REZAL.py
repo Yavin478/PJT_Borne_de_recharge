@@ -2,9 +2,7 @@ print("Demarrage 'REZAL.py'")
 from config import *
 
 def REZAL_ping(IP):
-    print("tets IP début")
     try:
-        print("test: ",os.system("ping -a -c 1 -W 1 "+str(IP)))
         return int(os.system("ping -a -c 1 -W 1 "+str(IP))==0)
     except:
         return False
@@ -13,9 +11,7 @@ def REZAL_pingAndSetState(IP):
     return SQL_EXECUTE(QUERRY_setOnline(IP,int(REZAL_ping(IP))))
 
 def REZAL_pingServeur():
-    print("tets IP serveur debut")
     try:
-        print("tets IP serveur try : ",setting.connection["host"])
         return REZAL_ping(setting.connection["host"])
     except:
         return False

@@ -27,11 +27,10 @@ class MainApp(Tk):
 
     def Boucle(self):
         if self.sleeping_mode:
+            self.Test_Rezal()
             self.sleeping_mode = False
 
-            if self.mode=="Test_Rezal":
-                self.Test_Rezal()
-            elif self.mode=="Carte":
+            if self.mode=="Carte":
                 self.Carte()
             elif self.mode=="Montant":
                 self.Montants()
