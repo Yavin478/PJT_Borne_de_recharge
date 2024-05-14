@@ -3,6 +3,7 @@ from CRYPT import *
 
 def DATA_setVariable(variableName,contenu):
     fichierName=str(setting.projet_path)+"setting.py"
+    print("Nom du fichier :",fichierName)
     if type(contenu)==str:
         exec("setting."+variableName+"="+"'"+str(contenu)+"'")
     else:
