@@ -30,6 +30,8 @@ class MainApp(Tk):
             self.Verif_Rezal=0
             self.Test_Rezal()
 
+        if (setting.rezalOn and setting.rezalNet):
+
         if self.sleeping_mode:
             self.sleeping_mode = False
 
@@ -65,25 +67,27 @@ class MainApp(Tk):
 
     def Test_Rezal(self):      # Mode de vérification du réseau
         try :
-            if bool(REZAL_pingServeur()) :  # Ping du serveur guinche pour s'assurer que la connection locale est toujours présente
+            if REZAL_pingServeur():  # Ping du serveur guinche pour s'assurer que la connection locale est toujours présente
                 print("Connection à la BDD OK")
+                DATA_setVariable("rezalOn", bool(REZAL_pingServeur()))
                 if REZAL_pingInternet(): # Ping du serveur google pour s'assurer que la connection internet est toujours présente
                     print("Connection à internet OK")
-                    self.mode = "Carte"
-                    self.sleeping_mode = True
+                    DATA_setVariable("rezalNet", bool(REZAL_pingInternet()))
+                    return None
                 else :
                     print("La connection au serveur google a échoué")
-                    self.mode = "Error_Rezal"
-                    self.sleeping_mode = True
+                    DATA_setVariable("rezalNet", bool(False))
+                    return None
             else:
                 print("La connection au serveur Guinche a échoué")
-                self.mode = "Error_Rezal"
-                self.sleeping_mode = True
+                DATA_setVariable("rezalOn", bool(False))
+                return None
 
         except Exception as e :
             print("Erreur de réseau : ",e)
-            self.mode = "Error_Rezal"
-            self.sleeping_mode = True
+            DATA_setVariable("rezalOn", bool(False))
+            DATA_setVariable("rezalNet", bool(False))
+            return None
 
     def Carte(self):
         self.top.Page_carte()
