@@ -28,7 +28,10 @@ class MainApp(Tk):
     def Boucle(self):
         if self.sleeping_mode:
             self.sleeping_mode = False
-            if self.mode=="Carte":
+
+            if self.mode=="Test_Rezal":
+                self.Test_Rezal()
+            elif self.mode=="Carte":
                 self.Carte()
             elif self.mode=="Montant":
                 self.Montants()
@@ -57,6 +60,19 @@ class MainApp(Tk):
 
 
         self.after(100, self.Boucle)
+
+    def Test_Rezal(selfself):      # Mode de vérification du réseau
+        try :
+            if REZAL_pingServeur() :  # Ping du serveur guinche pour s'assurer que la connection locale est toujours présente
+                print("Co BDD OK")
+                if REZAL_pingInternet (): # Ping du serveur google pour s'assurer que la connection internet est toujours présente
+                    print("Co internet OK")
+                    self.mode = "Carte"
+                    self.sleeping_mode = True
+        except Exception as e :
+            print("Erreur de réseau : ",e)
+            self.mode = "Error_Rezal"
+            self.sleeping_mode = True
 
     def Carte(self):
         self.top.Page_carte()

@@ -26,22 +26,26 @@ def DATA_setVariable(variableName,contenu):
     print("Variable "+variableName+" non-trouvee")
     REZAL_exit()
     return
+
 def DATA_set(fichierName,contenu):
     DATA_check(fichierName)
     _tmp=open(fichierName,"w")
     _tmp.write(str(contenu))
     _tmp.close()
+
 def DATA_get(fichierName):
     DATA_check(fichierName)
     _tmp=open(fichierName,"r")
     _contenu=_tmp.read()
     _tmp.close()
     return _contenu
+
 def DATA_add(fichierName,contenu):
     DATA_check(fichierName)
     _tmp=open(fichierName,"a")
     _tmp.write(str(contenu))
     _tmp.close()
+
 def DATA_check(fichierName):
     try:
         _tmp=open(fichierName,"r")
