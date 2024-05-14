@@ -62,10 +62,10 @@ class MainApp(Tk):
                 self.Error_rezal()
 
 
-            if self.mode in ["Montant", "QR", "Transaction"]:
-                self.Carte_test()
+        if self.mode in ["Montant", "QR", "Transaction"]:
+            self.Carte_test()
 
-            self.after(100, self.Boucle)
+        self.after(100, self.Boucle)
 
     def Verif_Rezal(self):
         print("Vérification du rezal")
