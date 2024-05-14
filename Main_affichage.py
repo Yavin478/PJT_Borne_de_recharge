@@ -25,8 +25,7 @@ class MainApp(Tk):
 
 
     def Boucle(self):
-
-        if self.Verif_Rezal(self):
+        if self.Verif_Rezal():
             if self.sleeping_mode:
                 self.sleeping_mode = False
 
