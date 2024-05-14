@@ -19,54 +19,76 @@ class Page(Toplevel):
         self.Instruction()
         self.Fleche()
 
+
     def Instruction(self):
+        self.widget=[]
+
         self.titre = self.canvas.create_text(self.taille_ecran[0] / 2,
                                              self.taille_ecran[1] / 2 * (1 - decalage_label / ratio_square), anchor="n",
                                              font=(type_police, int(taille_police / ratio_square)),
                                              justify=CENTER)
 
-        self.indic = self.canvas.create_text(self.taille_ecran[0] / 2,
-                                             self.taille_ecran[1] / 2 * (1 - decalage_info_montant / ratio_square),
-                                             anchor="center",
-                                             font=(type_police, int(taille_police_indic / ratio_square)),
-                                             state="hidden",
-                                             justify=CENTER)
+        self.top = self.canvas.create_text(self.taille_ecran[0] / 2,
+                                           self.taille_ecran[1] / 2 * (1 - decalage_info_montant / ratio_square),
+                                           anchor="center",
+                                           font=(type_police, int(taille_police_indic / ratio_square)),
+                                           state="hidden",
+                                           justify=CENTER)
+        self.widget.append(self.top)
 
-        self.esc = self.canvas.create_text(self.taille_ecran[0] / 2,
+        self.bot = self.canvas.create_text(self.taille_ecran[0] / 2,
                                            self.taille_ecran[1] / 2 * (1 + decalage_label_esc / ratio_square),
                                            anchor="n",
                                            text=txt_esc,
                                            state="hidden",
                                            font=(type_police, int(taille_police_esc / ratio_square)),
                                            justify=CENTER)
+        self.widget.append(self.bot)
 
-        self.montant_in = self.canvas.create_text(
+        self.left = self.canvas.create_text(
             self.taille_ecran[0] / 2 * (1 - decalage_label_montant / ratio_square),
             self.taille_ecran[1] / 2,
             anchor="n",
-            text=txt_montant_in,
+            text=txt_indic["montant_in"],
             state="hidden",
             font=(type_police, int(taille_police_montant / ratio_square)),
             justify=CENTER)
+        self.widget.append(self.left)
 
-        self.montant_out = self.canvas.create_text(
+        self.right = self.canvas.create_text(
             self.taille_ecran[0] / 2 * (1 + decalage_label_montant / ratio_square),
             self.taille_ecran[1] / 2,
             anchor="n",
-            text=txt_montant_out,
+            text=txt_indic["montant_out"],
             state="hidden",
             font=(type_police, int(taille_police_montant / ratio_square)),
             justify=CENTER)
+        self.widget.append(self.right)
+
+        self.center = self.canvas.create_text(
+            self.taille_ecran[0] / 2,
+            self.taille_ecran[1] / 2,
+            anchor="n",
+            state="hidden",
+            font=(type_police, int(taille_police_montant / ratio_square)),
+            justify=CENTER)
+        self.widget.append(self.center)
+
+        self.imgtk = {i:self.creator_img(path[i], [self.taille_ecran[1] / ratio_img]*2) for i in ["smiley", "exclam", "cross"]}
+        self.img=self.canvas.create_image(self.taille_ecran[0] / 2,
+                                          self.taille_ecran[1] / 2 * (1+ decalage_img),
+                                          anchor="center")
+        self.widget.append(self.img)
+
+    def make_all_img(self):
+        self.imgtk=[self.creator_img(path[i],self.taille_ecran/ratio_img) for i in ["smiley","exclam","cross"]]
 
     def cancel_canvas(self):
-        self.canvas.itemconfig(self.indic, state="hidden")
-        self.canvas.itemconfig(self.esc, state="hidden")
-        self.canvas.itemconfig(self.montant_in, state="hidden")
-        self.canvas.itemconfig(self.montant_out, state="hidden")
+        for i in self.widget:
+            self.canvas.itemconfig(i, state="hidden")
 
         self.unbind("<KeyPress>")
 
-        self.bind("<KeyPress>", self.master.inactivity_refresh)
         self.QR = ""
         self.montant = ""
         self.fleche_active = False
@@ -76,7 +98,8 @@ class Page(Toplevel):
     def Page_carte(self):
         self.cancel_canvas()
         self.canvas.itemconfig(self.titre, text=txt_titre["carte"])
-        self.canvas.coords(self.fleche_img, [int((self.taille_ecran[0] - self.taille_fleche[0] - décalage_flèche)),
+        self.canvas.itemconfig(self.center, state="normal", text=txt_presentation)
+        self.canvas.coords(self.fleche, [int((self.taille_ecran[0] - self.taille_fleche[0] - décalage_flèche)),
                                              int(self.taille_ecran[1] * h_fleche["carte"] - self.taille_fleche[1] / 2)])
         self.fleche_active = True
 
@@ -97,15 +120,15 @@ class Page(Toplevel):
 
         # actualisation du texte taper au fur et à mesure ainsi que du canva qui l'affiche
         def update_text():
-            montant_texte = txt_montant_out + self.montant + " \u20AC"  # Ajoute le symbole de l'euro au texte
-            self.canvas.itemconfig(self.montant_out, text=montant_texte)
+            montant_texte = txt_indic["montant_out"] + self.montant + " \u20AC"  # Ajoute le symbole de l'euro au texte
+            self.canvas.itemconfig(self.right, text=montant_texte)
 
         self.canvas.itemconfig(self.titre, text=txt_titre["montant"])
-        self.canvas.itemconfig(self.esc, state="normal")
-        self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["montant"], font=(type_police, int(taille_police_info / ratio_square)))
-        self.canvas.itemconfig(self.montant_in, state="normal", text=txt_montant_in+str(inmo)+" \u20AC")
-        self.canvas.itemconfig(self.montant_out, state="normal", text=txt_montant_out)
-        self.canvas.coords(self.fleche_img, [int((self.taille_ecran[0] - self.taille_fleche[0] - décalage_flèche)),
+        self.canvas.itemconfig(self.bot, state="normal")
+        self.canvas.itemconfig(self.top, state="normal", text=txt_indic["montant"], font=(type_police, int(taille_police_info / ratio_square)))
+        self.canvas.itemconfig(self.left, state="normal", text=txt_indic["montant_in"] + str(inmo) + " \u20AC")
+        self.canvas.itemconfig(self.right, state="normal", text=txt_indic["montant_out"])
+        self.canvas.coords(self.fleche, [int((self.taille_ecran[0] - self.taille_fleche[0] - décalage_flèche)),
                                              int(self.taille_ecran[1] * h_fleche["montant"] - self.taille_fleche[1] / 2)])
 
         self.bind("<KeyPress>", keypress, add='+')
@@ -121,8 +144,8 @@ class Page(Toplevel):
             else:
                 self.QR += str(event.char)
         self.canvas.itemconfig(self.titre, text=txt_titre["Qr"])
-        self.canvas.itemconfig(self.esc, state="normal")
-        self.canvas.coords(self.fleche_img, [int((self.taille_ecran[0] - self.taille_fleche[0] - décalage_flèche)),
+        self.canvas.itemconfig(self.bot, state="normal")
+        self.canvas.coords(self.fleche, [int((self.taille_ecran[0] - self.taille_fleche[0] - décalage_flèche)),
                                              int(self.taille_ecran[1] * h_fleche["QR"] - self.taille_fleche[1] / 2)])
         self.fleche_active = True
         self.bind('<KeyPress>', keypress, add='+')
@@ -130,60 +153,60 @@ class Page(Toplevel):
     def Page_confirmation(self):
         self.cancel_canvas()
         self.canvas.itemconfig(self.titre, text=txt_titre["terminée"])
-        self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["terminée"])
+        self.canvas.itemconfig(self.top, state="normal", text=txt_indic["terminée"])
+        self.canvas.itemconfig(self.img, state="normal", image=self.imgtk['smiley'])
 
     def Page_error_QR(self):
         self.cancel_canvas()
         self.canvas.itemconfig(self.titre, text=txt_titre["error_QR"])
-        self.canvas.itemconfig(self.indic, state='normal', text=txt_indic["error_QR"])
+        self.canvas.itemconfig(self.top, state='normal', text=txt_indic["error_QR"])
+        self.canvas.itemconfig(self.img, state="normal", image=self.imgtk['exclam'])
 
     def Page_error_montant(self):
         self.cancel_canvas()
         self.canvas.itemconfig(self.titre, text=txt_titre["error_montant"])
-        self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["error_montant"])
+        self.canvas.itemconfig(self.top, state="normal", text=txt_indic["error_montant"])
+        self.canvas.itemconfig(self.img, state="normal", image=self.imgtk['exclam'])
 
     def Page_error_carte(self):
         self.cancel_canvas()
         self.canvas.itemconfig(self.titre, text=txt_titre["error_carte"])
-        self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["error_carte"])
+        self.canvas.itemconfig(self.top, state="normal", text=txt_indic["error_carte"])
+        self.canvas.itemconfig(self.img, state="normal", image=self.imgtk['exclam'])
 
     def Page_error_rezal(self):
         self.cancel_canvas()
         self.canvas.itemconfig(self.titre, text=txt_titre["error_rezal"])
-        self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["error_rezal"])
+        self.canvas.itemconfig(self.top, state="normal", text=txt_indic["error_rezal"])
+        self.canvas.itemconfig(self.img, state="normal", image=self.imgtk['exclam'])
 
     def Page_error_no_carte(self):
         self.cancel_canvas()
         self.canvas.itemconfig(self.titre, text=txt_titre["annulée"])
-        self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["no_card"])
+        self.canvas.itemconfig(self.top, state="normal", text=txt_indic["no_card"])
+        self.canvas.itemconfig(self.img, state="normal", image=self.imgtk['cross'])
 
-    def Page_annulée(self):
-        self.cancel_canvas()
-        self.canvas.itemconfig(self.titre, text=txt_titre["annulée"])
-        self.canvas.itemconfig(self.indic, state="normal", text=txt_indic["annulée"])
 
     def Fleche(self):
-        fleche = Image.open(path_img_flèche)
         self.taille_fleche = [int(self.taille_ecran[0] / ratio_flèche), int(self.taille_ecran[1] / ratio_flèche)]
-        fleche_redimensionnee = fleche.resize((self.taille_fleche[0], self.taille_fleche[1]))
-        self.fleche_tk = ImageTk.PhotoImage(fleche_redimensionnee)
-        self.fleche_img = self.canvas.create_image(
+        self.fleche_img=self.creator_img(path["fleche"],self.taille_fleche)
+        self.fleche = self.canvas.create_image(
             int((self.taille_ecran[0] - self.taille_fleche[0] - décalage_flèche)),
             int(self.taille_ecran[1] * h_fleche["carte"] - self.taille_fleche[1] / 2),
-            image=self.fleche_tk, anchor="nw")
+            image=self.fleche_img, anchor="nw")
         self.fleche_active = False
         self.toggle_visibility()
 
     def toggle_visibility(self):
-        if self.canvas.itemcget(self.fleche_img, "state") == "hidden" and self.fleche_active:
-            self.canvas.itemconfigure(self.fleche_img, state="normal")
+        if self.canvas.itemcget(self.fleche, "state") == "hidden" and self.fleche_active:
+            self.canvas.itemconfigure(self.fleche, state="normal")
         else:
-            self.canvas.itemconfigure(self.fleche_img, state="hidden")
+            self.canvas.itemconfigure(self.fleche, state="hidden")
         self.after(500, self.toggle_visibility)
 
     def BG(self):
-        bg = self.resize_img(path_img_bg, self.taille_ecran)
-        fg = self.resize_img(path_img_fg, [i / ratio_square for i in self.taille_ecran])
+        bg = self.resize_img(path['bg'], self.taille_ecran)
+        fg = self.resize_img(path['fg'], [i / ratio_square for i in self.taille_ecran])
         bg.paste(fg, [int(i / 2 * (1 - 1 / ratio_square)) for i in self.taille_ecran], fg)
         self.bg_tked = ImageTk.PhotoImage(bg)
         self.canvas.create_image(0, 0, anchor='nw', image=self.bg_tked)
@@ -192,6 +215,11 @@ class Page(Toplevel):
         img = Image.open(path)
         img_resized = img.resize((int(dim[0]), int(dim[1])))
         return img_resized
+
+    def creator_img(self, path, dim):
+        img = self.resize_img(path, dim)
+        img_tk = ImageTk.PhotoImage(img)
+        return img_tk
 
     def Setup(self):
         self.title("Page")
@@ -235,7 +263,6 @@ if __name__ == '__main__':  # lancement du programme
         top.bind('<Key-u>', lambda e: top.Page_error_montant())
         top.bind('<Key-i>', lambda e: top.Page_error_rezal())
         top.bind('<Key-o>', lambda e: top.Page_error_no_carte())
-        top.bind('<Key-p>', lambda e: top.Page_annulée())
 
 
     root = Tk()
