@@ -10,7 +10,7 @@ class MainApp(Tk):
         self.mode="Carte"
         self.sleeping_mode=True
         self.L_presence_card=[]
-        self.Verif_Rezal=0
+        self.Verif_Rezal=60
         self.Boucle()
 
 
@@ -25,15 +25,8 @@ class MainApp(Tk):
 
 
     def Boucle(self):
-        if self.Verif_Rezal>=60:   # Toutes les 60 secondes
-            print("Vérif Rezal :",self.Verif_Rezal)
-            self.Verif_Rezal=0
-            self.Test_Rezal()
 
-        if (setting.rezalOn and setting.rezalNet):
-            print("Rezal On :",setting.rezalOn)
-            print("Rezal Net :", setting.rezalNet)
-
+        if self.Verif_Rezal():
             if self.sleeping_mode:
                 self.sleeping_mode = False
 
@@ -67,12 +60,12 @@ class MainApp(Tk):
         self.after(100, self.Boucle)
 
     def Verif_Rezal(self):
-        self.Verif_Rezal += 1
         if self.Verif_Rezal>=60:   # Toutes les 60 secondes
             print("Vérif Rezal :",self.Verif_Rezal)
             self.Verif_Rezal=0
             self.Test_Rezal()
 
+        self.Verif_Rezal += 1
         if (setting.rezalOn and setting.rezalNet):
             print("Rezal On :",setting.rezalOn)
             print("Rezal Net :", setting.rezalNet)
