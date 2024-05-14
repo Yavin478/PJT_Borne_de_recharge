@@ -62,12 +62,11 @@ class MainApp(Tk):
         self.after(100, self.Boucle)
 
     def Test_Rezal(self):      # Mode de vérification du réseau
-        print("1")
         try :
-            print("2")
+            print("Rezal :",REZAL_pingServeur())
             if REZAL_pingServeur() :  # Ping du serveur guinche pour s'assurer que la connection locale est toujours présente
                 print("Co BDD OK")
-                if REZAL_pingInternet (): # Ping du serveur google pour s'assurer que la connection internet est toujours présente
+                if REZAL_pingInternet(): # Ping du serveur google pour s'assurer que la connection internet est toujours présente
                     print("Co internet OK")
                     self.mode = "Carte"
                     self.sleeping_mode = True
