@@ -19,9 +19,13 @@ class MainApp(Tk):
         if len(self.L_presence_card)>3:
             if not (True in self.L_presence_card[1:]):
                 print("No RFID presence")
-                self.mode = "No_card"
+                if self.mode=="Finish":
+                    self.mode = "No_card"
+                else:
+                    self.mode = "Carte"
                 self.sleeping_mode = True
                 self.L_presence_card = []
+
 
 
     def Boucle(self):
@@ -155,7 +159,6 @@ class MainApp(Tk):
 
     def Finish(self):
         self.top.Page_confirmation()
-        self.after(5000, self.rollback)
 
     def Error_no_carte(self):
         self.top.Page_error_no_carte()
