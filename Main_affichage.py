@@ -66,17 +66,19 @@ class MainApp(Tk):
         self.after(100, self.Boucle)
 
     def Verif_Rezal(self):
+        print("Vérification du rezal")
         # if self.compteur_Rezal >= 60:  # Toutes les 60 secondes
         #     print("Vérif Rezal :", self.compteur_Rezal)
         #     self.compteur_Rezal = 0
         #     self.Test_Rezal()
 
         self.Test_Rezal()
-        if (setting.rezalOn and setting.rezalNet):
+        if (setting.rezalOn == True and setting.rezalNet == True):
             print("Rezal On :", setting.rezalOn)
             print("Rezal Net :", setting.rezalNet)
             return True
         else:
+            print("Pas de rezal")
             return False
 
     def Test_Rezal(self):  # Mode de vérification du réseau
