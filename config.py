@@ -62,5 +62,8 @@ class config:  # Définition des variables reliée à l'objet config définissan
     # Nom du repo utilisé
     repo="PJT_Borne_de_recharge"
 
+    ID_scan="BF SCAN SCAN KEYBOARD"
+    ID_keyboard= "Barcode Reader"
+
     # pour avoir des affichages dans la console pour savoir à où le code en est
     debugging = False

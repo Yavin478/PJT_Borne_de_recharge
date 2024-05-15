@@ -119,7 +119,12 @@ class MainApp(Tk):
         self.sleeping_mode = True
 
     def Montants(self):
-        self.top.Page_montant(self.argent)
+        if command_usb('keyboard','enable') and command_usb('scan','disable'):
+            self.top.Page_montant(self.argent)
+        else:
+            self.mode = "Error_Rezal"
+            self.sleeping_mode = True
+
 
     def Check_montants(self, montant):
         self.montant = int(montant)
@@ -132,7 +137,12 @@ class MainApp(Tk):
         self.sleeping_mode = True
 
     def QR(self):
-        self.top.Page_QR()
+
+        if command_usb('keyboard','disable') and command_usb('scan','enable'):
+            self.top.Page_QR()
+        else:
+            self.mode = "Error_Rezal"
+            self.sleeping_mode = True
 
     def QR_check(self, QR):
         Entrer_log(setting.projet_path, "Logs", "QR code scanné")
