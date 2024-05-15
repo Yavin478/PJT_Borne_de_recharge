@@ -1,5 +1,5 @@
 print("Demarrage 'USB.py'")
-from data import *
+from DATA import *
 
 def get_id_usb(usb):
     try:
