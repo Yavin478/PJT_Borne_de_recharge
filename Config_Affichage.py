@@ -98,8 +98,8 @@ elif gala=='100J':
               "img":0.1}
 
 
-    ratio_flèche = 6
-    décalage_flèche = 25
+    ratio_flèche = 10
+    décalage_flèche = 30
 
     police={"titre":0.057,
             "bot":0.045,
