@@ -35,7 +35,6 @@ class Page(Toplevel):
                                              font=(type_police, int(police['titre'] * min(self.taille_ecran) / ratio_square), "bold"),
                                              justify=CENTER)
 
-        print(int(police['titre'] * min(self.taille_ecran) / ratio_square))
 
         self.top = self.canvas.create_text(self.taille_ecran[0] / 2,
                                            self.taille_ecran[1] / 2 * (1 - (1 - decalage["top"]) /ratio_square),

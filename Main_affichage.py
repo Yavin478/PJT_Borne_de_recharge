@@ -68,7 +68,7 @@ class MainApp(Tk):
     def Verif_Rezal(self):
         Entrer_log(setting.projet_path,"Logs" , "Test des connections")
 
-        self.Test_Rezal()
+        #self.Test_Rezal()
         if (setting.rezalOn and setting.rezalNet):
             Entrer_log(setting.projet_path, "Logs", "Connections établies avec succès")
             return True
