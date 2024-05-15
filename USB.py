@@ -10,6 +10,7 @@ def get_id_usb(usb):
         device_id = subprocess.check_output(command_get_id, shell=True).decode().strip()
         return device_id
     except:
+        print("print_erreur device")
         return False
 
 def command_usb(usb,type):
