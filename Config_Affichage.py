@@ -93,7 +93,7 @@ elif gala=='100J':
 
     decalage={"titre":0.35,
               "bot":0.3,
-              "side":0.6,
+              "side":0.65,
               "top":0.65,
               "img":0.1}
 
