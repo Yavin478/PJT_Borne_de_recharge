@@ -15,7 +15,6 @@ def get_device_id(device_name):
                 if len(parts) > 1:
                     id_part = parts[1]
                     device_id = id_part.split()[0]
-                    print(device_id)
                     return device_id
         return None
     except subprocess.CalledProcessError as e:
@@ -25,6 +24,7 @@ def get_device_id(device_name):
 
 def command_usb(usb,type):
     id=get_device_id(usb)
+    print(id)
     if id==None:
         return False
     command = f'xinput {type} {id}'
