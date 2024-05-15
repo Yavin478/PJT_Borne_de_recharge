@@ -93,7 +93,7 @@ elif gala=='100J':
 
     decalage={"titre":0.35,
               "bot":0.3,
-              "side":0.4,
+              "side":0.45,
               "top":0.65,
               "img":0.1}
 
@@ -103,8 +103,8 @@ elif gala=='100J':
 
     police={"titre":0.057,
             "bot":0.045,
-            'top':0.045,
-            'side':0.045,
+            'top':0.04,
+            'side':0.042,
             'center':0.045}
 
 temps_retour=20
