@@ -26,7 +26,7 @@ class Page(Toplevel):
         self.Instruction()
         self.Fleche()
 
-    def Instruction(self)
+    def Instruction(self):
         self.widget=[]
 
         self.titre = self.canvas.create_text(self.taille_ecran[0] / 2,
