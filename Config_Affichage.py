@@ -29,7 +29,8 @@ txt_indic= {"terminée":"Très bon Gala!",
             "no_card":"Vous avez retirez la carte",
             "annulée": "Vous avez annulez l'opération",
             "montant_in":"Vous avez: \n",
-            "montant_out":"Vous rajoutez: \n"}
+            "montant_out":"Vous rajoutez: \n",
+            "terminée":"Retirez la carte pour terminer"}
 
 txt_presentation="Cette borne a pour but \n de recharger votre carte \n de Gala par Lydia"
 
