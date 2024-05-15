@@ -1,8 +1,8 @@
 from config import *
 
-gala='508'
+gala='100J'
 
-type_police="Georgia"
+type_police="Extra Bold"
 ratio_flèche=7
 décalage_flèche=30
 h_fleche={"carte":20/38,
@@ -74,6 +74,37 @@ elif gala=='508':
     taille_police_indic = 35
     taille_police_montant = 35
     taille_police_info = 25
+
+elif gala=='100J':
+    path={"bg":"Static/Bg_100J.jpg",
+          "fg":"Static/Fg_100J.png",
+          "fleche":"Static/fleche_100J.png",
+          "exclam":"Static/ho_shit.png",
+          "smiley":"Static/Logo_100J.png",
+          "cross":"Static/Crossçcorect.png"}
+
+    ratio_square = 1.25
+    ratio_img = 5
+
+    decalage= {"top":0.5,
+               "bot":0.63,
+               "side":0.25,
+               "top_montant":0}
+
+    decalage_label = 0.5
+    decalage_label_esc=0.63
+    decalage_label_montant=0.35
+    decalage_info_montant=0.25
+    decalage_img=0.1
+
+
+
+    taille_police = 47
+    taille_police_esc = 30
+    taille_police_indic = 35
+    taille_police_montant = 35
+    taille_police_info = 25
+
 
 
 temps_retour=20
