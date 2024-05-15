@@ -4,9 +4,6 @@ from Requetes import *
 #### Fonction de vérification d'une transaction lydia ####
 
 def Lydia_check(token_public,montant,phone,order_id,Qrcode):
-    # L'URL de l'API pour initier une transaction (remplacer par l'URL de test ou de production selon le cas)
-    #url = "https://lydia-app.com/api/payment/payment.json" # Production
-    url = "https://homologation.lydia-app.com/api/payment/payment.json" # Test
 
     #Convertit les données scannées du qrcode en un format comprehensible pour la requête Json
     paymentData = json.dumps(Qrcode)
@@ -26,7 +23,7 @@ def Lydia_check(token_public,montant,phone,order_id,Qrcode):
     requests.packages.urllib3.disable_warnings()
 
     # Effectuer la requête POST
-    response = requests.post(url, data=data, verify=False)
+    response = requests.post(config_lydia.url, data=data, verify=False)
 
     # Vérifier la réponse
     if response.status_code == 200:

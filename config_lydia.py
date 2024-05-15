@@ -2,10 +2,14 @@ print("Demarrage 'config_lydia.py'")
 from RFID import *
 
 #### Fichier de définitions des TOKENS et numéro de téléphone utilisé pour les transactions ####
+# Décommentez l'url adéquat selon l'utilisation de la borne #
 # Décommentez le token adéquat selon l'utilisation de la borne #
 # Le numéro de phone utilisé doit être le numéro d'un caissier du compte lydia d'encaissement #
 
 class config_lydia :
+    # L'URL de l'API pour initier une transaction (remplacer par l'URL de test ou de production selon le cas)
+    url = "https://lydia-app.com/api/payment/payment.json"   # Production
+    #url = "https://homologation.lydia-app.com/api/payment/payment.json"    # Test
 
     # TOKENS DE TEST pour le site Kfet
     #token_public = "58ada276ab575970477137" #pour les appels
