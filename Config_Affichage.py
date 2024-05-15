@@ -9,8 +9,8 @@ h_fleche={"carte":20/38,
           "QR":12.5/38}
 
 
-txt_titre= {"carte":"Placez Votre Carte de Gala",
-            "montant":"Tapez le montant à rajouter",
+txt_titre= {"carte":"Placez Votre Carte \n de Gala",
+            "montant":"Tapez le montant \n à rajouter",
             "Qr":"Scannez votre QR Code LYDIA",
             "terminée":"Opération Effectué",
             "error_QR":"Erreur QR Code LYDIA",
@@ -101,10 +101,10 @@ elif gala=='100J':
     ratio_flèche = 7
     décalage_flèche = 30
 
-    police={"titre":0.05,
-            "bot":0.02,
-            'top':0.02,
-            'side':0.02,
-            'center':0.02}
+    police={"titre":0.06,
+            "bot":0.04,
+            'top':0.04,
+            'side':0.04,
+            'center':0.04}
 
 temps_retour=20
