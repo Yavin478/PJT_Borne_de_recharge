@@ -4,9 +4,9 @@ from DATA import *
 
 def get_device_ids(device_name):
     if device_name == 'keyboard':
-        device_name="Barcode Reader"
+        device_name=name_keyboard
     else:
-        device_name="BF SCAN SCAN KEYBOARD"
+        device_name=name_scan
     try:
         # Exécuter la commande xinput list
         result = subprocess.run(['xinput', 'list'], capture_output=True, text=True, check=True)
