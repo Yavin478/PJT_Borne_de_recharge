@@ -20,7 +20,7 @@ txt_titre= {"carte":"Placez Votre Carte \n de Gala",
             "error_montant":"Erreur montant",}
 
 txt_indic= {"terminée":"Très bon Gala!",
-            "montant":"Transaction max de "+str(config.maxTransaction/100)+"€\nArgent sur carte max de "+str(config.maxMontant/100)+" €",
+            "montant":"Transaction max : "+str(config.maxTransaction/100)+"€\nArgent max sur carte : "+str(config.maxMontant/100)+" €",
             "QR":"Placez votre QR Code LYDIA proche du scanneur",
             "error_QR":"Recommencez avec un QRcode \n Lydia Valide",
             "error_rezal":"veuillez contacter une caisse",
@@ -104,7 +104,7 @@ elif gala=='100J':
     police={"titre":0.057,
             "bot":0.045,
             'top':0.04,
-            'side':0.045,
+            'side':0.05,
             'center':0.045}
 
 temps_retour=20
