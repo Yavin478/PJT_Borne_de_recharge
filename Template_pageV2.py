@@ -113,8 +113,10 @@ class Page(Toplevel):
                                              int(self.taille_ecran[1] * h_fleche["carte"] - self.taille_fleche[1] / 2)])
         self.fleche_active = True
 
+
     def Page_montant(self,inmo):
         self.cancel_canvas()
+        self.dico={"&":1, "é":2, '"':3, "'":4, "(":5, "-":6, "è":7, "_":8, "ç":9, "à":0}
 
         def keypress(event):
             if event.keysym == "BackSpace":
@@ -122,8 +124,8 @@ class Page(Toplevel):
                 update_text()
             elif event.keysym == "Return":
                 self.master.Check_montants(self.montant)
-            elif event.char.isdigit():
-                self.montant += event.char
+            elif event.char in self.dico.keys():
+                self.montant += self.dico[event.char]
                 if len(self.montant) > len(str(config.maxTransaction // 100)):
                     self.montant = self.montant[1:]
                 update_text()
