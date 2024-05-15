@@ -1,6 +1,16 @@
 print("Demarrage 'Template_pageV2.py'")
 from Config_Affichage import *
 
+#programmater par le plus bo goss des 222 alias Bercerf'k 57
+
+#wallah j'ai carry Poüllilian
+#franco = gay
+#Noan traveille???!!!
+#Lerats?
+#Carmona branle rien (sauf la boulangère 😬)
+
+
+
 class Page(Toplevel):
 
     def __init__(self, master, *args, **kwargs):  # fonction initialisation => création de la page et attributs
@@ -17,6 +27,7 @@ class Page(Toplevel):
         self.Fleche()
 
     def Instruction(self):
+        print(self.taille_ecran)
         self.widget=[]
 
         self.titre = self.canvas.create_text(self.taille_ecran[0] / 2,
