@@ -95,6 +95,8 @@ class Page(Toplevel):
     def cancel_canvas(self):
         for i in self.widget:
             self.canvas.itemconfig(i, state="hidden")
+        self.canvas.itemconfig(self.bot, text=txt_esc)
+
 
         self.unbind("<KeyPress>")
 
@@ -164,6 +166,8 @@ class Page(Toplevel):
         self.canvas.itemconfig(self.titre, text=txt_titre["terminée"])
         self.canvas.itemconfig(self.top, state="normal", text=txt_indic["terminée"])
         self.canvas.itemconfig(self.img, state="normal", image=self.imgtk['smiley'])
+        self.canvas.itemconfig(self.bot, state="normal", text=txt_indic["quitter"])
+
 
     def Page_error_QR(self):
         self.cancel_canvas()
