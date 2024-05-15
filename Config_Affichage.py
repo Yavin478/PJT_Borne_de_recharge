@@ -31,7 +31,7 @@ txt_indic= {"terminée":"Très bon Gala!",
             "montant_in":"Vous avez: \n",
             "montant_out":"Vous Rajoutez: \n"}
 
-txt_presentation="Cette borne a pour but de recharger \n votre carte de Gala par Lydia"
+txt_presentation="Cette borne a pour but \n de recharger votre carte \n de Gala par Lydia"
 
 txt_esc="Retirez la carte pour annuler"
 
@@ -101,7 +101,7 @@ elif gala=='100J':
     ratio_flèche = 7
     décalage_flèche = 30
 
-    police={"titre":0.06,
+    police={"titre":0.057,
             "bot":0.047,
             'top':0.047,
             'side':0.047,
