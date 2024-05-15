@@ -24,59 +24,60 @@ class Page(Toplevel):
         self.widget=[]
 
         self.titre = self.canvas.create_text(self.taille_ecran[0] / 2,
-                                             self.taille_ecran[1] / 2 * (1 - decalage_label / ratio_square), anchor="n",
-                                             font=(type_police, int(taille_police / ratio_square)),
+                                             self.taille_ecran[1] / 2 * (1 - (1 - decalage["titre"]) /ratio_square),
+                                             anchor="center",
+                                             font=(type_police, int(police['titre'] * min(self.taille_ecran) / ratio_square), "bold"),
                                              justify=CENTER)
 
         self.top = self.canvas.create_text(self.taille_ecran[0] / 2,
-                                           self.taille_ecran[1] / 2 * (1 - decalage_info_montant / ratio_square),
+                                           self.taille_ecran[1] / 2 * (1 - (1 - decalage["top"]) /ratio_square),
                                            anchor="center",
-                                           font=(type_police, int(taille_police_indic / ratio_square)),
+                                           font=(type_police, int(police['top'] * min(self.taille_ecran) / ratio_square)),
                                            state="hidden",
                                            justify=CENTER)
         self.widget.append(self.top)
 
         self.bot = self.canvas.create_text(self.taille_ecran[0] / 2,
-                                           self.taille_ecran[1] / 2 * (1 + decalage_label_esc / ratio_square),
-                                           anchor="n",
+                                           self.taille_ecran[1] / 2 * (1 + (1 - decalage["bot"]) /ratio_square),
+                                           anchor="center",
                                            text=txt_esc,
                                            state="hidden",
-                                           font=(type_police, int(taille_police_esc / ratio_square)),
+                                           font=(type_police, int(police['bot'] * min(self.taille_ecran) / ratio_square)),
                                            justify=CENTER)
         self.widget.append(self.bot)
 
         self.left = self.canvas.create_text(
-            self.taille_ecran[0] / 2 * (1 - decalage_label_montant / ratio_square),
+            self.taille_ecran[0] / 2 * (1 - (1 - decalage["side"]) /ratio_square),
             self.taille_ecran[1] / 2,
-            anchor="n",
+            anchor="center",
             text=txt_indic["montant_in"],
             state="hidden",
-            font=(type_police, int(taille_police_montant / ratio_square)),
+            font=(type_police, int(police['side'] * min(self.taille_ecran) / ratio_square)),
             justify=CENTER)
         self.widget.append(self.left)
 
         self.right = self.canvas.create_text(
-            self.taille_ecran[0] / 2 * (1 + decalage_label_montant / ratio_square),
+            self.taille_ecran[0] / 2 * (1 + (1 - decalage["side"]) /ratio_square),
             self.taille_ecran[1] / 2,
-            anchor="n",
+            anchor="center",
             text=txt_indic["montant_out"],
             state="hidden",
-            font=(type_police, int(taille_police_montant / ratio_square)),
+            font=(type_police, int(police['side'] * min(self.taille_ecran) / ratio_square)),
             justify=CENTER)
         self.widget.append(self.right)
 
         self.center = self.canvas.create_text(
             self.taille_ecran[0] / 2,
             self.taille_ecran[1] / 2,
-            anchor="n",
+            anchor="center",
             state="hidden",
-            font=(type_police, int(taille_police_montant / ratio_square)),
+            font=(type_police, int(police['center'] * min(self.taille_ecran) / ratio_square)),
             justify=CENTER)
         self.widget.append(self.center)
 
         self.imgtk = {i:self.creator_img(path[i], [self.taille_ecran[1] / ratio_img]*2) for i in ["smiley", "exclam", "cross"]}
         self.img=self.canvas.create_image(self.taille_ecran[0] / 2,
-                                          self.taille_ecran[1] / 2 * (1+ decalage_img),
+                                          self.taille_ecran[1] / 2 * (1+ decalage["img"] ),
                                           anchor="center")
         self.widget.append(self.img)
 
@@ -125,7 +126,7 @@ class Page(Toplevel):
 
         self.canvas.itemconfig(self.titre, text=txt_titre["montant"])
         self.canvas.itemconfig(self.bot, state="normal")
-        self.canvas.itemconfig(self.top, state="normal", text=txt_indic["montant"], font=(type_police, int(taille_police_info / ratio_square)))
+        self.canvas.itemconfig(self.top, state="normal", text=txt_indic["montant"])
         self.canvas.itemconfig(self.left, state="normal", text=txt_indic["montant_in"] + str(inmo) + " \u20AC")
         self.canvas.itemconfig(self.right, state="normal", text=txt_indic["montant_out"])
         self.canvas.coords(self.fleche, [int((self.taille_ecran[0] - self.taille_fleche[0] - décalage_flèche)),

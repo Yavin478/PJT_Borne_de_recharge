@@ -3,8 +3,7 @@ from config import *
 gala='100J'
 
 type_police="Extra Bold"
-ratio_flèche=7
-décalage_flèche=30
+
 h_fleche={"carte":20/38,
           "montant":33/38,
           "QR":12.5/38}
@@ -15,16 +14,16 @@ txt_titre= {"carte":"Placez Votre Carte de Gala",
             "Qr":"Scannez votre QR Code LYDIA",
             "terminée":"Opération Effectué",
             "error_QR":"Erreur QR Code LYDIA",
-            "error_rezal":"Erreur rezal",
+            "error_rezal":"Erreur Réseau",
             "error_carte":"Erreur carte non reconnue",
             "annulée":"Opération Annulée",
             "error_montant":"Erreur montant",}
 
-txt_indic= {"terminée":"Très bon gala!",
+txt_indic= {"terminée":"Très bon Gala!",
             "montant":"Transaction max de "+str(config.maxTransaction/100)+"€\nArgent sur carte max de "+str(config.maxMontant/100)+" €",
             "QR":"Placez votre QR Code LYDIA proche du scanneur",
             "error_QR":"Recommencez avec un QRcode \n Lydia Valide",
-            "error_rezal":"veuillez contacter un membre du Rezal",
+            "error_rezal":"veuillez contacter une caisse",
             "error_carte":"Recommencez avec une carte valide",
             "error_montant":"Recommencez avec un montant \n valide <90€ ",
             "no_card":"Vous avez retirez la carte",
@@ -67,7 +66,8 @@ elif gala=='508':
     decalage_info_montant=0.25
     decalage_img=0.1
 
-
+    ratio_flèche = 7
+    décalage_flèche = 30
 
     taille_police = 47
     taille_police_esc = 30
@@ -83,7 +83,7 @@ elif gala=='100J':
           "smiley":"Static/Logo_100J.png",
           "cross":"Static/Crossçcorect.png"}
 
-    ratio_square = 1.25
+    ratio_square = 1.5
     ratio_img = 5
 
     decalage= {"top":0.5,
@@ -91,20 +91,20 @@ elif gala=='100J':
                "side":0.25,
                "top_montant":0}
 
-    decalage_label = 0.5
-    decalage_label_esc=0.63
-    decalage_label_montant=0.35
-    decalage_info_montant=0.25
-    decalage_img=0.1
+    decalage={"titre":0.3,
+              "bot":0.3,
+              "side":0.38,
+              "top":0.6,
+              "img":0.1}
 
 
+    ratio_flèche = 7
+    décalage_flèche = 30
 
-    taille_police = 47
-    taille_police_esc = 30
-    taille_police_indic = 35
-    taille_police_montant = 35
-    taille_police_info = 25
-
-
+    police={"titre":0.07,
+            "bot":0.05,
+            'top':0.04,
+            'side':0.05,
+            'center':0.05}
 
 temps_retour=20
