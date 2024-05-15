@@ -1,30 +1,29 @@
 from main_lydia import *
 
-gala='508'
+gala='100J'
 
-type_police="Georgia"
-ratio_flèche=7
-décalage_flèche=30
+type_police="Extra Bold"
+
 h_fleche={"carte":20/38,
-          "montant":33/30,
-          "QR":33/38}
+          "montant":33/38,
+          "QR":12.5/38}
 
 
-txt_titre= {"carte":"Placez Votre Carte",
+txt_titre= {"carte":"Placez Votre Carte de Gala",
             "montant":"Tapez le montant à rajouter",
             "Qr":"Scannez votre QR Code LYDIA",
             "terminée":"Opération Effectué",
             "error_QR":"Erreur QR Code LYDIA",
-            "error_rezal":"Erreur rezal",
+            "error_rezal":"Erreur Réseau",
             "error_carte":"Erreur carte non reconnue",
             "annulée":"Opération Annulée",
             "error_montant":"Erreur montant",}
 
-txt_indic= {"terminée":"Très bon gala!",
+txt_indic= {"terminée":"Très bon Gala!",
             "montant":"Transaction max de "+str(config.maxTransaction/100)+"€\nArgent sur carte max de "+str(config.maxMontant/100)+" €",
             "QR":"Placez votre QR Code LYDIA proche du scanneur",
             "error_QR":"Recommencez avec un QRcode \n Lydia Valide",
-            "error_rezal":"veuillez contacter un membre du Rezal",
+            "error_rezal":"veuillez contacter une caisse",
             "error_carte":"Recommencez avec une carte valide",
             "error_montant":"Le montant doit être < "+str(config.maxTransaction/100)+" € \n vous ne pouvez pas avoir plus de "+str(config.maxMontant/100)+" € sur la carte",
             "no_card":"Vous avez retirez la carte",
@@ -67,7 +66,8 @@ elif gala=='508':
     decalage_info_montant=0.25
     decalage_img=0.1
 
-
+    ratio_flèche = 7
+    décalage_flèche = 30
 
     taille_police = 47
     taille_police_esc = 30
@@ -75,5 +75,36 @@ elif gala=='508':
     taille_police_montant = 35
     taille_police_info = 25
 
+elif gala=='100J':
+    path={"bg":"Static/Bg_100J.jpg",
+          "fg":"Static/Fg_100J.png",
+          "fleche":"Static/fleche_100J.png",
+          "exclam":"Static/ho_shit.png",
+          "smiley":"Static/Logo_100J.png",
+          "cross":"Static/Crossçcorect.png"}
+
+    ratio_square = 1.5
+    ratio_img = 5
+
+    decalage= {"top":0.5,
+               "bot":0.63,
+               "side":0.25,
+               "top_montant":0}
+
+    decalage={"titre":0.3,
+              "bot":0.3,
+              "side":0.38,
+              "top":0.6,
+              "img":0.1}
+
+
+    ratio_flèche = 7
+    décalage_flèche = 30
+
+    police={"titre":0.07,
+            "bot":0.05,
+            'top':0.04,
+            'side':0.05,
+            'center':0.05}
 
 temps_retour=20
