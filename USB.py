@@ -8,6 +8,7 @@ def get_id_usb(usb):
         else:
             command_get_id = f'xinput list --id-only "{config.ID_scan}"'
         device_id = subprocess.check_output(command_get_id, shell=True).decode().strip()
+        print(device_id)
         return device_id
     except Exception as e:
         print(e)
