@@ -125,7 +125,7 @@ class Page(Toplevel):
             elif event.keysym == "Return":
                 self.master.Check_montants(self.montant)
             elif event.char in self.dico.keys():
-                self.montant += self.dico[event.char]
+                self.montant += str(self.dico[event.char])
                 if len(self.montant) > len(str(config.maxTransaction // 100)):
                     self.montant = self.montant[1:]
                 update_text()
