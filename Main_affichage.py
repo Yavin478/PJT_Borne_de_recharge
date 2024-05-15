@@ -60,7 +60,7 @@ class MainApp(Tk):
                 self.Error_rezal()
 
 
-        if self.mode in ["Montant", "QR", "Transaction"]:
+        if self.mode in ["Montant", "QR", "Transaction","Finish"]:
             self.Carte_test()
 
         self.after(100, self.Boucle)
