@@ -1,4 +1,4 @@
-print('Importation de LOG.py')
+print("Demarrage 'LOG.py'")
 from config import *
 
 def LOG_add(fichierName,contenu):
