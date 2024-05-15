@@ -32,6 +32,7 @@ def Lydia_check(token_public,montant,phone,order_id,Qrcode):
     if response.status_code == 200:
         # Convertir la réponse en JSON
         response_data = response.json()
+        print("Réponse data :",response_data)
 
         if response_data['error'] == "0":
             print("Transaction réussie.")
