@@ -17,12 +17,12 @@ class config_lydia :
 
 
     # TOKENS DE TEST pour la cagnote des 100J
-    token_public = "660e5b8b4c353994613407" #pour les appels
-    token_prive = "660e5b8b52b31218065719" #pour la signature
+    #token_public = "660e5b8b4c353994613407" #pour les appels
+    #token_prive = "660e5b8b52b31218065719" #pour la signature
 
     # TOKENS DE PRODUCTION pour le cagnote des 100J
-    #token_public = "54c10dbc666a3894276098" #pour les appels
-    #token_prive = "54c10dbc67804505863299" #pour la signature
+    token_public = "54c10dbc666a3894276098" #pour les appels
+    token_prive = "54c10dbc67804505863299" #pour la signature
 
     # Numéro de téléphone du caissier pour la cagnote des 100J
     phone='33782977418' # Phone d'un gripss O 223
