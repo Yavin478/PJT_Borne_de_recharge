@@ -29,7 +29,7 @@ txt_indic= {"terminée":"Très bon Gala!",
             "no_card":"Vous avez retirez la carte",
             "annulée": "Vous avez annulez l'opération",
             "montant_in":"Vous avez: \n",
-            "montant_out":"Vous Rajoutez: \n"}
+            "montant_out":"Vous rajoutez: \n"}
 
 txt_presentation="Cette borne a pour but \n de recharger votre carte \n de Gala par Lydia"
 
@@ -104,7 +104,7 @@ elif gala=='100J':
     police={"titre":0.057,
             "bot":0.045,
             'top':0.04,
-            'side':0.042,
+            'side':0.045,
             'center':0.045}
 
 temps_retour=20
