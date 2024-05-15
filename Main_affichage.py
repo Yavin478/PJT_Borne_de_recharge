@@ -145,7 +145,7 @@ class MainApp(Tk):
 
     def QR_transact(self):
         Entrer_log(setting.projet_path, "Logs", "Identifiant du QR code : "+str(self.QRcode))
-        if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, token_public, phone):
+        if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, config_lydia.token_public, config_lydia.phone):
             Entrer_log(setting.projet_path, "Logs", "Transaction lydia éffectuée avec succès")
             RFID_setArgent(int((self.montant+self.argent)*100),self.uidstring)               # Ecriture du nouveau montant sur la carte RFID
             Entrer_log(setting.projet_path, "Logs", "Ecriture du nouveau montant sur la carte RFID effectuée avec succès")
