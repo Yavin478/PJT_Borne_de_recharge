@@ -93,7 +93,7 @@ elif gala=='100J':
 
     decalage={"titre":0.3,
               "bot":0.3,
-              "side":0.38,
+              "side":0.4,
               "top":0.6,
               "img":0.1}
 
@@ -101,10 +101,10 @@ elif gala=='100J':
     ratio_flèche = 7
     décalage_flèche = 30
 
-    police={"titre":0.0575,
-            "bot":0.045,
-            'top':0.045,
-            'side':0.045,
-            'center':0.045}
+    police={"titre":0.06,
+            "bot":0.047,
+            'top':0.047,
+            'side':0.047,
+            'center':0.047}
 
 temps_retour=20
