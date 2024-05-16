@@ -15,7 +15,7 @@ class MainApp(Tk):
 
     def Carte_test(self):
         self.L_presence_card.append(RFID_presence())
-        if len(self.L_presence_card) > 3:
+        if len(self.L_presence_card) > 3 and self.mode!="No_card":
             print("Liste :",self.L_presence_card)
             if not (True in self.L_presence_card[1:]):
                 print("No RFID presence")
@@ -169,33 +169,33 @@ class MainApp(Tk):
 
     def Error_QR(self):
         self.top.Page_error_QR()
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
     def Error_carte(self):
         self.top.Page_error_carte()
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
     def Error_montant(self):
         self.top.Page_error_montant()
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
     def Error_rezal(self):
         self.top.Page_error_rezal()
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
     def Error_matos(self):
         self.top.Page_error_matos()
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
     def Finish(self):
         self.top.Page_confirmation()
 
     def Error_no_carte(self):
         self.top.Page_error_no_carte()
-        print("erreur carte")
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
-    def rollback(self):
-        self.mode = "Carte"
-        self.sleeping_mode = True
+    def rollback(self, mode):
+        if mode==self.mode:
+            self.mode = "Carte"
+            self.sleeping_mode = True
 
