@@ -252,6 +252,7 @@ class Page(Toplevel):
         self.title("Page")
         self.attributes('-fullscreen', True)
         self.bind('<F1>', lambda e: self.quit_app())
+        Entrer_log(setting.projet_path, "Logs_prg", "Arrêt manuel du script")
 
         def callback(text):
             print(text)
