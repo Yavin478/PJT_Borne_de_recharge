@@ -17,7 +17,7 @@ class setting:
     # Paramètre indiquant si la box à ping un réseau internet(100)
     rezalNet=False
     # IP de la box
-    IP='192.168.1.92'
+    IP='192.168.1.91'
     # Adresse MAC de la box
     MAC='02:07:84:40:6b:94'
     # Dictionnaire des produits de la box
