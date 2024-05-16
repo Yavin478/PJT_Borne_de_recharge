@@ -183,6 +183,7 @@ def RFID_getUID(master, boucle=True):
         print("## RFID_getUID ##")
     try:
         if RFID_presence():
+            print("Presence")
             (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
             if status == MIFAREReader.MI_OK:
                 print("carte compilé")
@@ -196,6 +197,7 @@ def RFID_getUID(master, boucle=True):
                     return uidstring
             else:
                 print("carte non compilé")
+        print("Pase de carte")
         master.after(100, RFID_getUID, master, boucle)
     except Exception as e:
         print("PROBLEME LECTURE UID :", e)
