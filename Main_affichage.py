@@ -15,7 +15,7 @@ class MainApp(Tk):
 
     def Carte_test(self):
         self.L_presence_card.append(RFID_presence())
-        if len(self.L_presence_card) > 3:
+        if len(self.L_presence_card) > 3 and self.mode!="No_card":
             print("Liste :",self.L_presence_card)
             if not (True in self.L_presence_card[1:]):
                 print("No RFID presence")
@@ -59,6 +59,7 @@ class MainApp(Tk):
                 Entrer_log(setting.projet_path, "Logs", "MODE : "+ str(self.mode))
                 print("MODE : " + self.mode)
             else :
+                print("error plus de coo")
                 self.Error_rezal()
 
 
@@ -103,6 +104,7 @@ class MainApp(Tk):
             return None
 
     def Carte(self):
+
         self.top.Page_carte()
         RFID_getUID(self)
 
@@ -155,45 +157,55 @@ class MainApp(Tk):
         self.sleeping_mode = True
 
     def QR_transact(self):
-        Entrer_log(setting.projet_path, "Logs", "Identifiant du QR code : "+str(self.QRcode))
-        if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, config_lydia.token_public, config_lydia.phone):
-            Entrer_log(setting.projet_path, "Logs", "Transaction lydia éffectuée avec succès")
-            RFID_setArgent(int((self.montant+self.argent)*100),self.uidstring)               # Ecriture du nouveau montant sur la carte RFID
-            Entrer_log(setting.projet_path, "Logs", "Ecriture du nouveau montant sur la carte RFID effectuée avec succès")
-            self.mode="Finish"
+
+        if STRING_uidStrToInt(RFID_getUID(self, False))!=self.uidstring:
+            self.mode = "Error_Carte"
+            self.sleeping_mode = True
         else:
-            self.mode = "Error_QR"
-        self.sleeping_mode = True
+            Entrer_log(setting.projet_path, "Logs", "Identifiant du QR code : " + str(self.QRcode))
+            if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, config_lydia.token_public,
+                                 config_lydia.phone):
+                Entrer_log(setting.projet_path, "Logs", "Transaction lydia éffectuée avec succès")
+                RFID_setArgent(int((self.montant + self.argent) * 100),
+                               self.uidstring)  # Ecriture du nouveau montant sur la carte RFID
+                Entrer_log(setting.projet_path, "Logs",
+                           "Ecriture du nouveau montant sur la carte RFID effectuée avec succès")
+                self.mode = "Finish"
+            else:
+                self.mode = "Error_QR"
+            self.sleeping_mode = True
+
+
 
     def Error_QR(self):
         self.top.Page_error_QR()
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
     def Error_carte(self):
         self.top.Page_error_carte()
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
     def Error_montant(self):
         self.top.Page_error_montant()
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
     def Error_rezal(self):
         self.top.Page_error_rezal()
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
     def Error_matos(self):
         self.top.Page_error_matos()
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
     def Finish(self):
         self.top.Page_confirmation()
 
     def Error_no_carte(self):
         self.top.Page_error_no_carte()
-        print("erreur carte")
-        self.after(5000, self.rollback)
+        self.after(5000, self.rollback, self.mode)
 
-    def rollback(self):
-        self.mode = "Carte"
-        self.sleeping_mode = True
+    def rollback(self, mode):
+        if mode==self.mode:
+            self.mode = "Carte"
+            self.sleeping_mode = True
 
