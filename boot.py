@@ -2,8 +2,6 @@ print("Démarrage 'boot.py'")
 
 from Main_affichage import *
 
-sleep(5)
-
 root=MainApp()
 root.mainloop()
 
