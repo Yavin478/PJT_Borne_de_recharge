@@ -181,24 +181,23 @@ def RFID_resetCarte(uidstring):
 def RFID_getUID(master, boucle=True):
     if config.debugging:
         print("## RFID_getUID ##")
-    if master.Verif_Rezal():
-        try:
-            if RFID_presence():
-                (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
-                if status == MIFAREReader.MI_OK:
-                    print("carte compilé")
-                    uidstring = STRING_Tag(uid, len(uid))
-                    print("master ok")
-                    if boucle:
-                        return master.Check_Carte(uidstring)
-                    else:
-                        return uidstring
+    try:
+        if RFID_presence():
+            (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
+            if status == MIFAREReader.MI_OK:
+                print("carte compilé")
+                uidstring = STRING_Tag(uid, len(uid))
+                print("master ok")
+                if not(master.Verif_Rezal()):
+                    master.Error_rezal()
+                elif boucle:
+                    return master.Check_Carte(uidstring)
                 else:
-                    print("carte non compilé")
-            master.after(100, RFID_getUID, master, boucle)
-        except Exception as e:
-            print("PROBLEME LECTURE UID :", e)
-            master.after(100, RFID_getUID, master, boucle)
-    else:
-        master.Error_rezal()
+                    return uidstring
+            else:
+                print("carte non compilé")
+        master.after(100, RFID_getUID, master, boucle)
+    except Exception as e:
+        print("PROBLEME LECTURE UID :", e)
+        master.after(100, RFID_getUID, master, boucle)
 
