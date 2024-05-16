@@ -15,9 +15,10 @@ txt_titre= {"carte":"Placez Votre Carte \n de Gala",
             "terminée":"Opération Effectuée",
             "error_QR":"Erreur QR Code LYDIA",
             "error_rezal":"Erreur Réseau",
-            "error_carte":"Erreur carte non reconnue",
+            "error_carte":"Erreur Carte Non Reconnue",
             "annulée":"Opération Annulée",
-            "error_montant":"Erreur montant",}
+            "error_montant":"Erreur Montant",
+            "error_matos":"Erreur Matérielle"}
 
 txt_indic= {"terminée":"Très bon Gala!",
             "montant":"Transaction max : "+str(config.maxTransaction/100)+"€\nArgent max sur carte : "+str(config.maxMontant/100)+" €",

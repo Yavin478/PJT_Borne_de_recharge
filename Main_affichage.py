@@ -48,6 +48,8 @@ class MainApp(Tk):
                     self.Error_montant()
                 elif self.mode == "Error_Rezal":
                     self.Error_rezal()
+                elif self.mode == "Error_Matos":
+                    self.Error_matos()
                 elif self.mode == "Finish":
                     self.Finish()
                 elif self.mode == "No_card":
@@ -122,7 +124,7 @@ class MainApp(Tk):
         if command_usb('keyboard','enable') and command_usb('scan','disable'):
             self.top.Page_montant(self.argent)
         else:
-            self.mode = "Error_Rezal"
+            self.mode = "Error_Matos"
             self.sleeping_mode = True
 
 
@@ -137,11 +139,10 @@ class MainApp(Tk):
         self.sleeping_mode = True
 
     def QR(self):
-
         if command_usb('keyboard','disable') and command_usb('scan','enable'):
             self.top.Page_QR()
         else:
-            self.mode = "Error_Rezal"
+            self.mode = "Error_Matos"
             self.sleeping_mode = True
 
     def QR_check(self, QR):
@@ -178,6 +179,10 @@ class MainApp(Tk):
 
     def Error_rezal(self):
         self.top.Page_error_rezal()
+        self.after(5000, self.rollback)
+
+    def Error_matos(self):
+        self.top.Page_error_matos()
         self.after(5000, self.rollback)
 
     def Finish(self):

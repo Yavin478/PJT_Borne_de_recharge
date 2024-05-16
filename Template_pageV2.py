@@ -194,6 +194,12 @@ class Page(Toplevel):
         self.canvas.itemconfig(self.top, state="normal", text=txt_indic["error_rezal"])
         self.canvas.itemconfig(self.img, state="normal", image=self.imgtk['exclam'])
 
+    def Page_error_matos(self):
+        self.cancel_canvas()
+        self.canvas.itemconfig(self.titre, text=txt_titre["error_matos"])
+        self.canvas.itemconfig(self.top, state="normal", text=txt_indic["error_rezal"])
+        self.canvas.itemconfig(self.img, state="normal", image=self.imgtk['exclam'])
+
     def Page_error_no_carte(self):
         self.cancel_canvas()
         self.canvas.itemconfig(self.titre, text=txt_titre["annulée"])
