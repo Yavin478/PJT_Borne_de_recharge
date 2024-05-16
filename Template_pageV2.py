@@ -26,6 +26,12 @@ class Page(Toplevel):
         self.Instruction()
         self.Fleche()
 
+    def Test_page_size(self):
+        if self.taille_ecran!=Size().renvoi():
+            self.quit_app()
+        self.after(4000, self.Test_page_size)
+
+
     def Instruction(self):
         self.widget=[]
 
