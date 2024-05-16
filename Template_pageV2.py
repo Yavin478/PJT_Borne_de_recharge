@@ -251,7 +251,7 @@ class Page(Toplevel):
     def Setup(self):
         self.title("Page")
         self.attributes('-fullscreen', True)
-        self.bind('<KeyPress-q>', lambda e: self.quit_app())
+        self.bind('<F1>', lambda e: self.quit_app())
 
         def callback(text):
             print(text)
