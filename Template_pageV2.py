@@ -25,6 +25,7 @@ class Page(Toplevel):
         self.BG()
         self.Instruction()
         self.Fleche()
+        self.Test_page_size()
 
     def Test_page_size(self):
         print(Size().renvoi())
