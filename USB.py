@@ -29,7 +29,7 @@ def get_device_ids(device_name):
 
 def command_usb(usb,type):
     ids=get_device_ids(usb)
-    if id==None:
+    if id==None or len(ids)==0:
         return False
     for i in ids:
         command = f'xinput {type} {i}'
