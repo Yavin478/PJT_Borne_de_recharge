@@ -28,8 +28,6 @@ class Page(Toplevel):
         self.Fleche()
 
     def Test_page_size(self):
-        print(Size().renvoi())
-        print(self.taille_ecran)
         if self.taille_ecran!=Size().renvoi():
             self.quit_app()
         self.after(2000, self.Test_page_size)

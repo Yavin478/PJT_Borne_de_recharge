@@ -32,6 +32,9 @@ class MainApp(Tk):
             if self.Verif_Rezal():
                 self.sleeping_mode = False
 
+                Entrer_log(setting.projet_path, "Logs", "MODE : "+ str(self.mode))
+                print("MODE : " + self.mode)
+
                 if self.mode == "Carte":
                     self.Carte()
                 elif self.mode == "Montant":
@@ -56,8 +59,6 @@ class MainApp(Tk):
                     self.Error_no_carte()
                 else:
                     print("wrong mode ducon")
-                Entrer_log(setting.projet_path, "Logs", "MODE : "+ str(self.mode))
-                print("MODE : " + self.mode)
             else :
                 print("error plus de coo")
                 self.Error_rezal()
