@@ -30,3 +30,4 @@ class config_lydia :
 
     # Numéro de téléphone du caissier pour la cagnote des 100J
     phone='33782977418' # Phone d'un gripss O 223
+    #phone = '33632994795'  # Phone d'un gripss O 222
