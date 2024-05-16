@@ -181,7 +181,7 @@ def RFID_resetCarte(uidstring):
 def RFID_getUID(master):
     if config.debugging:
         print("## RFID_getUID ##")
-    if master.mode=="Carte":
+    if master.Verif_Rezal():
         try:
             if RFID_presence():
                 (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
@@ -192,7 +192,10 @@ def RFID_getUID(master):
                     return master.Check_Carte(uidstring)
                 else:
                     print("carte non compilé")
-            master.after(100,RFID_getUID,master)
+            master.after(100, RFID_getUID, master)
         except Exception as e:
             print("PROBLEME LECTURE UID :", e)
             master.after(100, RFID_getUID, master)
+    else:
+        master.Error_rezal()
+
