@@ -191,9 +191,11 @@ def RFID_getUID(master):
                 return master.Check_Carte(uidstring)
             else:
                 print("carte non compilé")
+        print("master_error:",master.error)
         if not(master.error):
             master.after(100,RFID_getUID,master)
     except Exception as e:
         print("PROBLEME LECTURE UID :", e)
+        print("master_error:", master.error)
         if not (master.error):
             master.after(100, RFID_getUID, master)
