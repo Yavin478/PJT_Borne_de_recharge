@@ -60,6 +60,7 @@ class MainApp(Tk):
                 Entrer_log(setting.projet_path, "Logs", "MODE : "+ str(self.mode))
                 print("MODE : " + self.mode)
             else :
+                print("error plus de coo")
                 self.Error_rezal()
 
 
