@@ -157,15 +157,25 @@ class MainApp(Tk):
         self.sleeping_mode = True
 
     def QR_transact(self):
-        Entrer_log(setting.projet_path, "Logs", "Identifiant du QR code : "+str(self.QRcode))
-        if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, config_lydia.token_public, config_lydia.phone):
-            Entrer_log(setting.projet_path, "Logs", "Transaction lydia éffectuée avec succès")
-            RFID_setArgent(int((self.montant+self.argent)*100),self.uidstring)               # Ecriture du nouveau montant sur la carte RFID
-            Entrer_log(setting.projet_path, "Logs", "Ecriture du nouveau montant sur la carte RFID effectuée avec succès")
-            self.mode="Finish"
+
+        if STRING_uidStrToInt(RFID_getUID(master, False))!=self.uidstring:
+            self.mode = "Error_Carte"
+            self.sleeping_mode = True
         else:
-            self.mode = "Error_QR"
-        self.sleeping_mode = True
+            Entrer_log(setting.projet_path, "Logs", "Identifiant du QR code : " + str(self.QRcode))
+            if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, config_lydia.token_public,
+                                 config_lydia.phone):
+                Entrer_log(setting.projet_path, "Logs", "Transaction lydia éffectuée avec succès")
+                RFID_setArgent(int((self.montant + self.argent) * 100),
+                               self.uidstring)  # Ecriture du nouveau montant sur la carte RFID
+                Entrer_log(setting.projet_path, "Logs",
+                           "Ecriture du nouveau montant sur la carte RFID effectuée avec succès")
+                self.mode = "Finish"
+            else:
+                self.mode = "Error_QR"
+            self.sleeping_mode = True
+
+
 
     def Error_QR(self):
         self.top.Page_error_QR()
