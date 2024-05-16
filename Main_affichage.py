@@ -158,7 +158,7 @@ class MainApp(Tk):
 
     def QR_transact(self):
 
-        if STRING_uidStrToInt(RFID_getUID(master, False))!=self.uidstring:
+        if STRING_uidStrToInt(RFID_getUID(self, False))!=self.uidstring:
             self.mode = "Error_Carte"
             self.sleeping_mode = True
         else:
