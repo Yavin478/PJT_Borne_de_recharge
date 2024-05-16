@@ -15,7 +15,7 @@ txt_titre= {"carte":"Placez Votre Carte \n de Gala",
             "terminée":"Opération Effectuée",
             "error_QR":"Erreur QR Code LYDIA",
             "error_rezal":"Erreur Réseau",
-            "error_carte":"Erreur Carte Non Reconnue",
+            "error_carte":"Erreur Carte \n Incorrecte",
             "annulée":"Opération Annulée",
             "error_montant":"Erreur Montant",
             "error_matos":"Erreur Matérielle"}
