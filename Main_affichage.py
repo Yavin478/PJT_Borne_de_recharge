@@ -10,6 +10,7 @@ class MainApp(Tk):
         self.withdraw()
         self.mode = "Carte"
         self.sleeping_mode = True
+        self.error=False
         self.L_presence_card = []
         self.Boucle()
 
@@ -64,6 +65,11 @@ class MainApp(Tk):
 
         if self.mode in ["Montant", "QR", "Transaction","Finish"]:
             self.Carte_test()
+
+        if not(self.mode in ["Carte","Montant","QR","Transaction"]):
+            self.error=True
+        else:
+            self.error=False
 
         self.after(100, self.Boucle)
 
