@@ -197,8 +197,8 @@ def RFID_getUID(master, next):
             else:
                 print("carte non compilé")
         print("Pase de carte")
-        master.after(100, RFID_getUID, master, boucle)
+        master.after(100, RFID_getUID, master, next)
     except Exception as e:
         print("PROBLEME LECTURE UID :", e)
-        master.after(100, RFID_getUID, master, boucle)
+        master.after(100, RFID_getUID, master, next)
 
