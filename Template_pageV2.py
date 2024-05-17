@@ -129,7 +129,7 @@ class Page(Toplevel):
             if event.keysym == "BackSpace":
                 self.montant = ""
                 update_text()
-            elif event.keysym == "Return":
+            elif event.keysym == "Escape":
                 self.master.Check_montants(self.montant)
             elif event.char in self.dico.keys():
                 self.montant += str(self.dico[event.char])
