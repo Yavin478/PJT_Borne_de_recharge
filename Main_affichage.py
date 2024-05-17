@@ -165,12 +165,16 @@ class MainApp(Tk):
         self.sleeping_mode = True
 
     def QR_transact(self):
+        self.UID_check=STRING_uidStrToInt(RFID_getUID(self, False))
 
-        if STRING_uidStrToInt(RFID_getUID(self, False))!=self.uidstring:
+        if self.UID_check!=self.UID:
             self.mode = "Error_Carte"
             Entrer_log(setting.projet_path, "Logs_error", "Erreur de carte : UID différents")
+            Entrer_log(setting.projet_path, "Logs_error", "UID détecté initialement :" + str(self.UID))
+            Entrer_log(setting.projet_path, "Logs_error", "UID détecté avant transaction :" + str(self.UID_check))
             self.sleeping_mode = True
         else:
+            Entrer_log(setting.projet_path, "Logs_prg", "Correspondance des UID")
             Entrer_log(setting.projet_path, "Logs_prg", "Identifiant du QR code : " + str(self.QRcode))
             if Transaction_Lydia(setting.numeroBox, self.UID, self.montant, self.QRcode, config_lydia.token_public,
                                  config_lydia.phone):
