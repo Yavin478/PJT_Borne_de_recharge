@@ -43,7 +43,7 @@ class MainApp(Tk):
                 elif self.mode == "QR":
                     self.QR()
                 elif self.mode == "Transaction":
-                    self.QR_transact()
+                    self.QR_checkUID()
                 elif self.mode == "Error_QR":
                     self.Error_QR()
                 elif self.mode == "Error_Carte":
