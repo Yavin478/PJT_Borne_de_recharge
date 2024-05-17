@@ -15,7 +15,7 @@ class setting:
     # Paramètre indiquand si la box est en mode hors ligne ou pas (001)
     rezalMode=True
     # Paramètre indiquant si la box à ping un réseau internet(100)
-    rezalNet=False
+    rezalNet=True
     # IP de la box
     IP='192.168.1.91'
     # Adresse MAC de la box
