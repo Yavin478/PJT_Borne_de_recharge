@@ -11,11 +11,11 @@ class setting:
     # Version du système, permet de savoir quand une MAJ est a faire
     version='610'
     # Paramètre indiquand au système si la box a ping le serveur (010)
-    rezalOn=True
+    rezalOn=False
     # Paramètre indiquand si la box est en mode hors ligne ou pas (001)
     rezalMode=True
     # Paramètre indiquant si la box à ping un réseau internet(100)
-    rezalNet=True
+    rezalNet=False
     # IP de la box
     IP='192.168.1.91'
     # Adresse MAC de la box
