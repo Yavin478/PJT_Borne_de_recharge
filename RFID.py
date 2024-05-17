@@ -178,7 +178,7 @@ def RFID_resetCarte(uidstring):
     RFID_setHashCodeType(config.codeGuinche,uidstring)
     RFID_setHashUID(uidstring)
 
-def RFID_getUID(master, boucle=True):
+def RFID_getUID(master, next):
     if config.debugging:
         print("## RFID_getUID ##")
     try:
@@ -191,10 +191,9 @@ def RFID_getUID(master, boucle=True):
                 print("master ok")
                 if not(master.Verif_Rezal()):
                     master.Error_rezal()
-                elif boucle:
-                    return master.Check_Carte(uidstring)
                 else:
-                    return uidstring
+                    next(uidstring)
+
             else:
                 print("carte non compilé")
         print("Pase de carte")

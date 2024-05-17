@@ -110,7 +110,7 @@ class MainApp(Tk):
 
         self.top.Page_carte()
         Entrer_log(setting.projet_path, "Logs_prg", "Recherche d'une carte")
-        RFID_getUID(self)
+        RFID_getUID(self, self.Check_Carte)
 
     def Check_Carte(self, uidstring):
         self.uidstring = uidstring
@@ -164,8 +164,14 @@ class MainApp(Tk):
             Entrer_log(setting.projet_path, "Logs_error", "Probleme avec le Qr code")
         self.sleeping_mode = True
 
-    def QR_transact(self):
-        self.UID_check=STRING_uidStrToInt(RFID_getUID(self, False))
+    def QR_checkUID(self):
+        Entrer_log(setting.projet_path, "Logs_prg", "Reverification d'une carte")
+        RFID_getUID(self, self.QR_transact)
+
+
+    def QR_transact(self, uid):
+        self.UID_check=STRING_uidStrToInt(uid)
+        Entrer_log(setting.projet_path, "Logs_prg", "Carte trouvé: "+self.UID_check)
 
         if self.UID_check!=self.UID:
             self.mode = "Error_Carte"
