@@ -190,9 +190,9 @@ def RFID_getUID(master, next):
                 uidstring = STRING_Tag(uid, len(uid))
                 print("master ok")
                 if not(master.Verif_Rezal()):
-                    master.Error_rezal()
+                    return master.Error_rezal()
                 else:
-                    next(uidstring)
+                    return next(uidstring)
 
             else:
                 print("carte non compilé")
