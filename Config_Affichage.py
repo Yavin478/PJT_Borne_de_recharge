@@ -10,7 +10,7 @@ h_fleche={"carte":20/38,
 
 
 txt_titre= {"carte":"Placez Votre Carte \n de Gala",
-            "montant":"Tapez le montant \n à rajouter \n puis appuyez sur entrée",
+            "montant":"Tapez le montant \n à rajouter puis \n appuyez sur entrée",
             "Qr":"Scannez votre \n QR Code LYDIA",
             "terminée":"Opération Effectuée",
             "error_QR":"Erreur QR Code LYDIA",
