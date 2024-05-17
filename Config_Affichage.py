@@ -21,7 +21,7 @@ txt_titre= {"carte":"Placez Votre Carte \n de Gala",
             "error_matos":"Erreur Matérielle"}
 
 txt_indic= {"terminée":"Très bon Gala!",
-            "montant":"Transaction max : "+str(config.maxTransaction/100)+"€\nArgent max sur carte : "+str(config.maxMontant/100)+" € \n puis appuyez sur entrée",
+            "montant":"Rajout max : "+str(config.maxTransaction/100)+"€\nArgent max sur carte : "+str(config.maxMontant/100)+" € \n puis appuyez sur entrée",
             "QR":"Placez votre QR Code LYDIA proche du scanneur",
             "error_QR":"Recommencez avec un QRcode \n Lydia Valide",
             "error_rezal":"veuillez contacter une caisse",

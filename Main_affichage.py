@@ -186,7 +186,7 @@ class MainApp(Tk):
                                  config_lydia.phone):
                 Entrer_log(setting.projet_path, "Logs_prg", "Transaction lydia éffectuée avec succès")
                 RFID_setArgent(int((self.montant + self.argent) * 100),self.uidstring)  # Ecriture du nouveau montant sur la carte RFID
-                Entrer_log(setting.projet_path, "Logs_prgs","Ecriture du nouveau montant sur la carte RFID effectuée avec succès")
+                Entrer_log(setting.projet_path, "Logs_prg","Ecriture du nouveau montant sur la carte RFID effectuée avec succès")
                 self.mode = "Finish"
             else:
                 self.mode = "Error_QR"
