@@ -10,7 +10,7 @@ h_fleche={"carte":20/38,
 
 
 txt_titre= {"carte":"Placez Votre Carte \n de Gala",
-            "montant":"Tapez le montant \n à rajouter",
+            "montant":"Tapez le montant \n à rajouter \n puis appuyez sur entrée",
             "Qr":"Scannez votre \n QR Code LYDIA",
             "terminée":"Opération Effectuée",
             "error_QR":"Erreur QR Code LYDIA",
@@ -21,7 +21,7 @@ txt_titre= {"carte":"Placez Votre Carte \n de Gala",
             "error_matos":"Erreur Matérielle"}
 
 txt_indic= {"terminée":"Très bon Gala!",
-            "montant":"Rajout max : "+str(config.maxTransaction/100)+"€\nArgent max sur carte : "+str(config.maxMontant/100)+" € \n puis appuyez sur entrée",
+            "montant":"Rajout max : "+str(config.maxTransaction/100)+"€\nArgent max sur carte : "+str(config.maxMontant/100)+" €",
             "QR":"Placez votre QR Code LYDIA proche du scanneur",
             "error_QR":"Recommencez avec un QRcode \n Lydia Valide",
             "error_rezal":"veuillez contacter une caisse",
