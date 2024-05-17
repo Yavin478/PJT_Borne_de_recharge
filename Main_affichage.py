@@ -171,7 +171,7 @@ class MainApp(Tk):
 
     def QR_transact(self, uid):
         self.UID_check=STRING_uidStrToInt(uid)
-        Entrer_log(setting.projet_path, "Logs_prg", "Carte trouvé: "+self.UID_check)
+        Entrer_log(setting.projet_path, "Logs_prg", "Carte trouvé: "+str(self.UID_check))
 
         if self.UID_check!=self.UID:
             self.mode = "Error_Carte"
