@@ -150,7 +150,7 @@ class Page(Toplevel):
         self.cancel_canvas()
 
         def keypress(event):
-            if event.keysym == "Return":
+            if event.keysym == "Return" and self.flag == False:
                 self.flag = True
                 self.master.QR_check(self.QR)
             else:
