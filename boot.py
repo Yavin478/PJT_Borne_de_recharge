@@ -2,7 +2,8 @@ print("Démarrage 'boot.py'")
 
 from Main_affichage import *
 
-Entrer_log(setting.projet_path, "Logs", "Démarage Programe")
+Entrer_log(setting.projet_path, "Logs_prg", "Démarage Programe")
+
 
 root=MainApp()
 root.mainloop()

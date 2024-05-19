@@ -24,7 +24,14 @@ class Page(Toplevel):
 
         self.BG()
         self.Instruction()
+        self.Test_page_size()
         self.Fleche()
+
+    def Test_page_size(self):
+        if self.taille_ecran!=Size().renvoi():
+            self.quit_app()
+        self.after(2000, self.Test_page_size)
+
 
     def Instruction(self):
         self.widget=[]
@@ -244,7 +251,8 @@ class Page(Toplevel):
     def Setup(self):
         self.title("Page")
         self.attributes('-fullscreen', True)
-        self.bind('<KeyPress-q>', lambda e: self.quit_app())
+        self.bind('<F1>', lambda e: self.quit_app())
+        Entrer_log(setting.projet_path, "Logs_prg", "Arrêt manuel du script")
 
         def callback(text):
             print(text)

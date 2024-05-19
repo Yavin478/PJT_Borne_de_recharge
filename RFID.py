@@ -178,27 +178,27 @@ def RFID_resetCarte(uidstring):
     RFID_setHashCodeType(config.codeGuinche,uidstring)
     RFID_setHashUID(uidstring)
 
-def RFID_getUID(master, boucle=True):
+def RFID_getUID(master, next):
     if config.debugging:
         print("## RFID_getUID ##")
-    if master.Verif_Rezal():
-        try:
-            if RFID_presence():
-                (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
-                if status == MIFAREReader.MI_OK:
-                    print("carte compilé")
-                    uidstring = STRING_Tag(uid, len(uid))
-                    print("master ok")
-                    if boucle:
-                        return master.Check_Carte(uidstring)
-                    else:
-                        return uidstring
+    try:
+        if RFID_presence():
+            print("Presence")
+            (status, uid) = MIFAREReader.MFRC522_SelectTagSN()
+            if status == MIFAREReader.MI_OK:
+                print("carte compilé")
+                uidstring = STRING_Tag(uid, len(uid))
+                print("master ok")
+                if not(master.Verif_Rezal()):
+                    return master.Error_rezal()
                 else:
-                    print("carte non compilé")
-            master.after(100, RFID_getUID, master, boucle)
-        except Exception as e:
-            print("PROBLEME LECTURE UID :", e)
-            master.after(100, RFID_getUID, master, boucle)
-    else:
-        master.Error_rezal()
+                    return next(uidstring)
+
+            else:
+                print("carte non compilé")
+        print("Pase de carte")
+        master.after(100, RFID_getUID, master, next)
+    except Exception as e:
+        print("PROBLEME LECTURE UID :", e)
+        master.after(100, RFID_getUID, master, next)
 
