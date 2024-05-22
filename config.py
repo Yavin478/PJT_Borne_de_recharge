@@ -62,6 +62,7 @@ class config:  # Définition des variables reliée à l'objet config définissan
     # Nom du repo utilisé
     repo="PJT_Borne_de_recharge"
 
+    # Périphérique USB
     name_scan="BF SCAN SCAN KEYBOARD"
     name_keyboard= "Barcode Reader"
 
