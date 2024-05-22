@@ -192,14 +192,14 @@ def RFID_getUID(master, next):
                 if not(master.Verif_Rezal()):
                     return master.Error_rezal()
                 else:
-                    print("carte retrouvé :",uidstring)
                     return next(uidstring)
 
             else:
                 print("carte non compilé")
-        print("Pase de carte")
+        print("Pas de carte")
         master.after(100, RFID_getUID, master, next)
     except Exception as e:
         print("PROBLEME LECTURE UID :", e)
+        Entrer_log(setting.projet_path, "Logs_error", "Probleme de lecture de l'uid : "+str(e))
         master.after(100, RFID_getUID, master, next)
 
