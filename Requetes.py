@@ -1,10 +1,14 @@
 print("Demarrage 'Requetes.py'")
+from SQL import *
 
 #### Définition des requêtes SQL ####
 
 # Préparation BDD
 def QUERRY_getIdLydia(date):
     return (("SELECT id FROM recharge_lydia WHERE date= '{}';").format(date))
+
+def QUERRY_getCarte(UID):
+    return (("SELECT * FROM cartes WHERE uid= '{}';").format(UID))
 
 def QUERRY_addCarte(UID):
     return (("INSERT INTO cartes (UID, ArgentCarte) VALUES ( '{}' , '{}' );").format(UID,0))

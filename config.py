@@ -1,4 +1,5 @@
 print("Démarrage 'config.py'")
+from setting import *
 
 class config:  # Définition des variables reliée à l'objet config définissant les paramètres du gala (guinche)
     # Les hash sont salés avec codeHash (précédemment avec codeGuinche).
@@ -45,7 +46,7 @@ class config:  # Définition des variables reliée à l'objet config définissan
     # Montant en centimes minimal à pouvoir mettre pendant une transaction
     minMontant = 100
     # Montant max à pouvoir être mis sur une carte
-    maxTransaction = 5000
+    maxTransaction = 9900
     # Montant en centime maximal à pouvoir être contenu sur une carte
     maxMontant = 15000
 
@@ -57,6 +58,12 @@ class config:  # Définition des variables reliée à l'objet config définissan
                   "resetCarteRFID", "resetCarteBDD", "getCarteUID"]
     menuUser = ["menuUser", "viewMAC", "viewIP", "viewIPServeur", "viewPing", "viewProduits"]
     menuPrincipal = ["menuPrincipal", "menuUser", "menuHelper", "menuVP", "menuModerateur", "menuAdmin"]
+
+    # Nom du repo utilisé
+    repo="PJT_Borne_de_recharge"
+
+    name_scan="BF SCAN SCAN KEYBOARD"
+    name_keyboard= "Barcode Reader"
 
     # pour avoir des affichages dans la console pour savoir à où le code en est
     debugging = False

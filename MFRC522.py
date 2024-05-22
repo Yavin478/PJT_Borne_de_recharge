@@ -1,6 +1,7 @@
 print("Demarrage 'MFRC522.py'")
-DEBUG = True
+from STRING import *
 
+DEBUG = True
 try:
     DEBUG = config.debugging
 except:

@@ -1,5 +1,5 @@
 print("Demarrage 'setting.py'")
-
+from importation import *
 
 # Définition des variables reliée à l'objet setting définissant les paramètres de la box. Ces paramètres sont sauvegardés et résistent au reboot
 class setting:
@@ -7,17 +7,17 @@ class setting:
     # Nom de la box (Données par la BDD au démarrage), il définie le rôle de la box selon la première lettre (ATTENTION: Première lettre toujours en majuscule)
     nomBox='Automatique'#A pour BorneAutomatique de toute manière le code ne prend que la 1er lettre du nom
     # Numéro de la box, permet d'identifié de façon unique les boxs (clé primaire) pour la BDD
-    numeroBox=46
+    numeroBox=91
     # Version du système, permet de savoir quand une MAJ est a faire
     version='610'
     # Paramètre indiquand au système si la box a ping le serveur (010)
-    rezalOn=True
+    rezalOn=False
     # Paramètre indiquand si la box est en mode hors ligne ou pas (001)
     rezalMode=True
     # Paramètre indiquant si la box à ping un réseau internet(100)
     rezalNet=False
     # IP de la box
-    IP='192.168.1.92'
+    IP='192.168.1.91'
     # Adresse MAC de la box
     MAC='02:07:84:40:6b:94'
     # Dictionnaire des produits de la box

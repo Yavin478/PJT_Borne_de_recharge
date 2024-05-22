@@ -1,39 +1,41 @@
-print("Demarrage 'Config_Affichage.py'")
+from main_lydia import *
 
-gala='508'
+gala='100J'
 
-type_police="Georgia"
-ratio_flèche=7
-décalage_flèche=30
-h_fleche={"carte":1/4,
-          "montant":3/4,
-          "QR":1/2}
+type_police="Extra Bold"
+
+h_fleche={"carte":20/38,
+          "montant":33/38,
+          "QR":12.5/38}
 
 
-txt_titre= {"carte":"Placez Votre Carte",
-            "montant":"Tapez le montant à rajouter",
-            "Qr":"Scannez votre QR Code LYDIA",
-            "terminée":"Opération Effectué",
+txt_titre= {"carte":"Placez Votre Carte \n de Gala",
+            "montant":"Tapez le montant \n à rajouter puis \n appuyez sur entrée",
+            "Qr":"Scannez votre \n QR Code LYDIA",
+            "terminée":"Opération Effectuée",
             "error_QR":"Erreur QR Code LYDIA",
-            "error_rezal":"Erreur rezal",
-            "error_carte":"Erreur carte non reconnue",
+            "error_rezal":"Erreur Réseau",
+            "error_carte":"Erreur Carte \n Incorrecte",
             "annulée":"Opération Annulée",
-            "error_montant":"Erreur montant",}
+            "error_montant":"Erreur Montant",
+            "error_matos":"Erreur Matérielle"}
 
-txt_indic= {"terminée":"Très bon gala!",
-            "montant":"Transaction max de "+str(config.maxTransaction/100)+"€\nArgent sur carte max de "+str(config.maxMontant/100)+" €",
+txt_indic= {"terminée":"Très bon Gala!",
+            "montant":"Rajout max : "+str(config.maxTransaction/100)+"€\nArgent max sur carte : "+str(config.maxMontant/100)+" €",
+            "QR":"Placez votre QR Code LYDIA proche du scanneur",
             "error_QR":"Recommencez avec un QRcode \n Lydia Valide",
-            "error_rezal":"veuillez contacter un membre du Rezal",
-            "error_carte":"Recommencez avec une carte valide",
-            "error_montant":"Recommencez avec un montant \n valide <90€ "}
+            "error_rezal":"veuillez contacter une caisse",
+            "error_carte":"Recommencez avec \n une carte valide",
+            "error_montant":"Le montant doit être < "+str(config.maxTransaction/100)+" € \n vous ne pouvez pas avoir plus de \n "+str(config.maxMontant/100)+" € sur la carte",
+            "no_card":"Vous avez retiré la carte",
+            "annulée": "Vous avez annulé l'opération",
+            "montant_in":"Vous avez: \n",
+            "montant_out":"Vous rajoutez: \n",
+            "quitter":"Retirez la carte pour terminer"}
 
-txt_esc="Appuyez sur ESC pour annuler"
-txt_montant_in="Vous avez: \n"
-txt_montant_out="Vous voulez: \n"
+txt_presentation="Cette borne a pour but \n de recharger votre carte \n de Gala par Lydia"
 
-
-
-
+txt_esc="Retirez la carte pour annuler"
 
 
 if gala=='baptss':
@@ -45,18 +47,29 @@ if gala=='baptss':
 
 
 elif gala=='508':
-    path_img_bg = "Static/Bg_508.jpg"
-    path_img_fg = "Static/Cadre_508.png"
-    path_img_flèche = "Static/fleche_wb.png"
+    path={"bg":"Static/Bg_508.jpg",
+          "fg":"Static/Cadre_508.png",
+          "fleche":"Static/fleche_wb.png",
+          "exclam":"Static/ho_shit.png",
+          "smiley":"Static/Smiley_corect.png",
+          "cross":"Static/Crossçcorect.png"}
+
     ratio_square = 1.25
+    ratio_img = 5
+
+    decalage= {"top":0.5,
+               "bot":0.63,
+               "side":0.25,
+               "top_montant":0}
 
     decalage_label = 0.5
     decalage_label_esc=0.63
     decalage_label_montant=0.35
     decalage_info_montant=0.25
-    décalage_esc = 30
+    decalage_img=0.1
 
-
+    ratio_flèche = 7
+    décalage_flèche = 30
 
     taille_police = 47
     taille_police_esc = 30
@@ -64,5 +77,36 @@ elif gala=='508':
     taille_police_montant = 35
     taille_police_info = 25
 
+elif gala=='100J':
+    path={"bg":"Static/Bg_100J.jpg",
+          "fg":"Static/Fg_100J.png",
+          "fleche":"Static/fleche_100J.png",
+          "exclam":"Static/ho_shit.png",
+          "smiley":"Static/Logo_100J.png",
+          "cross":"Static/Crossçcorect.png"}
+
+    ratio_square = 1.5
+    ratio_img = 5
+
+    decalage= {"top":0.5,
+               "bot":0.63,
+               "side":0.25,
+               "top_montant":0}
+
+    decalage={"titre":0.35,
+              "bot":0.3,
+              "side":0.52,
+              "top":0.65,
+              "img":0.1}
+
+
+    ratio_flèche = 10
+    décalage_flèche = 30
+
+    police={"titre":0.057,
+            "bot":0.045,
+            'top':0.04,
+            'side':0.045,
+            'center':0.045}
 
 temps_retour=20
