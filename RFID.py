@@ -200,5 +200,6 @@ def RFID_getUID(master, next):
         master.after(100, RFID_getUID, master, next)
     except Exception as e:
         print("PROBLEME LECTURE UID :", e)
+        print('erreur :',e)
         master.after(100, RFID_getUID, master, next)
 
