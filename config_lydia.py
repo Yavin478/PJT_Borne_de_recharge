@@ -36,5 +36,6 @@ class config_lydia :
     #token_prive = "54c10dbc67804505863299" #pour la signature
 
     # Numéro de téléphone du caissier pour la cagnote des 100J
-    phone='33782977418' # Phone d'un gripss O 223
+    #phone='33782977418' # Phone d'un gripss O 223
     #phone = '33632994795'  # Phone d'un gripss O 222
+    phone='0656683464' # Phone de test en environnement d'homologation pour le bapt'sss
