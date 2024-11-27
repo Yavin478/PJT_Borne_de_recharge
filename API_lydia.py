@@ -39,7 +39,7 @@ def Lydia_check(token_public,montant,phone,order_id,Qrcode):
                 return response_data['transaction_identifier']
         except :
             Entrer_log(setting.projet_path, "Logs_error","L'erreur suivante est survenu lors de la transaction :" + str(response_data['status']) +"  :  " + str(response_data['message']))
-            Entrer_log(setting.projet_path, "Logs_error","L'erreur suivante est survenu lors de la transaction :")
+            Entrer_log(setting.projet_path, "Logs_error","Erreur de test:")
             return None
 
     else:
