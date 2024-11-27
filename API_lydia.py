@@ -38,6 +38,7 @@ def Lydia_check(token_public,montant,phone,order_id,Qrcode):
             else : 
                 Entrer_log(setting.projet_path, "Logs_error","L'erreur suivante est survenu lors de la transaction :" + str(response_data['error']))
                 #Entrer_log(setting.projet_path, "Logs_error","L'erreur suivante est survenu lors de la transaction :" + str(response_data['status']) +"  :  " + str(response_data['message']))
+                return None
         except :
             Entrer_log(setting.projet_path, "Logs_error","L'erreur suivante est survenu lors de la transaction :" + str(response_data['status']) +"  :  " + str(response_data['message']))
             return None
