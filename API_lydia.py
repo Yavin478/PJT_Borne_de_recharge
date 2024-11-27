@@ -24,22 +24,21 @@ def Lydia_check(token_public,montant,phone,order_id,Qrcode):
 
     # Effectuer la requête POST
     response = requests.post(config_lydia.url, data=data, verify=False)
-    Entrer_log(setting.projet_path, "Logs_prg","Reponse lydia des données")
 
     # Vérifier la réponse
     if response.status_code == 200:
         # Convertir la réponse en JSON
         response_data = response.json()
-        Entrer_log(setting.projet_path, "Logs_prg","Reponse lydia json")
         
         try :
             if response_data['error'] == "0":
                 Entrer_log(setting.projet_path, "Logs_prg","Transaction lydia réussie")
                 Entrer_log(setting.projet_path, "Logs_prg", "Identifiant de la transaction :"+ str(response_data['transaction_identifier']))
                 return response_data['transaction_identifier']
+            else : 
+                Entrer_log(setting.projet_path, "Logs_error","L'erreur suivante est survenu lors de la transaction :" + str(response_data['status']) +"  :  " + str(response_data['message']))
         except :
             Entrer_log(setting.projet_path, "Logs_error","L'erreur suivante est survenu lors de la transaction :" + str(response_data['status']) +"  :  " + str(response_data['message']))
-            Entrer_log(setting.projet_path, "Logs_error","Erreur de test:")
             return None
 
     else:
