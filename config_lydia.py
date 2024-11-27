@@ -20,12 +20,12 @@ class config_lydia :
     #token_prive = "56b21e4212e2b468320228" #pour la signature
 
     # TOKENS DE TEST pour l'activité du Bapt'ss
-    #token_public = "67476a1346f62188940343" #pour les appels
-    #token_prive = "67476a134f166561760862" #pour la signature
+    token_public = "67476a1346f62188940343" #pour les appels
+    token_prive = "67476a134f166561760862" #pour la signature
 
     # TOKENS DE PRODUCTION pour l'activité du Bapt'ss
-    token_public = "5b19630a40892684681512" #pour les appels
-    token_prive = "5b19630a5101a987821327" #pour la signature
+    #token_public = "5b19630a40892684681512" #pour les appels
+    #token_prive = "5b19630a5101a987821327" #pour la signature
 
     # TOKENS DE TEST pour l'activité des 100J
     #token_public = "660e5b8b4c353994613407" #pour les appels
