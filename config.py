@@ -16,8 +16,8 @@ class config:  # Définition des variables reliée à l'objet config définissan
     # Code permettant de débloquer la box en mode Bar
     # Code permettant de débloquer la box en mode Nourriture
     # Code permettant le passage en mode hors ligne de la box
-    codeHash        = "LE_R3ZAL_222"
-    codeGuinche     = "100222"
+    codeHash        = "le_rezal_223"
+    codeGuinche     = "baptss223"
     codeAppro       = "ORPPA"
     codeAdmin       = 2993
     codeModerateur  = 7565
